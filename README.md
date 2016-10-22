@@ -1,2 +1,2 @@
 # a4m36jee-project
-Semestral project for A4M36JEE course at FEE CTU.
+Semestral project in [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) class at FEE CTU.
