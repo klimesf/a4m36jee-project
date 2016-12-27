@@ -1,4 +1,6 @@
 # a4m36jee-project
+[![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
+
 Semestral project in [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) class at FEE CTU.
 
 Team
