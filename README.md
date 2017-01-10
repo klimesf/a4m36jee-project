@@ -68,3 +68,5 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Openshift                 |       |       |       |       |       |
 | Swarm Fatjar              |       |       |       |       |       |
 | Clustering                |       |       |       |       |       |
+| Prezentace                |       |       |       |       |       |
+| UML                       |       |       |       |       |       |
