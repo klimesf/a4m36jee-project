@@ -34,6 +34,14 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>klimefi1</id>
+            <name>Filip Klimeš</name>
+            <email>klimefi1@fel.cvut.cz</email>
+        </developer>
+    </developers>
+
     <properties>
         <!-- Explicitly declaring the source encoding eliminates the following
             message: -->
