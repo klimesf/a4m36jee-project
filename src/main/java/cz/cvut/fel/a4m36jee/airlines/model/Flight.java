@@ -13,11 +13,7 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
-public class Flight {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Flight extends AbstractEntity {
 
     private Date date;
 
@@ -37,10 +33,6 @@ public class Flight {
     @NotNull
     @ManyToOne
     private Destination to;
-
-    public Long getId() {
-        return id;
-    }
 
     public Date getDate() {
         return new Date(date.getTime());
