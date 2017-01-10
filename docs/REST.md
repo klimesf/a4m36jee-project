@@ -1,44 +1,152 @@
 # Airlines REST API documentation
 
-## Flights
+## Destinations
 
 ### List all Destinations
 
 ```bash
-curl -v -X GET -H 'Content-type: application/json' http://localhost:8080/airlines/rest/destinations
+curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/destinations
 ```
 
 ```json
-
+[
+  {
+    "id": 1,
+    "name": "Prague",
+    "lat": 50.0755381,
+    "lon": 14.4378005
+  },
+  {
+    "id": 2,
+    "name": "Berlin",
+    "lat": 52.52437,
+    "lon": 13.41053
+  },
+  {
+    "id": 3,
+    "name": "New York",
+    "lat": 40.71427,
+    "lon": -74.00597
+  }
+]
 ```
 
 ### Create a Destination
 
 ```bash
-curl -v -X POST -H 'Content-type: application/json' -d '{
+curl -v -H 'Content-type: application/json' -d '{
   "name": "Prague",
   "lat": 50.0755381,
   "lon": 14.4378005
 }' http://localhost:8080/airlines/rest/destinations
 ```
 
+```
+200 OK
+```
+
+## Flights
+
+### List all Flights
+
 ```bash
-*   Trying 127.0.0.1...
-* Connected to localhost (127.0.0.1) port 8080 (#0)
-> POST /airlines/rest/destinations HTTP/1.1
-> Host: localhost:8080
-> User-Agent: curl/7.49.1
-> Accept: */*
-> Content-type: application/json
-> Content-Length: 64
-> 
-* upload completely sent off: 64 out of 64 bytes
-< HTTP/1.1 200 OK
-< Connection: keep-alive
-< X-Powered-By: Undertow/1
-< Server: WildFly/10
-< Content-Length: 0
-< Date: Tue, 10 Jan 2017 10:30:29 GMT
-< 
-* Connection #0 to host localhost left intact
+curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/flights
+```
+
+```json
+[
+  {
+    "id": 1,
+    "date": 1484866800000,
+    "price": 399.0,
+    "seats": 100,
+    "name": "OK-3867",
+    "from": {
+      "id": 1,
+      "name": "Prague",
+      "lat": 50.0755381,
+      "lon": 14.4378005
+    },
+    "to": {
+      "id": 2,
+      "name": "Berlin",
+      "lat": 52.52437,
+      "lon": 13.41053
+    }
+  },
+  
+  ...
+
+]
+```
+
+### Create a Flight
+
+
+```bash
+curl -v -H 'Content-type: application/json' -d '{
+  "name": "AB-0123",
+  "from": 1,
+  "to": 2,
+  "seats": 200,
+  "date": "2017-02-01",
+  "price": 299
+}' http://localhost:8080/airlines/rest/flights
+```
+
+```
+curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/flights
+```
+
+
+## Reservations
+
+### List all Reservations
+
+```bash
+
+```
+
+```json
+[
+  {
+    "id": 1,
+    "seats": 2,
+    "password": "pass123",
+    "created": 1484045647644,
+    "flight": {
+      "id": 1,
+      "date": 1484866800000,
+      "price": 399.0,
+      "seats": 100,
+      "name": "OK-3867",
+      "from": {
+        "id": 1,
+        "name": "Prague",
+        "lat": 50.0755381,
+        "lon": 14.4378005
+      },
+      "to": {
+        "id": 2,
+        "name": "Berlin",
+        "lat": 52.52437,
+        "lon": 13.41053
+      }
+    }
+  },
+  
+  ...
+  
+]
+```
+
+### Create a Reservation
+
+```bash
+curl -v -H 'Content-type: application/json' -d '{
+  "flight": 1,
+  "seats": 200,
+  "created": "2017-02-01"
+  "password": "secret",
+}' http://localhost:8080/airlines/rest/reservations
 ```

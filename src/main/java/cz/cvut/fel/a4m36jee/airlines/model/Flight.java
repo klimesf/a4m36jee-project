@@ -7,9 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author klimefi1
@@ -21,10 +19,7 @@ public class Flight {
     @GeneratedValue
     private Long id;
 
-    private Date dateOfDeparture;
-
-    @NotNull
-    private Double distance;
+    private Date date;
 
     @NotNull
     private Double price;
@@ -47,20 +42,12 @@ public class Flight {
         return id;
     }
 
-    public Date getDateOfDeparture() {
-        return dateOfDeparture;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateOfDeparture(Date dateOfDeparture) {
-        this.dateOfDeparture = dateOfDeparture;
-    }
-
-    public Double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Double distance) {
-        this.distance = distance;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Double getPrice() {
