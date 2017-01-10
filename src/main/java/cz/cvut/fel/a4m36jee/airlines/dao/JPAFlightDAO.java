@@ -5,5 +5,5 @@ import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 /**
  * @author klimefi1
  */
-public class JPAFlightDAO extends GenericDAO<Flight> {
+public class JPAFlightDAO extends GenericDAO<Flight> implements FlightDAO {
 }

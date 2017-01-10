@@ -2,13 +2,15 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * @author klimefi1
  */
+@Entity
 public class Reservation extends AbstractEntity {
 
     @NotNull
@@ -19,5 +21,41 @@ public class Reservation extends AbstractEntity {
 
     @NotNull
     private Date created;
+
+    @ManyToOne
+    private Flight flight;
+
+
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getCreated() {
+        return new Date(created.getTime());
+    }
+
+    public void setCreated(Date created) {
+        this.created = new Date(created.getTime());
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
 
 }

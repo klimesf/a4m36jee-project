@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author klimefi1
  */
-interface DAO<T> {
+public interface DAO<T> {
 
     List<T> list();
 

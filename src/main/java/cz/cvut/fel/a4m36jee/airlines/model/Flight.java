@@ -3,11 +3,11 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author klimefi1
@@ -15,10 +15,7 @@ import java.util.List;
 @Entity
 public class Flight extends AbstractEntity {
 
-    private Date dateOfDeparture;
-
-    @NotNull
-    private Double distance;
+    private Date date;
 
     @NotNull
     private Double price;
@@ -30,11 +27,59 @@ public class Flight extends AbstractEntity {
     private String name;
 
     @NotNull
+    @ManyToOne
     private Destination from;
 
     @NotNull
+    @ManyToOne
     private Destination to;
 
-    private List<Reservation> reservations = new ArrayList<>();
+    public Date getDate() {
+        return new Date(date.getTime());
+    }
+
+    public void setDate(Date date) {
+        this.date = new Date(date.getTime());
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Destination getFrom() {
+        return from;
+    }
+
+    public void setFrom(Destination from) {
+        this.from = from;
+    }
+
+    public Destination getTo() {
+        return to;
+    }
+
+    public void setTo(Destination to) {
+        this.to = to;
+    }
 
 }
