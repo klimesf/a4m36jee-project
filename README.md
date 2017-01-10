@@ -3,8 +3,7 @@
 
 Semestral project in [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) class at FEE CTU.
 
-Team
-===
+## Team
 
 - Filip Klimeš (vedoucí)
 - Jakub Moravec
@@ -12,20 +11,25 @@ Team
 - Ondřej Kratochvíl
 - Ondřej Slavíček
 
-Specifikace
-===
+## Specifikace
 
-*TODO*
+Realizujte projekt letecké společnosti pro plánování a rezervaci letů.
+Výsledný produkt musí být součástí již existující architektury a napojený na již existující služby,
+ale bylo dosaženo celkové kompaktnosti a efektivity systému. Hlavním požadavkem na
+realizaci produktu je implementace RESTful API, které spravuje dostupné datové zdroje:
+Destination (seznam destinací, kam společnost létá), Flight (seznam plánovaných, zrušených i uskutečněných letů)
+a Reservation (rezervace určitého počtu míst ve zvoleném letu). 
+Součástí implementace musí být i tlustý klient implementovaný jako
+webová stránka prohlížeče zprostředkovávající přístup ke vzdálené Airline službě.
 
-Git WorkFlow
-===
+## Git WorkFlow
 
-*TODO*
+[Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
 
-Checklist
-===
+## Checklist
+
 - [ ] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
-- [ ] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
+- [X] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
 - [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
   - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
@@ -46,3 +50,21 @@ Checklist
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
+
+## Rozdělení prací
+
+| Úkol                      | FK    | JM    | MK    | OK    | OS    |
+| ----                      | :---: | :---: | :---: | :---: | :---: |
+| Specifikace               | X     |       |       |       |       |
+| JPA 2 + Bean Validation   | X     |       |       |       |       |
+| Byznys vrstva             |       |       |       |       |       |
+| Prezentační vrstva        |       |       |       |       |       |
+| WebSocket                 |       |       |       |       |       |
+| Arquillian                |       |       |       |       |       |
+| Security                  |       |       |       |       |       |
+| JMS                       |       |       |       |       |       |
+| REST                      | X     |       |       |       |       |
+| Concurrency/Batching      |       |       |       |       |       |
+| Openshift                 |       |       |       |       |       |
+| Swarm Fatjar              |       |       |       |       |       |
+| Clustering                |       |       |       |       |       |
