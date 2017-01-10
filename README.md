@@ -38,7 +38,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
   - [ ] Business vrstva - EJB
   - [X] Datová vrstva - perzistence pomocí JPA 2 nebo Infinispan (zde se očekává konfigurace Infinispan-u pro trvalé uložení dat)
 - [ ] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
-- [ ] Aplikace bude plně zabezpečena, bude používat minimálně tři úrovně oprávnění (role)
+- [X] Aplikace bude plně zabezpečena, bude používat minimálně tři úrovně oprávnění (role)
 - [X] Datový model bude anotovaný pomocí Bean Validation - stačí použít předdefinované anotace, použití i vlastních omezení je plus
 - [X] Aplikace bude testovatelná (Arquillian)
 - [ ] Aplikace bude nasazena v clusteru dvou uzlů v doménové konfiguraci, přiložen konfigurační skript (JBoss CLI) a demonstrována její odolnost vůči výpadku jednoho z nich (lze simulovat na jednom počítači)
