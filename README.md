@@ -38,7 +38,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 - [ ] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
 - [ ] Aplikace bude plně zabezpečena, bude používat minimálně tři úrovně oprávnění (role)
 - [X] Datový model bude anotovaný pomocí Bean Validation - stačí použít předdefinované anotace, použití i vlastních omezení je plus
-- [ ] Aplikace bude testovatelná (Arquillian)
+- [X] Aplikace bude testovatelná (Arquillian)
 - [ ] Aplikace bude nasazena v clusteru dvou uzlů v doménové konfiguraci, přiložen konfigurační skript (JBoss CLI) a demonstrována její odolnost vůči výpadku jednoho z nich (lze simulovat na jednom počítači)
 - [ ] Aplikace bude dodána též
   - [ ] nasazená aplikace bežící v OpenShift 3 (developer preview)
@@ -60,8 +60,8 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Byznys vrstva             |       |       |       |       |       |
 | Prezentační vrstva        |       |       |       |       |       |
 | WebSocket                 |       |       |       |       |       |
-| Arquillian                |       |       |       |       |       |
-| Security                  |       |       |       |X      |       |
+| Arquillian                | X     |       |       |       |       |
+| Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       |       |       |
 | REST                      | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
