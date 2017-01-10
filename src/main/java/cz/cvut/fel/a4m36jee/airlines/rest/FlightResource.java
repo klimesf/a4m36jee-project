@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.rest;
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -69,6 +70,7 @@ public class FlightResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed({"AIRLINE-MANAGER", "ADMIN"})
     public Response create(Flight entity) {
         Response.ResponseBuilder builder = null;
 
