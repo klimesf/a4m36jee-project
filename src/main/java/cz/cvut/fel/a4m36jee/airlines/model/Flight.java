@@ -13,10 +13,7 @@ import java.util.List;
  * @author klimefi1
  */
 @Entity
-public class Flight {
-
-    @Id
-    private Long id;
+public class Flight extends AbstractEntity {
 
     private Date dateOfDeparture;
 

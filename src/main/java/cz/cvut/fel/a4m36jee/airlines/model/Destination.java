@@ -10,10 +10,7 @@ import javax.validation.constraints.NotNull;
  * @author klimefi1
  */
 @Entity
-public class Destination {
-
-    @Id
-    private Long id;
+public class Destination extends AbstractEntity {
 
     @NotEmpty
     private String name;

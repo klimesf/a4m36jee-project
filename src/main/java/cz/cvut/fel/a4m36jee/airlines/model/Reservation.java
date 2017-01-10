@@ -9,10 +9,7 @@ import java.util.Date;
 /**
  * @author klimefi1
  */
-public class Reservation {
-
-    @Id
-    private Long id;
+public class Reservation extends AbstractEntity {
 
     @NotNull
     private Integer seats;

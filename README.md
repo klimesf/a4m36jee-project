@@ -28,7 +28,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 
 ## Checklist
 
-- [ ] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
+- [X] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
 - [X] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
 - [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
@@ -56,12 +56,12 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Úkol                      | FK    | JM    | MK    | OK    | OS    |
 | ----                      | :---: | :---: | :---: | :---: | :---: |
 | Specifikace               | X     |       |       |       |       |
-| JPA 2 + Bean Validation   | X     |       |       |       |       |
+| JPA 2 + Bean Validation   | X     |       |       | X     |       |
 | Byznys vrstva             |       |       |       |       |       |
 | Prezentační vrstva        |       |       |       |       |       |
 | WebSocket                 |       |       |       |       |       |
 | Arquillian                |       |       |       |       |       |
-| Security                  |       |       |       |       |       |
+| Security                  |       |       |       |X      |       |
 | JMS                       |       |       |       |       |       |
 | REST                      | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
