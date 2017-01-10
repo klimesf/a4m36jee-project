@@ -61,6 +61,21 @@ abstract class GenericDAO<T> implements DAO<T> {
         return entity;
     }
 
+    @Override
+    public List<T> findBy(String property, Object value) {
+        CriteriaQuery<T> select = createQuery(property, value);
+        return em.createQuery(select).getResultList();
+    }
+
+    private CriteriaQuery<T> createQuery(String property, Object value) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(type);
+        Root<T> from = query.from(type);
+        return query
+                .select(from)
+                .where(criteriaBuilder.equal(from.get(property), value));
+    }
+
     public EntityManager getEntityManager() {
         return em;
     }

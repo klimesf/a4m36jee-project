@@ -17,4 +17,5 @@ public interface DAO<T> {
 
     T update(T entity);
 
+    List<T> findBy(String attribute, Object value);
 }
