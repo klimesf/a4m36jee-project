@@ -7,6 +7,7 @@ import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.logging.Logger;
 
 /**
@@ -24,6 +25,7 @@ public class DestinationCreation {
     @Inject
     private Event<DestinationCreated> destinationEvent;
 
+    @Transactional
     public void create(Destination destination) {
         destinationDAO.save(destination);
         logger.info("Created a new Destination with id: " + destination.getId());
