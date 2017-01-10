@@ -70,3 +70,17 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Clustering                |       |       |       |       |       |
 | Prezentace                |       |       |       |       |       |
 | UML                       |       |       |       |       |       |
+
+## Deployment & testing
+
+Deploying via Maven (Wildfly musí být spuštěný na standardním portu)
+
+```bash
+mvn clean package wildfly:deploy
+```
+
+Testing via Maven (Wildfly musí být spuštěný na standardním portu)
+
+```bash
+mvn clean package test -Parq-wildfly-remote
+```
