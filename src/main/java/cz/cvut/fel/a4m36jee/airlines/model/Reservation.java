@@ -52,11 +52,11 @@ public class Reservation {
     }
 
     public Date getCreated() {
-        return created;
+        return new Date(created.getTime());
     }
 
     public void setCreated(Date created) {
-        this.created = created;
+        this.created = new Date(created.getTime());
     }
 
     public Flight getFlight() {
