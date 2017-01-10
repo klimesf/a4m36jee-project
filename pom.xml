@@ -207,6 +207,11 @@
             <artifactId>arquillian-transaction-jta</artifactId>
             <version>1.0.2.Final</version>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+        </dependency>
 
     </dependencies>
 

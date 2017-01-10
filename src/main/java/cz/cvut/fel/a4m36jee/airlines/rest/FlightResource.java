@@ -1,7 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
-import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
+import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -11,16 +11,16 @@ import javax.ws.rs.*;
 /**
  * @author klimefi1
  */
-@Path("/destinations")
+@Path("/flights")
 @RequestScoped
-public class DestinationResource extends GenericResource<Destination> {
+public class FlightResource extends GenericResource<Flight> {
 
     @Inject
-    private DestinationDAO destinationDAO;
+    private FlightDAO flightDAO;
 
     @PostConstruct
     public void init() {
-        setDao(destinationDAO);
+        setDao(flightDAO);
     }
 
 }
