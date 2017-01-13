@@ -14,7 +14,7 @@ import java.util.Date;
 public class Reservation extends AbstractEntity {
 
     @NotNull
-    private Integer seats;
+    private Integer seat;
 
     @NotEmpty
     private String password;
@@ -26,12 +26,12 @@ public class Reservation extends AbstractEntity {
     private Flight flight;
 
 
-    public Integer getSeats() {
-        return seats;
+    public Integer getSeat() {
+        return seat;
     }
 
-    public void setSeats(Integer seats) {
-        this.seats = seats;
+    public void setSeat(Integer seat) {
+        this.seat = seat;
     }
 
     public String getPassword() {

@@ -123,5 +123,4 @@ public class FlightResource {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
         }
     }
-
 }

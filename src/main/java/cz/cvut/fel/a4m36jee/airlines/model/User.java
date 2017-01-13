@@ -2,8 +2,10 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * Entity representing a user of the application.

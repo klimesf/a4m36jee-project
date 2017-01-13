@@ -3,11 +3,11 @@ package cz.cvut.fel.a4m36jee.airlines.rest;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
-import cz.cvut.fel.a4m36jee.airlines.event.DestinationCreated;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
-import cz.cvut.fel.a4m36jee.airlines.service.DestinationCreation;
+import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
@@ -41,8 +41,8 @@ public class ReservationResourceTest {
         return ShrinkWrap.create(WebArchive.class)
                 .addPackage(Destination.class.getPackage())
                 .addPackage(FlightDAO.class.getPackage())
-                .addPackage(DestinationCreation.class.getPackage())
-                .addPackage(DestinationCreated.class.getPackage())
+                .addPackage(DestinationService.class.getPackage())
+                .addPackage(ReservationCreated.class.getPackage())
                 .addPackage(FlightResource.class.getPackage())
                 .addPackage(Resource.class.getPackage())
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
@@ -84,7 +84,7 @@ public class ReservationResourceTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(reservation.getId(), result.getId());
-        Assert.assertEquals(reservation.getSeats(), result.getSeats());
+        Assert.assertEquals(reservation.getSeat(), result.getSeat());
         Assert.assertEquals(reservation.getCreated(), result.getCreated());
     }
 
@@ -94,7 +94,7 @@ public class ReservationResourceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setPassword("tajneheslo");
-        reservation.setSeats(2);
+        reservation.setSeat(2);
         reservation.setFlight(flight);
         reservationDAO.save(reservation);
 
