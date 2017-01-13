@@ -56,8 +56,8 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 ## Rozdělení prací
 
 | Úkol                      | FK    | JM    | MK    | OK    | OS    |
-| ----                      | :---: | :---: | :---: | :---: | :---: |
-| Specifikace               | X     |       |       |       |       |
+| ------------------------- | :---: | :---: | :---: | :---: | :---: |
+| Specifikace + UML         | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
 | Byznys vrstva             |       | X     |       |       |       |
 | Prezentační vrstva        |       |       |       |       |   X   |
@@ -65,13 +65,12 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
-| REST                      | X     |       |       |       |       |
+| REST + Security           | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
 | Openshift                 | X     |       |       |       |       |
 | Swarm Fatjar              | X     |       |       |       |       |
 | Clustering                |       |       |       |       |       |
 | Prezentace                | X     |       |       |       |       |
-| UML                       | X     |       |       |       |       |
 
 ## Deployment & testing
 
