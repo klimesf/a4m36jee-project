@@ -4,6 +4,8 @@
 
 [Download](http://activemq.apache.org/activemq-5141-release.html) the version 5.14.1. and run the script ```ACTIVEMQ_LOCATION/bin/activemq``` (needs superuser rights).
 
+Alternative [download](https://archive.apache.org/dist/activemq/5.14.1/).
+
 
 ### 2. Setup resource adapter in WildFly
  
