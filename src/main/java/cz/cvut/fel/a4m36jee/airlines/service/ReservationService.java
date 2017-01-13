@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  * @author moravja8
  */
 @Stateless
-public final class ReservationService implements CrudService<Reservation>{
+public class ReservationService implements CrudService<Reservation>{
 
     @Inject
     private Logger logger;
@@ -46,10 +47,17 @@ public final class ReservationService implements CrudService<Reservation>{
     }
 
     @Override
-    public void create(final Reservation reservation) {
+    public void create(final Reservation reservation) throws SeatAlreadyReservedException {
         final Flight flight = reservation.getFlight();
         logger.info("Trying to create new Reservation for Flight with id " + flight.getId() + " and seat "
                 + reservation.getSeat());
+
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flight.getId());
+        for (Reservation flightReservation : allReservationsForFlight) {
+            if (flightReservation.getSeat().equals(reservation.getSeat())) {
+                throw  new SeatAlreadyReservedException(reservation, flightReservation);
+            }
+        }
 
         reservationDAO.save(reservation);
         logger.info("Created a new Reservation with id: " + reservation.getId());

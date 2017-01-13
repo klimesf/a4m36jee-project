@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author moravja8
  */
 @Stateless
-public final class FlightService implements CrudService<Flight> {
+public class FlightService implements CrudService<Flight> {
 
     @Inject
     private Logger logger;

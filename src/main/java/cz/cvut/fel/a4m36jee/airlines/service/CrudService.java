@@ -26,5 +26,5 @@ public interface CrudService<T> {
      * Create new instance of class T.
      * @param instance instance
      */
-    void create(final T instance);
+    void create(final T instance) throws Exception;
 }

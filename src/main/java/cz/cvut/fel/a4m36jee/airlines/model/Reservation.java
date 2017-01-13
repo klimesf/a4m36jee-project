@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ public class Reservation extends AbstractEntity {
     @NotNull
     private Date created;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Flight flight;
 
 

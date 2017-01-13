@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * @author klimefi1, moravja8
  */
 @Stateless
-public final class DestinationService implements CrudService<Destination>{
+public class DestinationService implements CrudService<Destination>{
 
     @Inject
     private Logger logger;

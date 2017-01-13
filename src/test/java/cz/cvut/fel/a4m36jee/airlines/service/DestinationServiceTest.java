@@ -1,10 +1,13 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
+import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -31,6 +34,15 @@ public class DestinationServiceTest {
                 .addPackage(DestinationDAO.class.getPackage())
                 .addPackage(DestinationService.class.getPackage())
                 .addPackage(Resource.class.getPackage())
+                .addPackage(UserRole.class.getPackage())
+                .addPackage(ReservationCreated.class.getPackage())
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.dao")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.enums")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.event")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.model")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.rest")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.service")
+                .addPackage("cz.cvut.fel.a4m36jee.airlines.util")
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource("datasource.xml");
@@ -43,6 +55,7 @@ public class DestinationServiceTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
+    @Transactional
     public void testCreate() {
         Destination destination = new Destination();
         destination.setName("Tokyo");
@@ -56,6 +69,7 @@ public class DestinationServiceTest {
     }
 
     @Test
+    @Transactional
     public void testCreateWithMissingData() throws Exception {
         Destination destination = new Destination();
         // Missing name, lat & lon

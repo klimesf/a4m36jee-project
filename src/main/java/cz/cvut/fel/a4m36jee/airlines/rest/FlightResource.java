@@ -1,7 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
+import cz.cvut.fel.a4m36jee.airlines.service.FlightService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -30,7 +30,7 @@ public class FlightResource {
     private Validator validator;
 
     @Inject
-    private FlightDAO dao;
+    private FlightService flightService;
 
     /**
      * Lists all Flight entities.
@@ -40,7 +40,7 @@ public class FlightResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Flight> list() {
-        return dao.list();
+        return flightService.list();
     }
 
     /**
@@ -53,7 +53,7 @@ public class FlightResource {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Flight get(@PathParam("id") long id) {
-        Flight destination = dao.find(id);
+        Flight destination = flightService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -76,7 +76,7 @@ public class FlightResource {
 
         try {
             validate(entity);
-            dao.save(entity);
+            flightService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 
