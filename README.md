@@ -60,7 +60,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Specifikace               | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
 | Byznys vrstva             |       |       |       |       |       |
-| Prezentační vrstva        |       |       |       |       |       |
+| Prezentační vrstva        |       |       |       |       |   X   |
 | WebSocket                 |       |       |       |       |       |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
