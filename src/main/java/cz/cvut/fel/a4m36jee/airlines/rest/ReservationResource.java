@@ -1,6 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
+import cz.cvut.fel.a4m36jee.airlines.jms.MessageProducer;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
 import javax.annotation.security.RolesAllowed;
@@ -31,6 +32,8 @@ public class ReservationResource {
 
     @Inject
     private ReservationDAO dao;
+    @Inject
+    private MessageProducer producer;
 
     /**
      * Lists all Reservation entities.
@@ -40,6 +43,8 @@ public class ReservationResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Reservation> list() {
+        Reservation reservation = new Reservation();
+        producer.sendReservationCreatedMessage(reservation);
         return dao.list();
     }
 
