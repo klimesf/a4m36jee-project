@@ -67,11 +67,11 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | JMS                       |       |       |       | X     |       |
 | REST                      | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
-| Openshift                 |       |       |       |       |       |
-| Swarm Fatjar              |       |       |       |       |       |
+| Openshift                 | X     |       |       |       |       |
+| Swarm Fatjar              | X     |       |       |       |       |
 | Clustering                |       |       |       |       |       |
-| Prezentace                |       |       |       |       |       |
-| UML                       |       |       |       |       |       |
+| Prezentace                | X     |       |       |       |       |
+| UML                       | X     |       |       |       |       |
 
 ## Deployment & testing
 
