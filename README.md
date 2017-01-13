@@ -64,7 +64,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | WebSocket                 |       |       |       |       |       |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
-| JMS                       |       |       |       |       |       |
+| JMS                       |       |       |       | X     |       |
 | REST                      | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
 | Openshift                 |       |       |       |       |       |
