@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.InvalidSeatNumberException;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
@@ -51,12 +52,16 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void create(final Reservation reservation) throws SeatAlreadyReservedException {
+    public void create(final Reservation reservation) throws SeatAlreadyReservedException, InvalidSeatNumberException {
         final Flight flight = reservation.getFlight();
         logger.info("Trying to create new Reservation for Flight with id " + flight.getId() + " and seat "
                 + reservation.getSeat());
 
-        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flight.getId());
+        if (reservation.getSeat() > flight.getSeats() || reservation.getSeat() < 1) {
+            throw new InvalidSeatNumberException(reservation);
+        }
+
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flight", flight.getId());
         for (Reservation flightReservation : allReservationsForFlight) {
             if (flightReservation.getSeat().equals(reservation.getSeat())) {
                 throw new SeatAlreadyReservedException(reservation, flightReservation);
