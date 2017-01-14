@@ -16,13 +16,14 @@ Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airli
 ## Specifikace
 
 Realizujte projekt letecké společnosti pro plánování a rezervaci letů.
-Výsledný produkt musí být součástí již existující architektury a napojený na již existující služby,
-ale bylo dosaženo celkové kompaktnosti a efektivity systému. Hlavním požadavkem na
-realizaci produktu je implementace RESTful API, které spravuje dostupné datové zdroje:
+Hlavním požadavkem na realizaci produktu je implementace RESTful API, které spravuje dostupné datové zdroje:
 Destination (seznam destinací, kam společnost létá), Flight (seznam plánovaných, zrušených i uskutečněných letů)
-a Reservation (rezervace určitého počtu míst ve zvoleném letu). 
-Součástí implementace musí být i tlustý klient implementovaný jako
-webová stránka prohlížeče zprostředkovávající přístup ke vzdálené Airline službě.
+a Reservation (rezervace určitého počtu míst ve zvoleném letu).
+Součástí implementace musí být i tenký klient implementovaný jako webová stránka prohlížeče.
+Aplikace dále musí umět odeslat e-mail o potvrzení rezervace po jejím vytvoření.
+Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových operací.
+
+![Class diagram](docs/images/class-diagram.png)
 
 ## Git WorkFlow
 
