@@ -1,9 +1,12 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
+import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
+import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
-import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
+import cz.cvut.fel.a4m36jee.airlines.service.DestinationServiceImpl;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
@@ -16,6 +19,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,10 +40,13 @@ public class DestinationResourceTest {
         return ShrinkWrap.create(WebArchive.class)
                 .addPackage(Destination.class.getPackage())
                 .addPackage(DestinationDAO.class.getPackage())
-                .addPackage(DestinationService.class.getPackage())
+                .addPackage(DestinationServiceImpl.class.getPackage())
                 .addPackage(ReservationCreated.class.getPackage())
                 .addPackage(DestinationResource.class.getPackage())
                 .addPackage(Resource.class.getPackage())
+                .addPackage(SeatAlreadyReservedException.class.getPackage())
+                .addPackage(UserRole.class.getPackage())
+                .addClass(Fixtures.class)
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "import.sql")
@@ -49,17 +56,19 @@ public class DestinationResourceTest {
     @Inject
     DestinationDAO destinationDAO;
 
+    private Destination destination;
+
+    @Before
+    public void setup() {
+        destination = Fixtures.createDestinations().first;
+        destinationDAO.save(destination);
+    }
+
     @Test
     @Header(name = "Content-type", value = "application/json")
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional(TransactionMode.ROLLBACK)
     public void testList(@ArquillianResteasyResource DestinationResource destinationResource) {
-        Destination destination = new Destination();
-        destination.setName("Tokyo");
-        destination.setLat(35.652832);
-        destination.setLon(139.839478);
-        destinationDAO.save(destination);
-
         final List<Destination> result = destinationResource.list();
 
         Assert.assertNotNull(result);
@@ -71,12 +80,6 @@ public class DestinationResourceTest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional(TransactionMode.ROLLBACK)
     public void testGet(@ArquillianResteasyResource DestinationResource destinationResource) {
-        Destination destination = new Destination();
-        destination.setName("Tokyo");
-        destination.setLat(35.652832);
-        destination.setLon(139.839478);
-        destinationDAO.save(destination);
-
         final Destination result = destinationResource.get(destination.getId());
 
         Assert.assertNotNull(result);

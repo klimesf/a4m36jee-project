@@ -40,6 +40,11 @@
             <name>Filip Klimeš</name>
             <email>klimefi1@fel.cvut.cz</email>
         </developer>
+        <developer>
+            <id>moravja8</id>
+            <name>Jakub Moravec</name>
+            <email>moravja8@fel.cvut.cz</email>
+        </developer>
     </developers>
 
     <properties>

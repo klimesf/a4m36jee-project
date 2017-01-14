@@ -11,12 +11,14 @@ public interface CrudService<T> {
 
     /**
      * List all stored instances of class T.
+     *
      * @return list of instances
      */
     List<T> list();
 
     /**
      * Get instance.
+     *
      * @param id instance id
      * @return instance
      */
@@ -24,6 +26,7 @@ public interface CrudService<T> {
 
     /**
      * Create new instance of class T.
+     *
      * @param instance instance
      */
     void create(final T instance) throws Exception;

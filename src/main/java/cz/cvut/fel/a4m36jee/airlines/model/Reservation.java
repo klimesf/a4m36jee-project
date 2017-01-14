@@ -23,7 +23,7 @@ public class Reservation extends AbstractEntity {
     @NotNull
     private Date created;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Flight flight;
 
 

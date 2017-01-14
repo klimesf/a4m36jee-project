@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * @author klimefi1
+ * @author klimefi1, moravja8
  */
 @Path("/reservations")
 @RequestScoped
