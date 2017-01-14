@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.rest;
+package cz.cvut.fel.a4m36jee.airlines.webSockets;
 
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author moravja8.
  */
 @Stateless
-@ServerEndpoint("flights/websocket")
+@ServerEndpoint("flightsWebsocket")
 public class FlightWebSocket {
 
     private final Logger logger;

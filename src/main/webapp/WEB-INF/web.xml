@@ -5,6 +5,11 @@
 
     <display-name>Airlines</display-name>
 
+    <context-param>
+        <param-name>org.omnifaces.ENABLE_SOCKET_ENDPOINT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
     <welcome-file-list>
         <welcome-file>/templates/index.xhtml</welcome-file>
     </welcome-file-list>
