@@ -11,7 +11,6 @@ import java.util.List;
  *
  * @author moravja8
  */
-@Stateless
 public interface ReservationService extends CrudService<Reservation>{
 
     /**
