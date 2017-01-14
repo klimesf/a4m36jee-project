@@ -59,12 +59,12 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | ----                      | :---: | :---: | :---: | :---: | :---: |
 | Specifikace               | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
-| Byznys vrstva             |       |       |       |       |       |
+| Byznys vrstva             |       | X     |       |       |       |
 | Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       |       |       |       |       |
+| WebSocket                 |       | X     |       |       |       |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
-| JMS                       |       |       |       |       |       |
+| JMS                       |       |       |       | X     |       |
 | REST                      | X     |       |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
 | Openshift                 |       |       |       |       |       |
