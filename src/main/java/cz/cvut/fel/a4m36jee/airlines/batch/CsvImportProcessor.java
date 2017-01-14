@@ -4,13 +4,10 @@ import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
-import javax.annotation.PostConstruct;
 import javax.batch.api.chunk.ItemProcessor;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -29,7 +26,7 @@ public class CsvImportProcessor implements ItemProcessor {
     @Inject
     private DestinationService destinationService;
 
-    private final static String DATE_FORMAT = "d-MMM-yyyy,HH:mm:ss aaa";
+    private final static String DATE_FORMAT = "d-MM-yyyy HH:mm";
 
     @Override
     public Flight processItem(Object item) throws Exception {

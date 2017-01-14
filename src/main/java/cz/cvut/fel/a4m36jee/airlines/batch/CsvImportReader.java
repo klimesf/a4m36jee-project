@@ -37,7 +37,7 @@ public class CsvImportReader extends AbstractItemReader {
     public void open(Serializable checkpoint) throws Exception {
         reader = new BufferedReader(
                 new InputStreamReader(
-                        this.getClass().getClassLoader().getResourceAsStream("/META-INF/mydata.csv")
+                        this.getClass().getClassLoader().getResourceAsStream("/META-INF/flightsImport.csv")
                 )
         );
     }
