@@ -21,11 +21,11 @@ public class FlightService {
     @Inject
     FlightDAO flightDao;
 
-    public List<Flight> getAllFlights() {
+    public List<Flight> list() {
         return flightDao.list();
     }
 
-    public Flight getFlight(final long id) {
+    public Flight get(final long id) {
         Flight flight = flightDao.find(id);
         if (flight == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -33,15 +33,11 @@ public class FlightService {
         return flight;
     }
 
-    public void createFlight(final Flight flight) {
+    public void create(final Flight flight) {
         flightDao.save(flight);
     }
 
-    public void updateFlight(final Flight flight) throws IOException {
-        flightDao.update(flight);
-    }
-
-    public void deleteFlight(final long id) {
+    public void delete(final long id) {
         flightDao.delete(id);
     }
 

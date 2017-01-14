@@ -42,7 +42,7 @@ public class FlightViewResource {
     public List<Flight> getAllFlights() throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            List<Flight> reservations = flightService.getAllFlights();
+            List<Flight> reservations = flightService.list();
             logger.info("Flight list received.");
             return  reservations;
         } catch (Exception e) { //TODO exception
@@ -61,7 +61,7 @@ public class FlightViewResource {
     public Flight getFlight(final long id) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            Flight reservation = flightService.getFlight(id);
+            Flight reservation = flightService.get(id);
             logger.info("Flight with id " + id +" found.");
             return reservation;
         } catch (Exception e) { //TODO exception
@@ -79,31 +79,13 @@ public class FlightViewResource {
     public void createFlight(final Flight flight) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            flightService.createFlight(flight);
+            flightService.create(flight);
             logger.info("New flight created.");
             response.sendRedirect("/airlines/flight/");
         } catch (Exception e) { //TODO exception
             logger.severe( "Error during create flight!");
             response.sendRedirect("/airlines/error/");
         }
-    }
-
-    /**
-     * Update flight.
-     * @param flight flight for update
-     * @throws IOException if redirect is unsuccessful
-     */
-    public void updateFlight(Flight flight) throws IOException {
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        try {
-            flightService.updateFlight(flight);
-            logger.info("Flight with id " + flight.getId() + " updated.");
-            response.sendRedirect("/airlines/flight/");
-        } catch (Exception e) { //TODO exception
-            logger.severe( "Error during update destination with id " + flight.getId() + "!");
-            response.sendRedirect("/airlines/error/");
-        }
-        flightService.updateFlight(flight);
     }
 
     /**
@@ -114,7 +96,7 @@ public class FlightViewResource {
     public void deleteFlight(final long id) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            flightService.deleteFlight(id);
+            flightService.delete(id);
             logger.info("Flight with id " + id + " deleted.");
             response.sendRedirect("/airlines/flight/");
         } catch (Exception e) { //TODO exception

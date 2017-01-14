@@ -35,7 +35,6 @@
                     <h:outputLabel value="Name: *" for="createDestinationName" />
                     <h:inputText styleClass="form-control" id="createDestinationName" value="#{destination.name}" title="name">
                         <f:validator binding="#{destinationNameJSFValidator}"/>
-                        <f:convertNumber  pattern="#0.00"/>
                     </h:inputText>
                     <p:messages for="createDestinationName" display="ico"/>
                 </div>
@@ -44,7 +43,6 @@
                     <h:outputLabel value="Latitude: *" for="createDestinationLat" />
                     <h:inputText styleClass="form-control" id="createDestinationLat" value="#{destination.lat}" title="lat">
                         <f:validator binding="#{destinationLatJSFValidator}"/>
-                        <f:convertNumber  pattern="#0.00"/>
                     </h:inputText>
                     <p:messages for="createDestinationLat" display="ico"/>
                 </div>
@@ -57,10 +55,14 @@
                     <p:messages for="createDestinationLon" display="ico"/>
                 </div>
 
-                <div class="form-group">
-                    <h:commandButton id="createDestinationBtn" styleClass="btn btn-success" value="Create" action="#{destinationViewResource.createDestination(destination)}"/>
+                <div class="row" align="left">
+                    <div class="form-group">
+                        <h:commandButton id="createDestinationBtn" styleClass="btn btn-success" value="Create" action="#{destinationViewResource.createDestination(destination)}"/>
+                    </div>
+                    <div class="form-group">
+                        <h:button id="cancelDestinationBtn" styleClass="btn btn-danger" value="Cancel" outcome="listDestinations.xhtml"/>
+                    </div>
                 </div>
-
             </div>
         </h:form>
     </f:view>

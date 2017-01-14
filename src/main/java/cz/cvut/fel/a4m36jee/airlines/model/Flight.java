@@ -17,15 +17,16 @@ import java.util.Date;
 @ManagedBean(name = "flight")
 public class Flight extends AbstractEntity {
 
+    @NotNull(message="Date is absent!")
     private Date date;
 
-    @NotNull
+    @NotNull(message="Price is absent!")
     private Double price;
 
-    @NotNull
+    @NotNull(message="Seats count is absent!")
     private Integer seats;
 
-    @NotEmpty
+    @NotEmpty(message="Name is absent!")
     private String name;
 
     @NotNull
@@ -37,11 +38,11 @@ public class Flight extends AbstractEntity {
     private Destination to;
 
     public Date getDate() {
-        return new Date(date.getTime());
+        return date;
     }
 
     public void setDate(Date date) {
-        this.date = new Date(date.getTime());
+        this.date = date;
     }
 
     public Double getPrice() {

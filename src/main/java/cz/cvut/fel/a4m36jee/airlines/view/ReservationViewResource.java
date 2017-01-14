@@ -1,5 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.view;
 
+import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.WebApplicationException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -42,7 +44,7 @@ public class ReservationViewResource {
     public List<Reservation> getAllReservations() throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            List<Reservation> reservations = reservationService.getAllReservations();
+            List<Reservation> reservations = reservationService.list();
             logger.info("Reservation list received.");
             return  reservations;
         } catch (Exception e) { //TODO exception
@@ -61,7 +63,7 @@ public class ReservationViewResource {
     public List<Reservation> getFlightReservation(final long flightId) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            List<Reservation> reservations = reservationService.getFlightReservation(flightId); //TODO correct attribute
+            List<Reservation> reservations = reservationService.listByFlightId(flightId); //TODO correct attribute
             logger.info("Reservation list for flight with id " + flightId + " received.");
             return  reservations;
         } catch (Exception e) { //TODO exception
@@ -80,7 +82,7 @@ public class ReservationViewResource {
     public Reservation getReservation(final long id) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            Reservation reservation = reservationService.getReservation(id);
+            Reservation reservation = reservationService.get(id);
             logger.info("Reservation with id " + id +" found.");
             return reservation;
         } catch (Exception e) { //TODO exception
@@ -95,31 +97,16 @@ public class ReservationViewResource {
      * @param reservation new reservation
      * @throws IOException if redirect is unsuccessful
      */
-    public void createReservation(final Reservation reservation) throws IOException {
+    public void createReservation(final Reservation reservation, final Flight flight) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        reservation.setFlight(flight);
+        reservation.setCreated(new Date());
         try {
-            reservationService.createReservation(reservation);
+            reservationService.create(reservation);
             logger.info("New reservation created.");
-            response.sendRedirect("/airlines/reservation/");
+            response.sendRedirect("/airlines/flight/reservation/?id="+flight.getId());
         } catch (Exception e) { //TODO exception
             logger.severe( "Error during create reservation!");
-            response.sendRedirect("/airlines/error/");
-        }
-    }
-
-    /**
-     * Update reservation.
-     * @param reservation reservation for update
-     * @throws IOException if redirect is unsuccessful
-     */
-    public void updateReservation(final Reservation reservation) throws IOException {
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        try {
-            reservationService.updateReservation(reservation);
-            logger.info("Reservation with id " + reservation.getId() + " updated.");
-            response.sendRedirect("/airlines/reservation/");
-        } catch (Exception e) { //TODO exception
-            logger.severe( "Error during update reservation with id " + reservation.getId() + "!");
             response.sendRedirect("/airlines/error/");
         }
     }
@@ -129,12 +116,12 @@ public class ReservationViewResource {
      * @param id reservation ID
      * @throws IOException if redirect is unsuccessful
      */
-    public void deleteReservation(final long id) throws IOException {
+    public void deleteReservation(final long id, final long flightId, final String password) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            reservationService.deleteReservation(id);
+            reservationService.delete(id, password);
             logger.info("Reservation with id " + id + " deleted.");
-            response.sendRedirect("/airlines/reservation/");
+            response.sendRedirect("/airlines/flight/reservation/?id="+flightId);
         } catch (Exception e) { //TODO exception
             logger.severe( "Error during delete reservation with id " + id + "!");
             response.sendRedirect("/airlines/error/");

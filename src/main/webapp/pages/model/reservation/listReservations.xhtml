@@ -52,6 +52,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
+                            <h:outputText value="Flight"/>
+                        </f:facet>
+                        <h:outputText value="#{reservation.flight.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputText value="Seat"/>
                         </f:facet>
                         <h:outputText value="#{reservation.seat}"/>

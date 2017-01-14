@@ -39,7 +39,7 @@
 
             <c:set var="flight" value="#{flightViewResource.getFlight(request.getParameter('id'))}" scope="request"/>
 
-            <div class="row col-md-4"><h2>List of reservations for flight: #{flight.name}</h2></div>
+            <div class="row col-md-8"><h2>List of reservations for flight: #{flight.name}</h2></div>
 
             <br style="clear:both; height: 1px;"/>
 
@@ -66,28 +66,15 @@
                         <h:outputText value="#{reservation.created}"/>
                     </h:column>
                     <h:column>
-                        <h:button id="payReservationListFlightsBtn" styleClass="btn btn-primary" outcome="/pages/model/reservation/payReservation.xhtml" value="Pay">
-                            <f:param name="id" value="#{reservation.getId()}"/>
+                        <h:button id="deleteReservationListFlightsBtn" styleClass="btn btn-danger" outcome="/pages/model/reservation/deleteReservation.xhtml" value="Delete">
+                            <f:param name="id" value="#{reservation.id}"/>
                             <f:param name="flightId" value="#{request.getParameter('id')}"/>
                         </h:button>
                     </h:column>
-                    <h:column>
-                        <h:button id="deleteReservationListFlightsBtn" styleClass="btn btn-danger" outcome="/pages/model/reservation/deleteReservation.xhtml" value="Storno">
-                            <f:param name="id" value="#{reservation.getId()}"/>
-                            <f:param name="flightId" value="#{request.getParameter('id')}"/>
-                        </h:button>
-                    </h:column>
-                    <h:column>
-                        <h:button id="printTicketReservationListFlightsBtn" styleClass="btn btn-info" outcome="/pages/model/reservation/printReservation.xhtml" value="Generate e-ticket">
-                            <f:param name="id" value="#{reservation.getId()}"/>
-                            <f:param name="flightId" value="#{request.getParameter('id')}"/>
-                        </h:button>
-                    </h:column>
-
                 </h:dataTable>
 
                 <div class="form-group">
-                    <h:button id="createReservationListFlightsBtn" styleClass="btn btn-info" outcome="/faces/pages/model/reservation/createReservation.xhtml" value="Create new rezervation">
+                    <h:button id="createReservationListFlightsBtn" styleClass="btn btn-success" outcome="/faces/pages/model/reservation/createReservation.xhtml" value="Create new reservation">
                         <f:param name="id" value="#{request.getParameter('id')}"/>
                     </h:button>
                 </div>

@@ -20,11 +20,11 @@ public class DestinationService {
     @Inject
     DestinationDAO destinationDAO;
 
-    public List<Destination> getAllDestinations() {
+    public List<Destination> list() {
         return destinationDAO.list();
     }
 
-    public Destination getDestination(final long id) {
+    public Destination get(final long id) {
         Destination destination = destinationDAO.find(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -32,15 +32,11 @@ public class DestinationService {
         return destination;
     }
 
-    public void createDestination(final Destination destination) {
+    public void create(final Destination destination) {
         destinationDAO.save(destination);
     }
 
-    public void updateDestination(final Destination destination) {
-        destinationDAO.update(destination);
-    }
-
-    public void deleteDestination(final long id) {
+    public void delete(final long id) {
         destinationDAO.delete(id);
     }
 

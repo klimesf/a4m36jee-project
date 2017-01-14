@@ -20,15 +20,15 @@ public class ReservationService {
     @Inject
     ReservationDAO reservationDAO;
 
-    public List<Reservation> getAllReservations() {
+    public List<Reservation> list() {
         return reservationDAO.list();
     }
 
-    public List<Reservation> getFlightReservation(final long flightId) {
-        return reservationDAO.findBy("flightId", flightId);
+    public List<Reservation> listByFlightId(final Long flightId) {
+        return reservationDAO.findBy("flight", flightId);
     }
 
-    public Reservation getReservation(final long id) {
+    public Reservation get(final long id) {
         Reservation reservation = reservationDAO.find(id);
         if (reservation == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -36,15 +36,11 @@ public class ReservationService {
         return reservation;
     }
 
-    public void createReservation(final Reservation reservation) {
+    public void create(final Reservation reservation) {
         reservationDAO.save(reservation);
     }
 
-    public void updateReservation(final Reservation reservation) {
-        reservationDAO.update(reservation);
-    }
-
-    public void deleteReservation(final long id) {
+    public void delete(final long id, final String password) {
         reservationDAO.delete(id);
     }
 

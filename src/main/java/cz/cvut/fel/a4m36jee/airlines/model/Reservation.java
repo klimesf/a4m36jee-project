@@ -15,10 +15,10 @@ import java.util.Date;
 @ManagedBean(name = "reservation")
 public class Reservation extends AbstractEntity {
 
-    @NotNull
+    @NotNull(message = "Seat is absent!")
     private Integer seat;
 
-    @NotEmpty
+    @NotEmpty(message = "Password is absent!")
     private String password;
 
     @NotNull

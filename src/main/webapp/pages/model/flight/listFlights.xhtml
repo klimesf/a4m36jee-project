@@ -89,11 +89,6 @@
                         <h:outputText value="#{flight.to.name}"/>
                     </h:column>
                     <h:column>
-                        <h:button id="editListFlightsBtn" styleClass="btn btn-warning" outcome="editFlight.xhtml" value="Edit">
-                            <f:param name="id" value="#{flight.id}"/>
-                        </h:button>
-                    </h:column>
-                    <h:column>
                         <h:button id="deleteListFlightsBtn" styleClass="btn btn-danger" outcome="deleteFlight.xhtml" value="Delete">
                             <f:param name="id" value="#{flight.id}"/>
                         </h:button>
@@ -106,7 +101,7 @@
                 </h:dataTable>
 
                 <div class="form-group">
-                <h:button styleClass="btn btn-info" outcome="createFlight.xhtml" value="Create new flight"/>
+                <h:button styleClass="btn btn-success" outcome="createFlight.xhtml" value="Create new flight"/>
                 </div>
 
             </h:form>

@@ -42,7 +42,7 @@ public class DestinationViewResource {
     public List<Destination> getAllDestinations() throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            List<Destination> destinations = destinationService.getAllDestinations();
+            List<Destination> destinations = destinationService.list();
             logger.info("Destination list received.");
             return  destinations;
         } catch (Exception e) { //TODO exception
@@ -61,7 +61,7 @@ public class DestinationViewResource {
     public Destination getDestination(final long id) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            Destination destination = destinationService.getDestination(id);
+            Destination destination = destinationService.get(id);
             logger.info("Destination with id " + id +" found.");
             return destination;
         } catch (Exception e) { //TODO exception
@@ -79,28 +79,11 @@ public class DestinationViewResource {
     public void createDestination(final Destination destination) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            destinationService.createDestination(destination);
+            destinationService.create(destination);
             logger.info("New destination created.");
             response.sendRedirect("/airlines/destination/");
         } catch (Exception e) { //TODO exception
             logger.severe( "Error during create destination!");
-            response.sendRedirect("/airlines/error/");
-        }
-    }
-
-    /**
-     * Update destination.
-     * @param destination destination for update
-     * @throws IOException if redirect is unsuccessful
-     */
-    public void updateDestination(final Destination destination) throws IOException {
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        try {
-            destinationService.updateDestination(destination);
-            logger.info("Destination with id " + destination.getId() + " updated.");
-            response.sendRedirect("/airlines/destination/");
-        } catch (Exception e) { //TODO exception
-            logger.severe( "Error during update destination with id " + destination.getId() + "!");
             response.sendRedirect("/airlines/error/");
         }
     }
@@ -113,7 +96,7 @@ public class DestinationViewResource {
     public void deleteDestination(final long id) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            destinationService.deleteDestination(id);
+            destinationService.delete(id);
             logger.info("Destination with id " + id + " deleted.");
             response.sendRedirect("/airlines/destination/");
         } catch (Exception e) { //TODO exception
