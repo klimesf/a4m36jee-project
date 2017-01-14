@@ -70,7 +70,6 @@ public class DestinationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @RolesAllowed("ADMIN")
     public Response create(Destination entity) {
         Response.ResponseBuilder builder = null;
 

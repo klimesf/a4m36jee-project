@@ -3,7 +3,6 @@ package cz.cvut.fel.a4m36jee.airlines.rest;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -70,7 +69,6 @@ public class ReservationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @RolesAllowed({"USER", "AIRLINE-MANAGER", "ADMIN"})
     public Response create(Reservation entity) {
         Response.ResponseBuilder builder = null;
 
