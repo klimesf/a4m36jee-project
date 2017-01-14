@@ -69,4 +69,6 @@
     <security-role>
         <role-name>EMPLOYEE</role-name>
     </security-role>
+
+    <distributable/>
 </web-app>

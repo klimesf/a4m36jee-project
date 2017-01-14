@@ -6,6 +6,7 @@ import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -15,19 +16,22 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import sun.security.krb5.internal.crypto.Des;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import java.util.Date;
 
 /**
  * @author klimefi1
  */
 @RunWith(Arquillian.class)
-public class DestinationServiceTest {
+public class FlightServiceTest {
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -47,33 +51,48 @@ public class DestinationServiceTest {
     }
 
     @Inject
-    DestinationService destinationService;
+    FlightService flightService;
+
+    @Inject
+    DestinationDAO destinationDAO;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    private Fixtures.Tuple<Destination, Destination> destinations;
+
+    @Before
+    public void setup() {
+        destinations = Fixtures.createDestinations();
+        destinationDAO.save(destinations.first);
+        destinationDAO.save(destinations.second);
+    }
+
     @Test
     @Transactional
     public void testCreate() throws Exception {
-        Destination destination = new Destination();
-        destination.setName("Tokyo");
-        destination.setLat(35.652832);
-        destination.setLon(139.839478);
+        Flight flight = new Flight();
+        flight.setDate(new Date());
+        flight.setFrom(destinations.first);
+        flight.setTo(destinations.second);
+        flight.setName("ABC-1234");
+        flight.setPrice(199.);
+        flight.setSeats(100);
 
-        destinationService.create(destination);
+        flightService.create(flight);
 
-        // Check that the destination was persisted and assigned an ID
-        Assert.assertNotNull(destination.getId());
+        // Check that the flight was persisted and assigned an ID
+        Assert.assertNotNull(flight.getId());
     }
 
     @Test
     @Transactional
     public void testCreateWithMissingData() throws Exception {
-        Destination destination = new Destination();
-        // Missing name, lat & lon
+        Flight flight = new Flight();
+        // Missing date, from, to, name, price & seats
 
         thrown.expect(EJBException.class);
-        destinationService.create(destination);
+        flightService.create(flight);
     }
 
 }
