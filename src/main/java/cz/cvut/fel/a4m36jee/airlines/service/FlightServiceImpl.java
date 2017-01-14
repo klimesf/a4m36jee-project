@@ -5,6 +5,7 @@ import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
  * @author moravja8
  */
 @Stateless
+@Transactional
 public class FlightServiceImpl implements FlightService {
 
     private final Logger logger;

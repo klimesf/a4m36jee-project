@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  * @author klimefi1, moravja8
  */
 @Stateless
+@Transactional
 public class DestinationServiceImpl implements DestinationService {
 
     private final Logger logger;
@@ -45,7 +46,6 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    @Transactional
     public void create(final Destination destination) {
         destinationDAO.save(destination);
         logger.info("Created a new Destination with id: " + destination.getId());
