@@ -27,8 +27,7 @@ public class ReservationServiceImpl implements ReservationService
 
     private final ReservationDAO reservationDAO;
 
-    @Inject
-    private Event<ReservationCreated> reservationCreatedEvent;
+    private final Event<ReservationCreated> reservationCreatedEvent;
 
     @Inject
     public ReservationServiceImpl(Logger logger, ReservationDAO reservationDAO, Event<ReservationCreated> reservationCreatedEvent) {
