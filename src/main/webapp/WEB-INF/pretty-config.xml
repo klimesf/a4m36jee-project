@@ -69,16 +69,6 @@
     </url-mapping>
 
     <url-mapping>
-        <pattern value="/reservation/pay/"/>
-        <view-id value="/faces/pages/model/reservation/payReservation.xhtml" />
-    </url-mapping>
-
-    <url-mapping>
-        <pattern value="/reservation/cancel/"/>
-        <view-id value="/faces/pages/model/reservation/cancelReservation.xhtml" />
-    </url-mapping>
-
-    <url-mapping>
         <pattern value="/reservation/delete/"/>
         <view-id value="/faces/pages/model/reservation/deleteReservation.xhtml" />
     </url-mapping>

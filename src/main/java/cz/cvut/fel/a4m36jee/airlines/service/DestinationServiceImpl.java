@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 /**
  * Service layer for {@link Destination}.
- * s
  *
  * @author klimefi1, moravja8
  */

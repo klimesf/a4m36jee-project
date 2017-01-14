@@ -62,7 +62,7 @@ public class DestinationServiceTest {
 
         destinationService.create(destination);
 
-        // Check that the destination was persisted and assigned an ID
+        // Check that the destinationDAO was persisted and assigned an ID
         Assert.assertNotNull(destination.getId());
     }
 

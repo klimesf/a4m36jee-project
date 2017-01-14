@@ -11,13 +11,15 @@ Alternative [download](https://archive.apache.org/dist/activemq/5.14.1/).
  
 Download the resource adapter:
 
-`wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.9.1/activemq-rar-5.9.1.rar`
+`wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.14.1/activemq-rar-5.14.1.rar`
 
 Extract the archive and copy its content into the following folder:
  
 `WILDFLY_LOCATION/modules/systems/layers/base/org/apache/activemq/activemq-rar/5.14.1`
  
 Create a file `module.xml` in the destination above with the content of [module.xml](module.xml).
+
+Lastly, copy the file ```activemq-rar-5.14.1.rar``` into ```WILDFLY_LOCATION/standalone/deployment```.
 
 ### 3. Configure ActiveMQ in WildFly 
 

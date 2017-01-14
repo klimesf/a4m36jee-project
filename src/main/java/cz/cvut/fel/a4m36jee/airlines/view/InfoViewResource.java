@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 @RequestScoped
 @ManagedBean(name = "infoViewResource")
 public class InfoViewResource {
-    //TODO add API resources, connect to service, count of user via websockets
+    //TODO connect to service, count of user via websockets
     /**
      * Logger.
      */

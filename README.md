@@ -60,9 +60,9 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | ------------------------- | :---: | :---: | :---: | :---: | :---: |
 | Specifikace + UML         | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
-| Byznys vrstva             |       | X     |       |       |       |
+| Byznys vrstva             |       |       |       |       |       |
 | Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       | X     |       |       |       |
+| WebSocket                 |       |       |       |       |       |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |

@@ -30,8 +30,7 @@ public class ReservationServiceImpl implements ReservationService
 
     private final ReservationDAO reservationDAO;
 
-    @Inject
-    private Event<ReservationCreated> reservationCreatedEvent;
+    private final Event<ReservationCreated> reservationCreatedEvent;
 
     @Inject
     public ReservationServiceImpl(Logger logger, ReservationDAO reservationDAO, Event<ReservationCreated> reservationCreatedEvent) {
@@ -51,7 +50,7 @@ public class ReservationServiceImpl implements ReservationService
     @Override
     public List<Reservation> listByFlightId(final Long flightId) {
         logger.info("All reservations requested for flight with id " + flightId);
-        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flightId);
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flight", flightId);
         logger.info("Returning all reservations for flight with id " + flightId + ". " +
                 "Returning " + allReservationsForFlight.size() + " reservations.");
         return allReservationsForFlight;
@@ -82,7 +81,6 @@ public class ReservationServiceImpl implements ReservationService
             }
         }
 
-        reservationCreatedEvent.fire(new ReservationCreated(reservation));
         reservationDAO.save(reservation);
         logger.info("Created a new Reservation with id: " + reservation.getId());
         reservationCreatedEvent.fire(new ReservationCreated(reservation));
