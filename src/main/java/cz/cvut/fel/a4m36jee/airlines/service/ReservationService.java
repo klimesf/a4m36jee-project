@@ -18,7 +18,7 @@ public interface ReservationService extends CrudService<Reservation>{
      * @param flightId flight id
      * @return reservations
      */
-    public List<Reservation> listByFlightId(final Long flightId);
+    List<Reservation> listByFlightId(final Long flightId);
 
     /**
      * Delete reservation with checked password.
