@@ -72,4 +72,18 @@ public class ReservationServiceImpl implements ReservationService {
         logger.info("Created a new Reservation with id: " + reservation.getId());
         reservationCreatedEvent.fire(new ReservationCreated(reservation));
     }
+
+    @Override
+    public void delete(final Long id) {
+        logger.info("Deleting Reservation with id " + id);
+        reservationDAO.delete(id);
+        logger.info("Reservation deleted.");
+    }
+
+    @Override
+    public void update(final Reservation reservation) {
+        logger.info("Updating reservation with id " + reservation.getId());
+        reservationDAO.update(reservation);
+        logger.info("Reservation updated");
+    }
 }
