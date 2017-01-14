@@ -1,13 +1,16 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
+import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
-import cz.cvut.fel.a4m36jee.airlines.event.DestinationCreated;
+import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
-import cz.cvut.fel.a4m36jee.airlines.service.DestinationCreation;
+import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
@@ -20,6 +23,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,12 +43,15 @@ public class ReservationResourceTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addPackage(Destination.class.getPackage())
-                .addPackage(FlightDAO.class.getPackage())
-                .addPackage(DestinationCreation.class.getPackage())
-                .addPackage(DestinationCreated.class.getPackage())
-                .addPackage(FlightResource.class.getPackage())
+                .addPackage(Reservation.class.getPackage())
+                .addPackage(ReservationDAO.class.getPackage())
+                .addPackage(ReservationService.class.getPackage())
+                .addPackage(ReservationCreated.class.getPackage())
+                .addPackage(ReservationResource.class.getPackage())
                 .addPackage(Resource.class.getPackage())
+                .addPackage(SeatAlreadyReservedException.class.getPackage())
+                .addPackage(UserRole.class.getPackage())
+                .addClass(Fixtures.class)
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "import.sql")
@@ -60,13 +67,26 @@ public class ReservationResourceTest {
     @Inject
     ReservationDAO reservationDAO;
 
+    private Reservation reservation;
+
+    @Before
+    public void setup() {
+        Fixtures.Tuple<Destination, Destination> destinations = Fixtures.createDestinations();
+        destinationDAO.save(destinations.first);
+        destinationDAO.save(destinations.second);
+
+        Flight flight = Fixtures.createFlight(destinations);
+        flightDAO.save(flight);
+
+        reservation = Fixtures.createReservation(flight);
+        reservationDAO.save(reservation);
+    }
+
     @Test
     @Header(name = "Content-type", value = "application/json")
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional(TransactionMode.ROLLBACK)
     public void testList(@ArquillianResteasyResource ReservationResource reservationResource) {
-        createReservation();
-
         final List<Reservation> result = reservationResource.list();
 
         Assert.assertNotNull(result);
@@ -78,52 +98,12 @@ public class ReservationResourceTest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional(TransactionMode.ROLLBACK)
     public void testGet(@ArquillianResteasyResource ReservationResource reservationResource) {
-        Reservation reservation = createReservation();
-
         final Reservation result = reservationResource.get(reservation.getId());
 
         Assert.assertNotNull(result);
         Assert.assertEquals(reservation.getId(), result.getId());
-        Assert.assertEquals(reservation.getSeats(), result.getSeats());
+        Assert.assertEquals(reservation.getSeat(), result.getSeat());
         Assert.assertEquals(reservation.getCreated(), result.getCreated());
-    }
-
-    private Reservation createReservation() {
-        Flight flight = createFlight();
-
-        Reservation reservation = new Reservation();
-        reservation.setCreated(new Date());
-        reservation.setPassword("tajneheslo");
-        reservation.setSeats(2);
-        reservation.setFlight(flight);
-        reservationDAO.save(reservation);
-
-        return reservation;
-    }
-
-    private Flight createFlight() {
-        Destination from = new Destination();
-        from.setName("Tokyo");
-        from.setLat(35.652832);
-        from.setLon(139.839478);
-        destinationDAO.save(from);
-
-        Destination to = new Destination();
-        to.setName("Tokyo");
-        to.setLat(35.652832);
-        to.setLon(139.839478);
-        destinationDAO.save(to);
-
-        Flight flight = new Flight();
-        flight.setName("ABC-0123");
-        flight.setDate(new Date());
-        flight.setFrom(from);
-        flight.setTo(to);
-        flight.setPrice(1399.);
-        flight.setSeats(100);
-        flightDAO.save(flight);
-
-        return flight;
     }
 
 }

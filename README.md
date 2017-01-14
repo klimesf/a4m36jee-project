@@ -1,15 +1,15 @@
 # a4m36jee-project
 [![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
 
-Semestral project in [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) class at FEE CTU.
+Semestrlání projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
 
-Deployed on Openshift: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
+Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
 
 ## Team
 
 - Filip Klimeš (vedoucí)
 - Jakub Moravec
-- Michal Kašpar
+- ~~Michal Kašpar~~
 - Ondřej Kratochvíl
 - Ondřej Slavíček
 
@@ -35,9 +35,9 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 - [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
   - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
-  - [ ] Business vrstva - EJB
+  - [X] Business vrstva - EJB
   - [X] Datová vrstva - perzistence pomocí JPA 2 nebo Infinispan (zde se očekává konfigurace Infinispan-u pro trvalé uložení dat)
-- [ ] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
+- [X] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
 - [X] Aplikace bude plně zabezpečena, bude používat minimálně tři úrovně oprávnění (role)
 - [X] Datový model bude anotovaný pomocí Bean Validation - stačí použít předdefinované anotace, použití i vlastních omezení je plus
 - [X] Aplikace bude testovatelná (Arquillian)
@@ -55,23 +55,21 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 
 ## Rozdělení prací
 
-| Úkol                      | FK    | JM    | MK    | OK    | OS    |
-| ----                      | :---: | :---: | :---: | :---: | :---: |
-| Specifikace               | X     |       |       |       |       |
+| Úkol                      | FK    | JM    | ~~MK~~| OK    | OS    |
+| ------------------------- | :---: | :---: | :---: | :---: | :---: |
+| Specifikace + UML         | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
-| Byznys vrstva             |       |       |       |       |       |
+| Byznys vrstva             |       | X     |       |       |       |
 | Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       |       |       |       |       |
+| WebSocket                 |       | X     |       |       |       |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
-| JMS                       |       |       |       |       |       |
-| REST                      | X     |       |       |       |       |
+| JMS                       |       |       |       | X     |       |
+| REST + Security           | X     | X     |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
-| Openshift                 |       |       |       |       |       |
-| Swarm Fatjar              |       |       |       |       |       |
-| Clustering                |       |       |       |       |       |
-| Prezentace                |       |       |       |       |       |
-| UML                       |       |       |       |       |       |
+| Openshift / Swarm Fatjar  | X     |       |       |       |       |
+| Clustering                | X     |       |       |       |       |
+| Prezentace                | X     |       |       |       |       |
 
 ## Deployment & testing
 
