@@ -1,9 +1,23 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
+
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
+import javax.ejb.Stateless;
+import java.util.List;
+
 /**
- * Created by filip on 14/01/2017.
+ * Service layer for {@link Reservation}
+ *
+ * @author moravja8
  */
-public interface ReservationService extends CrudService<Reservation> {
+@Stateless
+public interface ReservationService extends CrudService<Reservation>{
+
+    /**
+     * Returns all reservations for given flight.
+     * @param flightId flight id
+     * @return reservations
+     */
+    public List<Reservation> listByFlightId(final Long flightId);
 }

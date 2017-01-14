@@ -30,4 +30,16 @@ public interface CrudService<T> {
      * @param instance instance
      */
     void create(final T instance) throws Exception;
+
+    /**
+     * Smaže instanci s daným id.
+     * @param id id instance
+     */
+    void delete(final Long id);
+
+    /**
+     * Upraví danou instanci.
+     * @param instance upravená instance
+     */
+    void update(final T instance);
 }

@@ -50,4 +50,18 @@ public class DestinationServiceImpl implements DestinationService {
         destinationDAO.save(destination);
         logger.info("Created a new Destination with id: " + destination.getId());
     }
+
+    @Override
+    public void delete(final Long id) {
+        logger.info("Deleting Destination with id " + id);
+        destinationDAO.delete(id);
+        logger.info("Destination deleted.");
+    }
+
+    @Override
+    public void update(final Destination destination) {
+        logger.info("Updating destination with id " + destination.getId());
+        destinationDAO.update(destination);
+        logger.info("Destination updated");
+    }
 }
