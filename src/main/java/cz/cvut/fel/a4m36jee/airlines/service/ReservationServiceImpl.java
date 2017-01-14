@@ -20,7 +20,8 @@ import java.util.logging.Logger;
  * @author moravja8
  */
 @Stateless
-public class ReservationServiceImpl implements ReservationService {
+public class ReservationServiceImpl implements ReservationService
+{
 
     private final Logger logger;
 
@@ -41,6 +42,15 @@ public class ReservationServiceImpl implements ReservationService {
         List<Reservation> reservations = reservationDAO.list();
         logger.info("Returning " + reservations.size() + " reservations.");
         return reservations;
+    }
+
+    @Override
+    public List<Reservation> listByFlightId(final Long flightId) {
+        logger.info("All reservations requested for flight with id " + flightId);
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flightId);
+        logger.info("Returning all reservations for flight with id " + flightId + ". " +
+                "Returning " + allReservationsForFlight.size() + " reservations.");
+        return allReservationsForFlight;
     }
 
     @Override
