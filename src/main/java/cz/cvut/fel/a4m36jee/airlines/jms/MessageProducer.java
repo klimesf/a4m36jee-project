@@ -36,7 +36,6 @@ public class MessageProducer {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Queue queue = session.createQueue(RESERVATION_QUEUE_NAME);
             javax.jms.MessageProducer producer = session.createProducer(queue);
-            // toDo: send actually useful messageD
             MapMessage message = session.createMapMessage();
             message.setInt("seat", reservation.getSeat());
             Flight flight = reservation.getFlight();
