@@ -1,15 +1,15 @@
 # a4m36jee-project
 [![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
 
-Semestral project in [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) class at FEE CTU.
+Semestrlání projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
 
-Deployed on Openshift: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
+Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
 
 ## Team
 
 - Filip Klimeš (vedoucí)
 - Jakub Moravec
-- Michal Kašpar
+- ~~Michal Kašpar~~
 - Ondřej Kratochvíl
 - Ondřej Slavíček
 
@@ -55,7 +55,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 
 ## Rozdělení prací
 
-| Úkol                      | FK    | JM    | MK    | OK    | OS    |
+| Úkol                      | FK    | JM    | ~~MK~~| OK    | OS    |
 | ------------------------- | :---: | :---: | :---: | :---: | :---: |
 | Specifikace + UML         | X     |       |       |       |       |
 | JPA 2 + Bean Validation   | X     |       |       | X     |       |
@@ -67,9 +67,8 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | JMS                       |       |       |       | X     |       |
 | REST + Security           | X     | X     |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
-| Openshift                 | X     |       |       |       |       |
-| Swarm Fatjar              | X     |       |       |       |       |
-| Clustering                |       |       |       |       |       |
+| Openshift / Swarm Fatjar  | X     |       |       |       |       |
+| Clustering                | X     |       |       |       |       |
 | Prezentace                | X     |       |       |       |       |
 
 ## Deployment & testing
