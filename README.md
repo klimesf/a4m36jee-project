@@ -49,7 +49,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
 - [ ] Aplikace bude používat alespoň jeden WebSocket endopint
 - [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
-- [ ] Vystavené endpointy budou podoporovat zabezpečení
+- [X] Vystavené endpointy budou podoporovat zabezpečení
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
 - [X] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
