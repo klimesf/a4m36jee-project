@@ -38,6 +38,19 @@ public class ReservationService implements CrudService<Reservation>{
         return reservations;
     }
 
+    /**
+     * Returns all reservations for given flight.
+     * @param flightId flight id
+     * @return reservations
+     */
+    public List<Reservation> listByFlightId(final Long flightId) {
+        logger.info("All reservations requested for flight with id " + flightId);
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flightId);
+        logger.info("Returning all reservations for flight with id " + flightId + ". " +
+                "Returning " + allReservationsForFlight.size() + " reservations.");
+        return allReservationsForFlight;
+    }
+
     @Override
     public Reservation get(final Long id) {
         logger.info("Flight with id " + id +  " requested.");
