@@ -11,7 +11,7 @@ Alternative [download](https://archive.apache.org/dist/activemq/5.14.1/).
  
 Download the resource adapter:
 
-`wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.9.1/activemq-rar-5.9.1.rar`
+`wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.14.1/activemq-rar-5.14.1.rar`
 
 Extract the archive and copy its content into the following folder:
  
