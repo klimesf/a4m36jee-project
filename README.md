@@ -50,7 +50,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 - [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
 - [ ] Vystavené endpointy budou podoporovat zabezpečení
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
-- [ ] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
+- [X] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
 
 ## Rozdělení prací
