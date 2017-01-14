@@ -1,7 +1,7 @@
 # a4m36jee-project
 [![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
 
-Semestrlání projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
+Semestrální projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
 
 Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
 
