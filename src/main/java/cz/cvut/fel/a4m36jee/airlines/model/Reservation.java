@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -11,10 +12,11 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
+@ManagedBean(name = "reservation")
 public class Reservation extends AbstractEntity {
 
     @NotNull
-    private Integer seats;
+    private Integer seat;
 
     @NotEmpty
     private String password;
@@ -26,12 +28,12 @@ public class Reservation extends AbstractEntity {
     private Flight flight;
 
 
-    public Integer getSeats() {
-        return seats;
+    public Integer getSeat() {
+        return seat;
     }
 
-    public void setSeats(Integer seats) {
-        this.seats = seats;
+    public void setSeat(Integer seats) {
+        this.seat = seats;
     }
 
     public String getPassword() {

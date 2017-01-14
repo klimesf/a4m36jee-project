@@ -2,9 +2,9 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -13,6 +13,8 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
+@RequestScoped
+@ManagedBean(name = "flight")
 public class Flight extends AbstractEntity {
 
     private Date date;

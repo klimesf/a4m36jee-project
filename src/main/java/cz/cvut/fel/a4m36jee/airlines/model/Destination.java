@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -10,15 +11,16 @@ import javax.validation.constraints.NotNull;
  * @author klimefi1
  */
 @Entity
+@ManagedBean(name = "destination")
 public class Destination extends AbstractEntity {
 
-    @NotEmpty
+    @NotEmpty(message="Name is absent!")
     private String name;
 
-    @NotNull
+    @NotNull(message="Latitude is absent!")
     private Double lat;
 
-    @NotNull
+    @NotNull(message="Longitude is absent!")
     private Double lon;
 
     public String getName() {

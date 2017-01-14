@@ -84,7 +84,7 @@ public class ReservationResourceTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(reservation.getId(), result.getId());
-        Assert.assertEquals(reservation.getSeats(), result.getSeats());
+        Assert.assertEquals(reservation.getSeat(), result.getSeat());
         Assert.assertEquals(reservation.getCreated(), result.getCreated());
     }
 
@@ -94,7 +94,7 @@ public class ReservationResourceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setPassword("tajneheslo");
-        reservation.setSeats(2);
+        reservation.setSeat(2);
         reservation.setFlight(flight);
         reservationDAO.save(reservation);
 
