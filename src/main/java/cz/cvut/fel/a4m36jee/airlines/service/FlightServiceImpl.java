@@ -1,9 +1,12 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
+import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,10 +23,13 @@ public class FlightServiceImpl implements FlightService {
 
     private final FlightDAO flightDAO;
 
+    private final ReservationService reservationService;
+
     @Inject
-    public FlightServiceImpl(Logger logger, FlightDAO flightDAO) {
+    public FlightServiceImpl(Logger logger, FlightDAO flightDAO, ReservationService reservationService) {
         this.logger = logger;
         this.flightDAO = flightDAO;
+        this.reservationService = reservationService;
     }
 
     @Override
@@ -38,6 +44,10 @@ public class FlightServiceImpl implements FlightService {
     public Flight get(final Long id) {
         logger.info("Flight with id " + id + " requested.");
         final Flight flight = flightDAO.find(id);
+        logger.info("Flight loaded. Adding number of free seats.");
+        int numberOfReservationsOnFlight = reservationService.listByFlightId(flight.getId()).size();
+        flight.setFreeSeats(flight.getSeats() - numberOfReservationsOnFlight);
+        logger.info("Number of free seats added.");
         logger.info("Returning flight: " + flight);
         return flight;
     }
@@ -61,4 +71,6 @@ public class FlightServiceImpl implements FlightService {
         flightDAO.update(flight);
         logger.info("Flight updated");
     }
+
+
 }

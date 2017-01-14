@@ -30,7 +30,6 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 import java.util.List;
 
 
@@ -105,5 +104,6 @@ public class ReservationResourceTest {
         Assert.assertEquals(reservation.getSeat(), result.getSeat());
         Assert.assertEquals(reservation.getCreated(), result.getCreated());
     }
+
 
 }

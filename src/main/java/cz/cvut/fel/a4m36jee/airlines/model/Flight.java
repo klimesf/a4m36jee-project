@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -32,6 +33,15 @@ public class Flight extends AbstractEntity {
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private Destination to;
+
+    /**
+     * Actual number of free seats on flight.
+     *
+     * Field is not persistent. It is loaded on get in service and updated each time
+     * reservation is created.
+     */
+    @Transient
+    private Integer freeSeats;
 
     public Date getDate() {
         return new Date(date.getTime());
@@ -81,4 +91,11 @@ public class Flight extends AbstractEntity {
         this.to = to;
     }
 
+    public Integer getFreeSeats() {
+        return freeSeats;
+    }
+
+    public void setFreeSeats(final Integer freeSeats) {
+        this.freeSeats = freeSeats;
+    }
 }

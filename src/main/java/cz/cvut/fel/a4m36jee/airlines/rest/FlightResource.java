@@ -35,7 +35,7 @@ public class FlightResource {
     /**
      * Lists all Flight entities.
      *
-     * @return List of Ts
+     * @return List of flights
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
