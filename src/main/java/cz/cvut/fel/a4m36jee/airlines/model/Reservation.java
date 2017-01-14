@@ -1,5 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.model;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,10 @@ public class Reservation extends AbstractEntity {
     private Integer seat;
 
     @NotEmpty
+    @Email
+    private String email;
+
+    @NotEmpty
     private String password;
 
     @NotNull
@@ -33,6 +38,14 @@ public class Reservation extends AbstractEntity {
 
     public void setSeat(Integer seat) {
         this.seat = seat;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

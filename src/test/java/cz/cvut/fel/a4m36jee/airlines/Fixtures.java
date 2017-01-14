@@ -52,6 +52,7 @@ public class Fixtures {
     public static Reservation createReservation(Flight flight) {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
+        reservation.setEmail("john.doe@example.com");
         reservation.setPassword("tajneheslo");
         reservation.setSeat(2);
         reservation.setFlight(flight);
