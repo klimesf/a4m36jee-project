@@ -2,11 +2,10 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.CascadeType;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -30,12 +29,21 @@ public class Flight extends AbstractEntity {
     private String name;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Destination from;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Destination to;
+
+    /**
+     * Actual number of free seats on flight.
+     *
+     * Field is not persistent. It is loaded on get in service and updated each time
+     * reservation is created.
+     */
+    @Transient
+    private Integer freeSeats;
 
     public Date getDate() {
         return date;
@@ -85,4 +93,11 @@ public class Flight extends AbstractEntity {
         this.to = to;
     }
 
+    public Integer getFreeSeats() {
+        return freeSeats;
+    }
+
+    public void setFreeSeats(final Integer freeSeats) {
+        this.freeSeats = freeSeats;
+    }
 }

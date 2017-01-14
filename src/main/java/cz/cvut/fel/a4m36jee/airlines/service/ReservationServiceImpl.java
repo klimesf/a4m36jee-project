@@ -94,6 +94,13 @@ public class ReservationServiceImpl implements ReservationService
     }
 
     @Override
+    public void delete(final Reservation reservation) {
+        logger.info("Deleting Reservation with id " + reservation.getId());
+        reservationDAO.delete(reservation);
+        logger.info("Reservation deleted.");
+    }
+
+    @Override
     public void delete(final Long id, final String password) throws BadReservationPasswordException {
         logger.info("Checking password before deleting reservation with id " + id);
         final Reservation reservation = get(id);
