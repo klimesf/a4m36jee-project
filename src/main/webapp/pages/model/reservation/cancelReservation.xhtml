@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:outputStylesheet library="css" name="bootstrap.css"/>
+
+<h:head>
+    <title>Zrušení rezervace: #{request.getParameter('id')}</title>
+</h:head>
+<h:body>
+    <f:view>
+        <h:form id="cancelReservationForm">
+            <div class="container" style="padding-left: 50px">
+
+                <h:form class="form-inline" id="userCancelReservationForm">
+                    <div class="row" align="right">
+                        <div class="form-group">
+                            <h:column>
+                                <h:outputText value="Počet přihlášených uživatelů: "/>
+                                <h:outputText value="${infoRestController.getNumberOfConcurentUsers()}"/>
+                            </h:column>
+                        </div>
+                    </div>
+                </h:form>
+
+                <h2>Zrušení rezervace</h2>
+
+                <div class="form-group">
+                    <h:outputLabel value="Opravdu chcete zrušit rezervaci #{request.getParameter('id')}?"/>
+                </div>
+
+
+                <div class="form-group">
+                    <h:outputLabel value="Pro potvrzení zrušení zadejte heslo: *" for="cancelReservationPassword" />
+                    <h:inputSecret styleClass="form-control" id="cancelReservationPassword" value="#{password.pass}" title="password" a:maxlength="20" a:minlength="6">
+                        <f:attribute name="reservationId" value="#{request.getParameter('id')}"/>
+                        <f:validator binding="#{reservationCancelJSFValidator}"/>
+                    </h:inputSecret>
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton id="cancelReservationBtn" styleClass="btn btn-success" value="Zrušit rezervaci" action="#{reservationRestController.cancelReservation(request.getParameter('id'), request.getParameter('flightId'), password.pass)}">
+                        <f:param name="id" value="#{request.getParameter('id')}"/>
+                        <f:param name="flightId" value="#{request.getParameter('flightId')}"/>
+                    </h:commandButton>
+                </div>
+
+                <div class="form-group">
+                    <h:button id="backReservationBtn" styleClass="btn btn-danger" value="Zrušit" outcome="/pages/model/flight/listFlightReservations.xhtml">
+                        <f:param name="id" value="#{request.getParameter('flightId')}"/>
+                    </h:button>
+                </div>
+
+            </div>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>

@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.BadReservationPasswordException;
 import cz.cvut.fel.a4m36jee.airlines.exception.InvalidSeatNumberException;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
@@ -88,6 +89,19 @@ public class ReservationServiceImpl implements ReservationService
         logger.info("Deleting Reservation with id " + id);
         reservationDAO.delete(id);
         logger.info("Reservation deleted.");
+    }
+
+    @Override
+    public void delete(final Long id, final String password) throws BadReservationPasswordException {
+        logger.info("Checking password before deleting reservation with id " + id);
+        final Reservation reservation = get(id);
+        if(reservation.getPassword().equals(password)) {
+            logger.info("Autenticated");
+            delete(id);
+        } else {
+            logger.info("Not autenticated.");
+            throw new BadReservationPasswordException(reservation);
+        }
     }
 
     @Override

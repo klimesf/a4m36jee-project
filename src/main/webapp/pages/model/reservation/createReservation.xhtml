@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:outputStylesheet library="css" name="bootstrap.css"/>
+
+<h:head>
+
+    <title>Vytvoření rezervace</title>
+
+</h:head>
+<h:body>
+    <f:view>
+        <h:form id="createReservationForm">
+            <div class="container" style="padding-left: 50px">
+
+                <h:form class="form-inline" id="userCreateReservationForm">
+                    <div class="row" align="right">
+                        <div class="form-group">
+                            <h:column>
+                                <h:outputText value="Počet přihlášených uživatelů: "/>
+                                <h:outputText value="${infoRestController.getNumberOfConcurentUsers()}"/>
+                            </h:column>
+                        </div>
+                    </div>
+                </h:form>
+
+                <h2>Vytvoření rezervace</h2>
+
+                <c:set var="flight" value="#{flightRestController.getFlight(request.getParameter('id'))}" scope="request" />
+
+                <div class="form-group">
+                    <h:outputLabel value="Sedadlo: *" for="createReservationSeat" />
+                    <h:inputText styleClass="form-control" id="createReservationSeat" value="#{reservation.seat}" title="seats">
+                        <f:attribute name="flightId" value="#{flight.getId()}"/>
+                        <f:validator binding="#{reservationSeatJSFValidator}" />
+                    </h:inputText>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel value="Heslo: *" for="createReservationPassword" />
+                    <h:inputSecret styleClass="form-control" id="createReservationPassword" value="#{reservation.password}" title="password" a:maxlength="20" a:minlength="6">
+                        <f:validator binding="#{reservationPasswordJSFValidator}" />
+                    </h:inputSecret>
+                </div>
+
+                <div class="form-group">
+                    <h:commandButton id="createReservationBtn" styleClass="btn btn-success" value="Vytvořit" action="#{reservationRestController.saveReservation(request.getParameter('id'), reservation)}">
+                        <f:param name="id" value="#{request.getParameter('id')}"/>
+                    </h:commandButton>
+                </div>
+
+            </div>
+        </h:form>
+    </f:view>
+</h:body>
+</html>
