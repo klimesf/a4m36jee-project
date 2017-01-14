@@ -1,9 +1,9 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
 
+import cz.cvut.fel.a4m36jee.airlines.exception.BadReservationPasswordException;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
-import javax.ejb.Stateless;
 import java.util.List;
 
 /**
@@ -19,4 +19,12 @@ public interface ReservationService extends CrudService<Reservation>{
      * @return reservations
      */
     public List<Reservation> listByFlightId(final Long flightId);
+
+    /**
+     * Delete reservation with checked password.
+     * @param id reservaton id
+     * @param password password
+     * @throws BadReservationPasswordException if password does not match
+     */
+    public void delete(final Long id, final String password) throws BadReservationPasswordException;
 }
