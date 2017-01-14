@@ -27,7 +27,8 @@ public class ReservationServiceImpl implements ReservationService
 
     private final ReservationDAO reservationDAO;
 
-    private final Event<ReservationCreated> reservationCreatedEvent;
+    @Inject
+    private Event<ReservationCreated> reservationCreatedEvent;
 
     @Inject
     public ReservationServiceImpl(Logger logger, ReservationDAO reservationDAO, Event<ReservationCreated> reservationCreatedEvent) {
@@ -78,6 +79,7 @@ public class ReservationServiceImpl implements ReservationService
             }
         }
 
+        reservationCreatedEvent.fire(new ReservationCreated(reservation));
         reservationDAO.save(reservation);
         logger.info("Created a new Reservation with id: " + reservation.getId());
         reservationCreatedEvent.fire(new ReservationCreated(reservation));

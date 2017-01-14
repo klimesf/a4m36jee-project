@@ -1,5 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
+import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
+import cz.cvut.fel.a4m36jee.airlines.jms.MessageProducer;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
