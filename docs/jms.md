@@ -2,22 +2,23 @@
 
 ### 1. Download ActiveMQ
 
-[Download](http://activemq.apache.org/activemq-5141-release.html) the version 5.14.1. and run the script ```ACTIVEMQ_LOCATION/bin/activemq start``` (needs superuser rights).
+[Download](http://activemq.apache.org/activemq-5141-release.html) the version 5.14.1. and
+run the script `ACTIVEMQ_LOCATION/bin/activemq start` (needs superuser rights).
 
 Alternative [download](https://archive.apache.org/dist/activemq/5.14.1/).
 
-
 ### 2. Setup resource adapter in WildFly
  
- Download the resource adapter:
+Download the resource adapter:
 
- ```wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.9.1/activemq-rar-5.9.1.rar  ```
+`wget http://repo1.maven.org/maven2/org/apache/activemq/activemq-rar/5.9.1/activemq-rar-5.9.1.rar`
 
- Extract the archive and copy its content into the following folder:
+Extract the archive and copy its content into the following folder:
  
- ```WILDFLY_LOCATION/modules/systems/layers/base/org/apache/activemq/activemq-rar/5.14.1```
+`WILDFLY_LOCATION/modules/systems/layers/base/org/apache/activemq/activemq-rar/5.14.1`
  
- Create a file ```module.xml``` in the destination above with the content of [module.xml](module.xml).
+Create a file `module.xml` in the destination above with the content of [module.xml](module.xml).
+
 ### 3. Configure ActiveMQ in WildFly 
 
 In standalone.xml, add the following snippets:
@@ -38,7 +39,7 @@ In standalone.xml, add the following snippets:
 </mdb>
 ```
 
-Replace the ```<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">``` block with: 
+Replace the `<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">` block with: 
 
 ```xml
 <subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">
@@ -82,7 +83,7 @@ Replace the ```<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">``` blo
 </subsystem>
 ```
 
-``` xml
+```xml
 <subsystem xmlns="urn:jboss:domain:messaging-activemq:1.0">
     <server name="default">
     <security-setting name="#">
