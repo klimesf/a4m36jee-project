@@ -22,14 +22,14 @@ Alternative [download](https://archive.apache.org/dist/activemq/5.14.1/).
 
 In standalone.xml, add the following snippets:
 
-```aidl xml
+```xml
 <extensions>
     ...
     <extension module="org.wildfly.extension.messaging-activemq"/>
 </extensions>
 ```
 
-```aidl xml
+```xml
 <subsystem xmlns="urn:jboss:domain:ejb3:4.0">
 ...
 <mdb>
@@ -40,7 +40,7 @@ In standalone.xml, add the following snippets:
 
 Replace the ```<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">``` block with: 
 
-```aidl xml
+```xml
 <subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">
     <resource-adapters>
     <resource-adapter id="activemq-rar.rar">
@@ -82,7 +82,7 @@ Replace the ```<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0">``` blo
 </subsystem>
 ```
 
-``` aidl xml
+``` xml
 <subsystem xmlns="urn:jboss:domain:messaging-activemq:1.0">
     <server name="default">
     <security-setting name="#">
