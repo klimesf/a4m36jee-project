@@ -2,7 +2,7 @@
  
  In standalone.xml (or other used config file), add the following block directly under the ```<security-domains>``` tag:
  
- ```
+ ```xml
  <security-domain name="airlines" cache-type="default">
     <authentication>
         <login-module code="Database" flag="required">

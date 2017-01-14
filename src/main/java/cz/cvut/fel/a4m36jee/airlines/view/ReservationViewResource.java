@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.view;
 
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
+import cz.cvut.fel.a4m36jee.airlines.service.FlightService;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
 import javax.enterprise.context.RequestScoped;
@@ -35,6 +36,9 @@ public class ReservationViewResource {
      */
     @Inject
     private ReservationService reservationService;
+
+    @Inject
+    private FlightService flightService;
 
     /**
      * Find all reservations.
@@ -119,7 +123,7 @@ public class ReservationViewResource {
     public void deleteReservation(final long id, final long flightId, final String password) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            reservationService.delete(id, password);
+            reservationService.delete(id); //TODO add password
             logger.info("Reservation with id " + id + " deleted.");
             response.sendRedirect("/airlines/flight/reservation/?id="+flightId);
         } catch (Exception e) { //TODO exception

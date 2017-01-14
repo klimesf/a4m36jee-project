@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.CascadeType;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.Entity;
@@ -13,7 +14,6 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
-@RequestScoped
 @ManagedBean(name = "flight")
 public class Flight extends AbstractEntity {
 
@@ -30,11 +30,11 @@ public class Flight extends AbstractEntity {
     private String name;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Destination from;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Destination to;
 
     public Date getDate() {

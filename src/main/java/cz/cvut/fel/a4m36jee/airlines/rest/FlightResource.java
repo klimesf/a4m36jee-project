@@ -1,9 +1,8 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
+import cz.cvut.fel.a4m36jee.airlines.service.FlightService;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,7 +16,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * @author klimefi1
+ * @author klimefi1, moravja8
  */
 @Path("/flights")
 @RequestScoped
@@ -30,7 +29,7 @@ public class FlightResource {
     private Validator validator;
 
     @Inject
-    private FlightDAO dao;
+    private FlightService flightService;
 
     /**
      * Lists all Flight entities.
@@ -40,7 +39,7 @@ public class FlightResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Flight> list() {
-        return dao.list();
+        return flightService.list();
     }
 
     /**
@@ -53,7 +52,7 @@ public class FlightResource {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Flight get(@PathParam("id") long id) {
-        Flight destination = dao.find(id);
+        Flight destination = flightService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -70,13 +69,12 @@ public class FlightResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @RolesAllowed({"AIRLINE-MANAGER", "ADMIN"})
     public Response create(Flight entity) {
         Response.ResponseBuilder builder = null;
 
         try {
             validate(entity);
-            dao.save(entity);
+            flightService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 
@@ -123,5 +121,4 @@ public class FlightResource {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
         }
     }
-
 }

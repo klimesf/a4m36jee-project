@@ -40,6 +40,11 @@
             <name>Filip Klimeš</name>
             <email>klimefi1@fel.cvut.cz</email>
         </developer>
+        <developer>
+            <id>moravja8</id>
+            <name>Jakub Moravec</name>
+            <email>moravja8@fel.cvut.cz</email>
+        </developer>
     </developers>
 
     <properties>
@@ -263,6 +268,13 @@
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-rest-client-impl-jersey</artifactId>
             <version>1.0.0.Alpha3</version>
+        </dependency>
+
+        <!-- ActiveMQ - persistent message queue-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.14.1</version>
         </dependency>
 
     </dependencies>

@@ -1,9 +1,10 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
+import cz.cvut.fel.a4m36jee.airlines.jms.MessageProducer;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
+import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,7 +18,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * @author klimefi1
+ * @author klimefi1, moravja8
  */
 @Path("/reservations")
 @RequestScoped
@@ -30,7 +31,7 @@ public class ReservationResource {
     private Validator validator;
 
     @Inject
-    private ReservationDAO dao;
+    private ReservationService reservationService;
 
     /**
      * Lists all Reservation entities.
@@ -40,7 +41,7 @@ public class ReservationResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Reservation> list() {
-        return dao.list();
+        return reservationService.list();
     }
 
     /**
@@ -53,7 +54,7 @@ public class ReservationResource {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Reservation get(@PathParam("id") long id) {
-        Reservation destination = dao.find(id);
+        Reservation destination = reservationService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -70,13 +71,12 @@ public class ReservationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @RolesAllowed({"USER", "AIRLINE-MANAGER", "ADMIN"})
     public Response create(Reservation entity) {
         Response.ResponseBuilder builder = null;
 
         try {
             validate(entity);
-            dao.save(entity);
+            reservationService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 

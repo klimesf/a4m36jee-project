@@ -1,7 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * @author klimefi1
+ * @author klimefi1, moravja8
  */
 @Path("/destinations")
 @RequestScoped
@@ -30,7 +30,7 @@ public class DestinationResource {
     private Validator validator;
 
     @Inject
-    private DestinationDAO dao;
+    private DestinationService destinationService;
 
     /**
      * Lists all Destination entities.
@@ -40,7 +40,7 @@ public class DestinationResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Destination> list() {
-        return dao.list();
+        return destinationService.list();
     }
 
     /**
@@ -53,7 +53,7 @@ public class DestinationResource {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Destination get(@PathParam("id") long id) {
-        Destination destination = dao.find(id);
+        Destination destination = destinationService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -70,13 +70,12 @@ public class DestinationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @RolesAllowed("ADMIN")
     public Response create(Destination entity) {
         Response.ResponseBuilder builder = null;
 
         try {
             validate(entity);
-            dao.save(entity);
+            destinationService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 

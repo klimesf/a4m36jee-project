@@ -31,7 +31,7 @@ public class PasswordJSFValidator implements Validator {
         }
         String pass = (String) o;
         String idString = (String) uiComponent.getAttributes().get("reservationId");
-        Integer id = Integer.parseInt(idString);
+        Long id = Long.parseLong(idString);
         if(id == null) {
             FacesMessage facesMsg = new FacesMessage("Reservation not found!");
             facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
