@@ -35,9 +35,9 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 - [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
   - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
-  - [ ] Business vrstva - EJB
+  - [X] Business vrstva - EJB
   - [X] Datová vrstva - perzistence pomocí JPA 2 nebo Infinispan (zde se očekává konfigurace Infinispan-u pro trvalé uložení dat)
-- [ ] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
+- [X] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
 - [X] Aplikace bude plně zabezpečena, bude používat minimálně tři úrovně oprávnění (role)
 - [X] Datový model bude anotovaný pomocí Bean Validation - stačí použít předdefinované anotace, použití i vlastních omezení je plus
 - [X] Aplikace bude testovatelná (Arquillian)
@@ -65,7 +65,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
-| REST + Security           | X     |       |       |       |       |
+| REST + Security           | X     | X     |       |       |       |
 | Concurrency/Batching      |       |       |       |       |       |
 | Openshift                 | X     |       |       |       |       |
 | Swarm Fatjar              | X     |       |       |       |       |

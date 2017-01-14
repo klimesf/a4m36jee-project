@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -32,10 +33,12 @@ public class DestinationServiceTest {
         return ShrinkWrap.create(WebArchive.class)
                 .addPackage(Destination.class.getPackage())
                 .addPackage(DestinationDAO.class.getPackage())
-                .addPackage(DestinationService.class.getPackage())
+                .addPackage(DestinationServiceImpl.class.getPackage())
                 .addPackage(Resource.class.getPackage())
                 .addPackage(UserRole.class.getPackage())
                 .addPackage(ReservationCreated.class.getPackage())
+                .addPackage(SeatAlreadyReservedException.class.getPackage())
+                .addPackage(UserRole.class.getPackage())
                 .addPackage("cz.cvut.fel.a4m36jee.airlines.dao")
                 .addPackage("cz.cvut.fel.a4m36jee.airlines.enums")
                 .addPackage("cz.cvut.fel.a4m36jee.airlines.event")
@@ -56,7 +59,7 @@ public class DestinationServiceTest {
 
     @Test
     @Transactional
-    public void testCreate() {
+    public void testCreate() throws Exception {
         Destination destination = new Destination();
         destination.setName("Tokyo");
         destination.setLat(35.652832);
