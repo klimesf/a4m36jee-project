@@ -19,6 +19,8 @@ Extract the archive and copy its content into the following folder:
  
 Create a file `module.xml` in the destination above with the content of [module.xml](module.xml).
 
+Lastly, copy the file ```activemq-rar-5.14.1.rar``` into ```WILDFLY_LOCATION/standalone/deployment```.
+
 ### 3. Configure ActiveMQ in WildFly 
 
 In standalone.xml, add the following snippets:
