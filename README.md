@@ -1,7 +1,7 @@
 # a4m36jee-project
 [![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
 
-Semestrlání projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
+Semestrální projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
 
 Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
 
@@ -49,7 +49,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
 - [ ] Aplikace bude používat alespoň jeden WebSocket endopint
 - [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
-- [ ] Vystavené endpointy budou podoporovat zabezpečení
+- [X] Vystavené endpointy budou podoporovat zabezpečení
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
 - [X] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
@@ -67,7 +67,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
 | REST + Security           | X     | X     |       | X     |       |
-| Concurrency/Batching      |       |       |       |       |       |
+| Concurrency/Batching      |       |       |       | X     |       |
 | Openshift / Swarm Fatjar  | X     |       |       |       |       |
 | Clustering                | X     |       |       |       |       |
 | Prezentace                | X     |       |       |       |       |
