@@ -67,7 +67,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
 | REST + Security           | X     | X     |       | X     |       |
-| Concurrency/Batching      |       |       |       |       |       |
+| Concurrency/Batching      |       |       |       | X     |       |
 | Openshift / Swarm Fatjar  | X     |       |       |       |       |
 | Clustering                | X     |       |       |       |       |
 | Prezentace                | X     |       |       |       |       |
