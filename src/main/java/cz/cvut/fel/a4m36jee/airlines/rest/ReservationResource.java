@@ -1,7 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
+import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -30,7 +30,7 @@ public class ReservationResource {
     private Validator validator;
 
     @Inject
-    private ReservationDAO dao;
+    private ReservationService reservationService;
 
     /**
      * Lists all Reservation entities.
@@ -40,7 +40,7 @@ public class ReservationResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Reservation> list() {
-        return dao.list();
+        return reservationService.list();
     }
 
     /**
@@ -53,7 +53,7 @@ public class ReservationResource {
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
     public Reservation get(@PathParam("id") long id) {
-        Reservation destination = dao.find(id);
+        Reservation destination = reservationService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -76,7 +76,7 @@ public class ReservationResource {
 
         try {
             validate(entity);
-            dao.save(entity);
+            reservationService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 
