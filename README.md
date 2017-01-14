@@ -65,7 +65,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
-| REST + Security           | X     | X     |       |       |       |
+| REST + Security           | X     | X     |       | X     |       |
 | Concurrency/Batching      |       |       |       |       |       |
 | Openshift / Swarm Fatjar  | X     |       |       |       |       |
 | Clustering                | X     |       |       |       |       |
