@@ -1,20 +1,22 @@
 package cz.cvut.fel.a4m36jee.airlines.dao;
 
 
+import cz.cvut.fel.a4m36jee.airlines.model.AbstractEntity;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 
 /**
  * @author klimefi1
  */
-abstract class GenericDAO<T> implements DAO<T> {
+abstract class GenericDAO<T extends AbstractEntity> implements DAO<T> {
 
     @Inject
     private EntityManager em;
@@ -29,12 +31,7 @@ abstract class GenericDAO<T> implements DAO<T> {
 
     @Override
     public List<T> list() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(type);
-        Root<T> rootEntry = cq.from(type);
-        CriteriaQuery<T> all = cq.select(rootEntry);
-        TypedQuery<T> allQuery = em.createQuery(all);
-        return allQuery.getResultList();
+        return findByPropertyIsNull("deleted");
     }
 
     @Override
@@ -45,13 +42,24 @@ abstract class GenericDAO<T> implements DAO<T> {
     }
 
     @Override
-    public void delete(final Object id) {
-        this.em.remove(this.em.getReference(type, id));
+    public void delete(final Long id) {
+        delete(find(id));
+    }
+
+    /**
+     * Soft delete entity.
+     * @param entity entity
+     */
+    @Override
+    public void delete(final T entity) {
+        entity.setDeleted(new Date());
+        update(entity);
     }
 
     @Override
     public T find(final Object id) {
-        return (T) this.em.find(type, id);
+        T entity = this.em.find(type, id);
+        return entity != null && entity.getDeleted() == null ? entity : null;
     }
 
     @Override
@@ -67,13 +75,31 @@ abstract class GenericDAO<T> implements DAO<T> {
         return em.createQuery(select).getResultList();
     }
 
+    @Override
+    public List<T> findByPropertyIsNull(String property) {
+        CriteriaQuery<T> select = createQueryIsNull(property);
+        return em.createQuery(select).getResultList();
+    }
+
     private CriteriaQuery<T> createQuery(String property, Object value) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<T> query = criteriaBuilder.createQuery(type);
         Root<T> from = query.from(type);
         return query
                 .select(from)
-                .where(criteriaBuilder.equal(from.get(property), value));
+                .where(
+                    criteriaBuilder.equal(from.get(property), value),
+                    criteriaBuilder.isNull(from.get("deleted"))
+                );
+    }
+
+    private CriteriaQuery<T> createQueryIsNull(String property) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(type);
+        Root<T> from = query.from(type);
+        return query
+                .select(from)
+                .where(criteriaBuilder.isNull(from.get(property)));
     }
 
     public EntityManager getEntityManager() {

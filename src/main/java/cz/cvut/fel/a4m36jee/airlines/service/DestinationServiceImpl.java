@@ -2,6 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -11,21 +12,24 @@ import java.util.logging.Logger;
 
 /**
  * Service layer for {@link Destination}.
- * s
  *
  * @author klimefi1, moravja8
  */
 @Stateless
+@Transactional
 public class DestinationServiceImpl implements DestinationService {
 
     private final Logger logger;
 
     private final DestinationDAO destinationDAO;
 
+    private final FlightService flightService;
+
     @Inject
-    public DestinationServiceImpl(Logger logger, DestinationDAO destinationDAO) {
+    public DestinationServiceImpl(Logger logger, DestinationDAO destinationDAO, FlightService flightService) {
         this.logger = logger;
         this.destinationDAO = destinationDAO;
+        this.flightService = flightService;
     }
 
     @Override
@@ -45,7 +49,6 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
-    @Transactional
     public void create(final Destination destination) {
         destinationDAO.save(destination);
         logger.info("Created a new Destination with id: " + destination.getId());
@@ -53,8 +56,15 @@ public class DestinationServiceImpl implements DestinationService {
 
     @Override
     public void delete(final Long id) {
-        logger.info("Deleting Destination with id " + id);
-        destinationDAO.delete(id);
+        delete(get(id));
+    }
+
+    @Override
+    public void delete(final Destination destination) {
+        logger.info("Deleting Destination with id " + destination.getId());
+        List<Flight> flights = flightService.listByDestinationId(destination.getId());
+        flights.forEach(flightService::delete);
+        destinationDAO.delete(destination);
         logger.info("Destination deleted.");
     }
 

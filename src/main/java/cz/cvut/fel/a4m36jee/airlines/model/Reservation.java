@@ -2,7 +2,7 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.CascadeType;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -12,18 +12,19 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
+@ManagedBean(name = "reservation")
 public class Reservation extends AbstractEntity {
 
-    @NotNull
+    @NotNull(message = "Seat is absent!")
     private Integer seat;
 
-    @NotEmpty
+    @NotEmpty(message = "Password is absent!")
     private String password;
 
     @NotNull
     private Date created;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne
     private Flight flight;
 
 

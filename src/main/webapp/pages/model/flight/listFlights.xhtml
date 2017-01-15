@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:outputStylesheet library="css" name="bootstrap.css"/>
+
+<h:head>
+    <title>List of flights</title>
+</h:head>
+<h:body>
+    <f:view>
+        <div class="container" style="padding-top: 50px">
+
+            <h:form class="form-inline" id="logoutListFlightsForm">
+                <div class="row" align="right">
+
+                    <div class="form-group">
+                        <h:button id="homeListFlightsBtn" styleClass="btn btn-primary" outcome="/faces/pages/index.xhtml" value="Home"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:button id="logoutListFlights" styleClass="btn btn-default" outcome="/faces/pages/logoutPage.xhtml" value="Logout"/>
+                    </div>
+
+                </div>
+                <div class="row" align="right">
+                    <div class="form-group">
+                        <h:column>
+                            <h:outputText value="Number of connected users: "/>
+                            <h:outputText value="${infoViewResource.numberOfConnectedUsers}"/>
+                        </h:column>
+                    </div>
+                </div>
+            </h:form>
+
+            <div class="row col-md-4"><h2>List of flights</h2></div>
+
+            <br style="clear:both; height: 1px;"/>
+
+            <h:form id="listFlightsForm">
+
+    <table id="flightsTableListFlights" class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Date of departure</th>
+                        <th>Price of ticket in CZK</th>
+                        <th>Number of seats</th>
+                        <th>Number of free seats</th>
+                        <th>Departure destination</th>
+                        <th>Arival destination</th>
+                        <th>Delete</th>
+                        <th>Reservations</th>
+                    </tr>
+        <c:forEach items="#{flightViewResource.allFlights}" var="flight">
+            <tr>
+                <td><h:outputText value="#{flight.id}"/></td>
+                <td><h:outputText value="#{flight.name}"/></td>
+                <td><h:outputText value="#{flight.date}"/></td>
+                <td>
+                    <h:outputText value="#{flight.price}">
+                        <f:convertNumber  pattern="#0.00" />
+                    </h:outputText>
+                </td>
+                <td><h:outputText value="#{flight.seats}"/></td>
+                <td><h:outputText id="#{'free-seats-'.concat(flight.id)}" value="#{flight.freeSeats}"/></td>
+                <td><h:outputText value="#{flight.from.name}"/></td>
+                <td><h:outputText value="#{flight.to.name}"/></td>
+                <td>
+                    <h:button id="deleteListFlightsBtn" styleClass="btn btn-danger" outcome="deleteFlight.xhtml" value="Delete">
+                        <f:param name="id" value="#{flight.id}"/>
+                    </h:button>
+                </td>
+                <td>
+                    <h:button id="reservationsListFlightsBtn" styleClass="btn btn-info" outcome="listFlightReservations.xhtml" value="List of reservations">
+                        <f:param name="id" value="#{flight.id}"/>
+                    </h:button>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+
+                <div class="form-group">
+                <h:button styleClass="btn btn-success" outcome="createFlight.xhtml" value="Create new flight"/>
+                </div>
+
+            </h:form>
+        </div>
+    </f:view>
+</h:body>
+
+<script type="text/javascript">
+    var host = "ws://localhost:8080/airlines/newReservationWebSocket";
+    var wSocket = new WebSocket(host);
+    var browserSupport = ("WebSocket" in window) ? true : false;
+
+    // called  body onLoad()
+    function initializeReception()
+    {
+        if (browserSupport)
+        {
+            wSocket.onopen = function()
+            {
+                //alert(" Web Socket is connected, sending data");
+                wSocket.send("ping");
+            };
+        }
+        else
+        {
+            // The browser doesn't support WebSocket
+            alert("WebSocket is NOT supported by your Browser!");
+        }
+    }
+
+    // called when a message is received
+    wSocket.onmessage = function(event)
+    {
+        console.log("ONMESSAGE - WEBSOCKET - incoming flightId: " + event.data);
+
+        var message = event.data;
+        var splittedMessage = message.split("-");
+        var flightId = splittedMessage[0];
+        console.log("ID OF FLIGHT " + flightId);
+        var action = splittedMessage[1];
+        console.log("ACTION " + action);
+        var elementId = 'listFlightsForm:free-seats-'.concat(flightId);
+        var actual = document.getElementById(elementId).innerText;
+        console.log("ACTUAL VALUE " + actual);
+        var newValue = 0;
+
+        if(action == "deleted") {
+            newValue = parseInt(actual) + 1;
+        } else {
+            newValue = parseInt(actual) - 1;
+        }
+
+        console.log("Changing value of element " + elementId + " from " + actual + " to " + newValue);
+        document.getElementById(elementId).innerText = newValue;
+    };
+
+    // called when socket closes
+    wSocket.onclose = function()
+    {
+        // websocket is closed.
+        //alert("Connection is closed...");
+    };
+</script>
+
+</html>
