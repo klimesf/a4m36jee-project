@@ -119,11 +119,24 @@
     wSocket.onmessage = function(event)
     {
         console.log("ONMESSAGE - WEBSOCKET - incoming flightId: " + event.data);
-        var flightId = event.data;
+
+        var message = event.data;
+        var splittedMessage = message.split("-");
+        var flightId = splittedMessage[0];
+        console.log("ID OF FLIGHT " + flightId);
+        var action = splittedMessage[1];
+        console.log("ACTION " + action);
         var elementId = 'listFlightsForm:free-seats-'.concat(flightId);
         var actual = document.getElementById(elementId).innerText;
         console.log("ACTUAL VALUE " + actual);
-        var newValue = actual - 1;
+        var newValue = 0;
+
+        if(action == "deleted") {
+            newValue = actual + 1;
+        } else {
+            newValue = actual - 1;
+        }
+
         console.log("Changing value of element " + elementId + " from " + actual + " to " + newValue);
         document.getElementById(elementId).innerText = newValue;
     };
