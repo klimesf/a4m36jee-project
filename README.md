@@ -85,3 +85,13 @@ Testing via Maven (Wildfly musí být spuštěný na standardním portu)
 ```bash
 mvn clean package test -Parq-wildfly-remote
 ```
+
+### Maven profily
+
+- default
+    - Přeskočí všechny testy
+- unit-tests
+    - Spustí pouze testy s anotací `@Category(UnitTest.class)`
+- arq-wildfly-remote
+    - Spustí všechny testy, nasazuje Shrinkwrap archiv na Wildfly (musí být spuštěný)
+    
