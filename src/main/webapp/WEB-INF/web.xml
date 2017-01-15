@@ -5,11 +5,6 @@
 
     <display-name>Airlines</display-name>
 
-    <context-param>
-        <param-name>org.omnifaces.ENABLE_SOCKET_ENDPOINT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
     <welcome-file-list>
         <welcome-file>/faces/pages/index.xhtml</welcome-file>
     </welcome-file-list>
@@ -134,13 +129,8 @@
     </security-role>
 
     <!--
-  Setting JSF FACES
- -->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Faces Servlet</servlet-name>-->
-        <!--<url-pattern>*.xhtml</url-pattern>-->
-    <!--</servlet-mapping>-->
-
+      Setting JSF FACES
+    -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
