@@ -1,5 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
+import cz.cvut.fel.a4m36jee.airlines.ArquillianTest;
 import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
@@ -25,12 +26,12 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 import java.util.List;
 
 
@@ -38,6 +39,7 @@ import java.util.List;
  * @author klimefi1
  */
 @RunWith(Arquillian.class)
+@Category(ArquillianTest.class)
 public class ReservationResourceTest {
 
     @Deployment
