@@ -1,12 +1,13 @@
 package cz.cvut.fel.a4m36jee.airlines.batch;
 
 import javax.batch.api.chunk.AbstractItemReader;
+import javax.batch.runtime.BatchRuntime;
+import javax.batch.runtime.context.JobContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
+import javax.servlet.http.Part;
+import java.io.*;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,8 @@ public class CsvImportReader extends AbstractItemReader {
 
     @Inject
     private Logger logger;
+    @Inject
+    private JobContext jobContext;
     private BufferedReader reader;
 
     @Override
@@ -35,10 +38,8 @@ public class CsvImportReader extends AbstractItemReader {
 
     @Override
     public void open(Serializable checkpoint) throws Exception {
-        reader = new BufferedReader(
-                new InputStreamReader(
-                        this.getClass().getClassLoader().getResourceAsStream("/META-INF/flightsImport.csv")
-                )
-        );
+        Properties runtimeParams = BatchRuntime.getJobOperator().getParameters(jobContext.getExecutionId() );
+        InputStream is = ((InputStream) runtimeParams.get("is"));
+        reader = new BufferedReader(new InputStreamReader(is));
     }
 }
