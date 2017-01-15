@@ -6,7 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<h:outputStylesheet library="css" name="bootstrap.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
 <h:head>
     <title>Delete reservation: #{request.getParameter('id')}</title>
@@ -21,7 +22,7 @@
                         <div class="form-group">
                             <h:column>
                                 <h:outputText value="Number of connected users: "/>
-                                <h:outputText value="${infoViewResource.numberOfConnectedUsers}"/>
+                                <h:outputText value="${infoController.numberOfConnectedUsers}"/>
                             </h:column>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton id="deleteReservationBtn" styleClass="btn btn-success" value="Delete" action="#{reservationViewResource.deleteReservation(request.getParameter('id'), request.getParameter('flightId'), reservation.password)}">
+                    <h:commandButton id="deleteReservationBtn" styleClass="btn btn-success" value="Delete" action="#{reservationController.deleteReservation(request.getParameter('id'), request.getParameter('flightId'), reservation.password)}">
                         <f:param name="id" value="#{request.getParameter('id')}"/>
                         <f:param name="flightId" value="#{request.getParameter('flightId')}"/>
                     </h:commandButton>

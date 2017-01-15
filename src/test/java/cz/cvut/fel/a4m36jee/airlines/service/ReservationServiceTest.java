@@ -66,6 +66,9 @@ public class ReservationServiceTest {
     @Inject
     FlightDAO flightDAO;
 
+    @Inject
+    DestinationDAO destinationDAO;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -73,7 +76,10 @@ public class ReservationServiceTest {
 
     @Before
     public void setup() {
-        flight = Fixtures.createFlight(Fixtures.createDestinations());
+        Fixtures.Tuple<Destination, Destination> destinations = Fixtures.createDestinations();
+        destinationDAO.save(destinations.first);
+        destinationDAO.save(destinations.second);
+        flight = Fixtures.createFlight(destinations);
         flightDAO.save(flight);
     }
 

@@ -11,7 +11,6 @@ import javax.persistence.Entity;
  * @author klimefi1
  */
 @Entity
-@ManagedBean(name = "destination")
 public class Destination extends AbstractEntity {
 
     @NotEmpty(message="Name is absent!")

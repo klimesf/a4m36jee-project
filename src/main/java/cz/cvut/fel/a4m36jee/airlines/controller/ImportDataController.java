@@ -1,8 +1,7 @@
-package cz.cvut.fel.a4m36jee.airlines.view;
+package cz.cvut.fel.a4m36jee.airlines.controller;
 
+import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -18,35 +17,32 @@ import java.util.logging.Logger;
  *
  * @author slavion3
  */
-@ViewScoped
-@ManagedBean(name = "importDataViewResource")
-public class ImportDataViewResource {
+@Model
+public class ImportDataController {
 
-    /**
-     * Logger.
-     */
     @Inject
     private Logger logger;
 
-    /**
-     * Imported file.
-     */
+    @Inject
+    private FacesContext facesContext;
+
     private Part importedFile;
 
     /**
      * CSV file validator.
-     * @param ctx {@link FacesContext}
-     * @param comp {@link UIComponent}
+     *
+     * @param ctx   {@link FacesContext}
+     * @param comp  {@link UIComponent}
      * @param value input File
      * @throws ValidatorException if file is not valid
      */
     public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
-        if(value == null){
+        if (value == null) {
             FacesMessage facesMsg = new FacesMessage("File not selected!");
             facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(facesMsg);
         }
-        Part file = (Part)value;
+        Part file = (Part) value;
         if (file.getSize() > 4084) { //TODO vyřešit povolenou velikost
             FacesMessage facesMsg = new FacesMessage("File is too big! Allowable size of file is 1024.");
             facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -61,16 +57,17 @@ public class ImportDataViewResource {
 
     /**
      * Import file.
+     *
      * @throws WebApplicationException if error during import
      */
     public void importFile() throws IOException {
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
         try {
             //TODO call import
             logger.info("File is imported.");
             response.sendRedirect("/airlines/");
         } catch (Exception e) { //TODO exception
-            logger.severe( "Error during import!");
+            logger.severe("Error during import!");
             response.sendRedirect("/airlines/error/");
             throw new WebApplicationException("Error during import!");
         }

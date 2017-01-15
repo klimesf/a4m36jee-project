@@ -13,7 +13,6 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
-@ManagedBean(name = "flight")
 public class Flight extends AbstractEntity {
 
     @NotNull(message="Date is absent!")

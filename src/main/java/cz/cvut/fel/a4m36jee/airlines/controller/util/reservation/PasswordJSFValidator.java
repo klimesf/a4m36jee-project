@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.reservation;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.reservation;
 
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
@@ -26,30 +26,26 @@ public class PasswordJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
+
         if(o == null) {
             return;
         }
         String pass = (String) o;
         String idString = (String) uiComponent.getAttributes().get("reservationId");
         Long id = Long.parseLong(idString);
-        if(id == null) {
-            FacesMessage facesMsg = new FacesMessage("Reservation not found!");
-            facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(facesMsg);
-        }
+
         Reservation reservation = reservationService.get(id);
         if(reservation == null) {
             FacesMessage facesMsg = new FacesMessage("Reservation not found!");
             facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(facesMsg);
         }
+
         if(!reservation.getPassword().equals(pass)){
             FacesMessage facesMsg = new FacesMessage("Wrong password!");
             facesMsg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(facesMsg);
-
         }
-
     }
 
 }

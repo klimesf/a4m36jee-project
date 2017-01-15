@@ -7,7 +7,8 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 
-<h:outputStylesheet library="css" name="bootstrap.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
 <h:head>
 
@@ -24,7 +25,7 @@
                         <div class="form-group">
                             <h:column>
                                 <h:outputText value="Number of connected users: "/>
-                                <h:outputText value="${infoViewResource.numberOfConnectedUsers}"/>
+                                <h:outputText value="${infoController.numberOfConnectedUsers}"/>
                             </h:column>
                         </div>
                     </div>
@@ -32,11 +33,12 @@
 
                 <h2>Create reservation</h2>
 
-                <c:set var="flight" value="#{flightViewResource.getFlight(request.getParameter('id'))}" scope="request" />
+                <c:set var="flight" value="#{flightController.getFlight(request.getParameter('id'))}" scope="request"/>
 
                 <div class="form-group">
-                    <h:outputLabel value="Seat: *" for="createReservationSeat" />
-                    <h:inputText styleClass="form-control" id="createReservationSeat" value="#{reservation.seat}" title="seats">
+                    <h:outputLabel value="Seat: *" for="createReservationSeat"/>
+                    <h:inputText styleClass="form-control" id="createReservationSeat" value="#{newReservation.seat}"
+                                 title="seats">
                         <f:attribute name="flightId" value="#{flight.id}"/>
                         <f:validator binding="#{reservationSeatJSFValidator}"/>
                     </h:inputText>
@@ -44,8 +46,9 @@
                 </div>
 
                 <div class="form-group">
-                    <h:outputLabel value="Password: *" for="createReservationPassword" />
-                    <h:inputSecret styleClass="form-control" id="createReservationPassword" value="#{reservation.password}" title="password">
+                    <h:outputLabel value="Password: *" for="createReservationPassword"/>
+                    <h:inputSecret styleClass="form-control" id="createReservationPassword"
+                                   value="#{newReservation.password}" title="password">
                         <f:validator binding="#{reservationPasswordJSFValidator}"/>
                     </h:inputSecret>
                     <p:messages for="createReservationPassword" display="ico"/>
@@ -53,12 +56,14 @@
 
                 <div class="row" align="left">
                     <div class="form-group">
-                        <h:commandButton id="createReservationBtn" styleClass="btn btn-success" value="Create" action="#{reservationViewResource.createReservation(reservation, flight)}">
+                        <h:commandButton id="createReservationBtn" styleClass="btn btn-success" value="Create"
+                                         action="#{reservationController.createReservation(flight)}">
                             <f:param name="id" value="#{flight.id}"/>
                         </h:commandButton>
                     </div>
                     <div class="form-group">
-                        <h:button id="cancelReservationBtn" styleClass="btn btn-danger" outcome="/faces/pages/model/flight/listFlightReservations.xhtml" value="Cancel">
+                        <h:button id="cancelReservationBtn" styleClass="btn btn-danger"
+                                  outcome="/faces/pages/model/flight/listFlightReservations.xhtml" value="Cancel">
                             <f:param name="id" value="#{flight.id}"/>
                         </h:button>
                     </div>
@@ -66,5 +71,8 @@
             </div>
         </h:form>
     </f:view>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" type="application/javascript"></script>
 </h:body>
 </html>

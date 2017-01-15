@@ -1,22 +1,18 @@
-package cz.cvut.fel.a4m36jee.airlines.view;
+package cz.cvut.fel.a4m36jee.airlines.controller;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import java.util.logging.Logger;
 
 /**
  * View resources for application information.
+ * TODO: connect to service, count of user via websockets
  *
  * @author slavion3
  */
-@RequestScoped
-@ManagedBean(name = "infoViewResource")
-public class InfoViewResource {
-    //TODO connect to service, count of user via websockets
-    /**
-     * Logger.
-     */
+@Model
+public class InfoController {
+
     @Inject
     private Logger logger;
 
