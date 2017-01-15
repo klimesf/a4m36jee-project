@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.reservation;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.reservation;
 
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
@@ -33,27 +33,33 @@ public class ReservationSeatJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o == null) {
+        if (o == null) {
             return;
         }
+
         Integer seatNumber = (Integer) o;
         Long id = (Long) uiComponent.getAttributes().get("flightId");
-        if(id != null) {
-            Flight flight = flightService.get(id);
-            if(flight == null) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createReservationSeat", "Invalid flight! Flight not found.");
-            }
-            if(flight.getSeats() < seatNumber || seatNumber <= 0){
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createReservationSeat", "Invalid seat number! Seat number is allowable between 1 - " + flight.getSeats() +".");
-            }
-            List<Reservation> reservationList = reservationService.listByFlightId(id);
-            for (Reservation reservation : reservationList) {
-                if(reservation.getSeat() == seatNumber){
-                    throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Seat is already reserved.",""));
-                }
-            }
-        } else {
+        if (id == null) {
             Messages.add(FacesMessage.SEVERITY_ERROR, "createReservationSeat", "Invalid flight! Flight not found.");
+            return;
+        }
+
+        Flight flight = flightService.get(id);
+        if (flight == null) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createReservationSeat", "Invalid flight! Flight not found.");
+            return;
+        }
+
+        if (flight.getSeats() < seatNumber || seatNumber <= 0) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createReservationSeat", "Invalid seat number! Seat number is allowable between 1 - " + flight.getSeats() + ".");
+            return;
+        }
+
+        List<Reservation> reservationList = reservationService.listByFlightId(id);
+        for (Reservation reservation : reservationList) {
+            if (reservation.getSeat().equals(seatNumber)) {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Seat is already reserved.", ""));
+            }
         }
     }
 

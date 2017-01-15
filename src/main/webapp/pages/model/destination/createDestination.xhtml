@@ -4,9 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:outputStylesheet library="css" name="bootstrap.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
 <h:head>
 
@@ -22,7 +23,7 @@
 
                 <div class="form-group">
                     <h:outputLabel value="Name: *" for="createDestinationName" />
-                    <h:inputText styleClass="form-control" id="createDestinationName" value="#{destination.name}" title="name">
+                    <h:inputText styleClass="form-control" id="createDestinationName" value="#{newDestination.name}" title="name">
                         <f:validator binding="#{destinationNameJSFValidator}"/>
                     </h:inputText>
                     <p:messages for="createDestinationName" display="ico"/>
@@ -30,7 +31,7 @@
 
                 <div class="form-group">
                     <h:outputLabel value="Latitude: *" for="createDestinationLat" />
-                    <h:inputText styleClass="form-control" id="createDestinationLat" value="#{destination.lat}" title="lat">
+                    <h:inputText styleClass="form-control" id="createDestinationLat" value="#{newDestination.lat}" title="lat">
                         <f:validator binding="#{destinationLatJSFValidator}"/>
                     </h:inputText>
                     <p:messages for="createDestinationLat" display="ico"/>
@@ -38,7 +39,7 @@
 
                 <div class="form-group">
                     <h:outputLabel value="Longitude: *" for="createDestinationLon" />
-                    <h:inputText styleClass="form-control" id="createDestinationLon" value="#{destination.lon}" title="lon">
+                    <h:inputText styleClass="form-control" id="createDestinationLon" value="#{newDestination.lon}" title="lon">
                         <f:validator binding="#{destinationLonJSFValidator}"/>
                     </h:inputText>
                     <p:messages for="createDestinationLon" display="ico"/>
@@ -46,7 +47,7 @@
 
                 <div class="row" align="left">
                     <div class="form-group">
-                        <h:commandButton id="createDestinationBtn" styleClass="btn btn-success" value="Create" action="#{destinationViewResource.createDestination(destination)}"/>
+                        <h:commandButton id="createDestinationBtn" styleClass="btn btn-success" value="Create" action="#{destinationController.createDestination}"/>
                     </div>
                     <div class="form-group">
                         <h:button id="cancelDestinationBtn" styleClass="btn btn-danger" value="Cancel" outcome="listDestinations.xhtml"/>

@@ -12,7 +12,6 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
-@ManagedBean(name = "reservation")
 public class Reservation extends AbstractEntity {
 
     @NotNull(message = "Seat is absent!")

@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.destination;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.destination;
 
 import org.omnifaces.util.Messages;
 
@@ -21,17 +21,16 @@ public class DestinationLatJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o != null){
-            if(o != null){
-                Double lat = (Double) o;
-                if(lat > 90) {
-                    Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLat", "Invalid Latitude! Latitude is greater than allowable maximum of 90.");
-                }
-                if(lat < -90) {
-                    Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLat", "Invalid Latitude! Latitude is less than allowable minimum of -90.");
-                }
-            }
+        if (o == null) {
+            return;
+        }
+        double lat = (double) o;
+        if (lat > 90) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLat", "Invalid Latitude! Latitude is greater than allowable maximum of 90.");
+            return;
+        }
+        if (lat < -90) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLat", "Invalid Latitude! Latitude is less than allowable minimum of -90.");
         }
     }
-
 }

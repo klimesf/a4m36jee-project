@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.flight;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.flight;
 
 import org.omnifaces.util.Messages;
 
@@ -21,15 +21,16 @@ public class FlightSeatsJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o != null){
-            Integer count = (Integer) o;
-            if(count < 1) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightSeats", "Invalid count of seats! Seats count is less than allowable minimum of 1.");
-            }
-            if(count > 255) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightSeats", "Invalid count of seats! Seats count is greater than allowable maximum of 500.");
-            }
+        if (o == null) {
+            return;
+        }
+        int count = (int) o;
+        if (count < 1) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightSeats", "Invalid count of seats! Seats count is less than allowable minimum of 1.");
+            return;
+        }
+        if (count > 255) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightSeats", "Invalid count of seats! Seats count is greater than allowable maximum of 500.");
         }
     }
-
 }

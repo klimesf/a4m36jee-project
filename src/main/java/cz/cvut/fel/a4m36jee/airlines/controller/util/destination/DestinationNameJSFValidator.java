@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.destination;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.destination;
 
 import org.omnifaces.util.Messages;
 
@@ -21,15 +21,16 @@ public class DestinationNameJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o != null){
-            String name = (String) o;
-            if(name.length() < 2) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationName", "Invalid length of name! Length is less than allowable minimum of 2.");
-            }
-            if(name.length() > 255) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationName", "Invalid length of name! Length is greater than allowable maximum of 255.");
-            }
+        if (o == null) {
+            return;
+        }
+        String name = (String) o;
+        if (name.length() < 2) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationName", "Invalid length of name! Length is less than allowable minimum of 2.");
+            return;
+        }
+        if (name.length() > 255) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationName", "Invalid length of name! Length is greater than allowable maximum of 255.");
         }
     }
-
 }

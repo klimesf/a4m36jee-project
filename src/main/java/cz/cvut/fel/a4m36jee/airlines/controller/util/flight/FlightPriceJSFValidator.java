@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.flight;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.flight;
 
 import org.omnifaces.util.Messages;
 
@@ -21,15 +21,19 @@ public class FlightPriceJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o != null){
-            Double price = (Double) o;
-            if(price < 1) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightPrice", "Invalid price! Length is less than allowable minimum of 1.");
-            }
-            if(price > Double.MAX_VALUE) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightPrice", "Invalid prive! Length is greater than allowable maximum of " + Double.MAX_VALUE + ".");
-            }
+        if (o == null) {
+            return;
         }
+
+        double price = (double) o;
+        if (price < 1) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightPrice", "Invalid price! Length is less than allowable minimum of 1.");
+            return;
+        }
+        if (price > Double.MAX_VALUE) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightPrice", "Invalid price! Length is greater than allowable maximum of " + Double.MAX_VALUE + ".");
+        }
+
     }
 
 }

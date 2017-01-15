@@ -1,12 +1,11 @@
-package cz.cvut.fel.a4m36jee.airlines.view;
+package cz.cvut.fel.a4m36jee.airlines.controller;
 
 import javax.batch.operations.JobOperator;
 import javax.batch.operations.JobSecurityException;
 import javax.batch.operations.JobStartException;
 import javax.batch.runtime.BatchRuntime;
+import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -23,19 +22,15 @@ import java.util.logging.Logger;
  *
  * @author slavion3
  */
-@ViewScoped
-@ManagedBean(name = "importDataViewResource")
-public class ImportDataViewResource {
+@Model
+public class ImportDataController {
 
-    /**
-     * Logger.
-     */
     @Inject
     private Logger logger;
 
-    /**
-     * Imported file.
-     */
+    @Inject
+    private FacesContext facesContext;
+
     private Part importedFile;
 
     /**
@@ -71,7 +66,7 @@ public class ImportDataViewResource {
      * @throws WebApplicationException if error during import
      */
     public void importFile() throws IOException {
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
         try {
             JobOperator jobOperator = BatchRuntime.getJobOperator();
             Properties jobProperties = new Properties();

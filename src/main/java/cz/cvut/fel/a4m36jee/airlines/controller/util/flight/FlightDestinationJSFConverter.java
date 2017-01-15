@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.flight;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.flight;
 
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.inject.Inject;
 
 /**
@@ -27,15 +26,18 @@ public class FlightDestinationJSFConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        if(s != null) {
-            Long id = Long.parseLong(s);
-            Destination destination = destinationService.get(id);
-            if(destination != null) {
-                return destination;
-            }
-            Messages.add(FacesMessage.SEVERITY_ERROR, "", "Destination not found!");
+        if (s == null) {
+            return new Destination();
         }
-        return new Destination();
+
+        Long id = Long.parseLong(s);
+        Destination destination = destinationService.get(id);
+        if (destination == null) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "", "Destination not found!");
+            return null;
+        }
+
+        return destination;
     }
 
     @Override

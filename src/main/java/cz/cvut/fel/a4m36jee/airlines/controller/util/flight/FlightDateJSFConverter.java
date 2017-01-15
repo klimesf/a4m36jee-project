@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.flight;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.flight;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -11,7 +11,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import java.util.Date;
 
 /**
@@ -25,20 +24,22 @@ public class FlightDateJSFConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        if(s != null) {
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-            DateTime dateTime = null;
-            try {
-                dateTime = dtf.parseDateTime(s);
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-            if (dateTime != null) {
-                return dateTime.toDate();
-            }
-            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightDateOfDeparture", "Invalid date format! Use ISO8601.");
+        if (s == null) {
+            return null;
         }
-        return null;
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        DateTime dateTime = null;
+        try {
+            dateTime = dtf.parseDateTime(s);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        if (dateTime == null) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createFlightDateOfDeparture", "Invalid date format! Use ISO8601 (yyyy-MM-dd'T'HH:mm:ssZ).");
+            return null;
+        }
+
+        return dateTime.toDate();
     }
 
     @Override

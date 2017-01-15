@@ -5,38 +5,28 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:outputStylesheet library="css" name="bootstrap.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
 <h:head>
     <title>Login</title>
 </h:head>
 <h:body>
     <f:view>
-        <div class="container" style="padding-top: 50px" align="right">
-            <h:graphicImage library="images" name="img.jpg" styleClass="img-circle" width="400"/>
+        <div class="container" style="padding-top: 50px; padding-bottom: 30px;" align="center">
+            <h:graphicImage library="images" name="img.jpg" styleClass="img-circle" height="200"/>
         </div>
-        <div class="container" align="left">
-            <h:form class="form-inline">
-                <div class="form-group">
-                    <h:outputLabel value="Zadejte..." style="font-size: 1500%"/>
-                </div>
-            </h:form>
-        </div>
-        <div class="container" align="right">
-            <h:form class="form-inline">
-                <div class="form-group">
-                    <h:outputLabel value="Přihlašovací údaje" style="font-size: 350%"/>
-                </div>
-            </h:form>
+        <div class="container" align="center">
+            <p style="font-size: 150%">Zadejte přihlašovací údaje...</p>
         </div>
         <div class="container" style="padding-top: 50px" align="right">
-            <h:form id="loginForm" class="form-inline" prependId="false">
+            <h:form id="loginForm" class="form" prependId="false">
                 <div class="form-group">
-                    <h:outputLabel value="Username" for="username" />
+                    <h:outputLabel value="Username" for="username"/>
                     <h:inputText styleClass="form-control" id="username"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel value="Password" for="password" />
+                    <h:outputLabel value="Password" for="password"/>
                     <h:inputSecret styleClass="form-control" id="password"/>
                 </div>
                 <div class="form-group">

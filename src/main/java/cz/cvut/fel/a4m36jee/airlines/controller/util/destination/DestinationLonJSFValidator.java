@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.view.util.destination;
+package cz.cvut.fel.a4m36jee.airlines.controller.util.destination;
 
 import org.omnifaces.util.Messages;
 
@@ -21,14 +21,16 @@ public class DestinationLonJSFValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        if(o != null){
-            Double lon = (Double) o;
-            if(lon > 180) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLon", "Invalid longitude! Longitude is greater than allowable maximum of 180.");
-            }
-            if(lon < -180) {
-                Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLon", "Invalid longitude! Longitude is less than allowable minimum of -180.");
-            }
+        if (o == null) {
+            return;
+        }
+        double lon = (double) o;
+        if (lon > 180) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLon", "Invalid longitude! Longitude is greater than allowable maximum of 180.");
+            return;
+        }
+        if (lon < -180) {
+            Messages.add(FacesMessage.SEVERITY_ERROR, "createDestinationLon", "Invalid longitude! Longitude is less than allowable minimum of -180.");
         }
     }
 
