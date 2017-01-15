@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
@@ -16,18 +15,7 @@
 <h:body>
     <f:view>
         <h:form id="deleteFlightForm" styleClass="form-inline">
-            <div class="container" style="padding-left: 50px">
-
-                <h:form class="form-inline" id="userDeleteDestinationForm">
-                    <div class="row" align="right">
-                        <div class="form-group">
-                            <h:column>
-                                <h:outputText value="Number of connected users: "/>
-                                <h:outputText value="${infoController.numberOfConnectedUsers}"/>
-                            </h:column>
-                        </div>
-                    </div>
-                </h:form>
+            <div class="container" style="padding-top: 50px">
 
                 <c:set var="flight" value="#{flightController.getFlight(request.getParameter('id'))}" scope="request"/>
 

@@ -28,14 +28,6 @@
                     </div>
 
                 </div>
-                <div class="row" align="right">
-                    <div class="form-group">
-                        <h:column>
-                            <h:outputText value="Number of connected users: "/>
-                            <h:outputText value="${infoController.numberOfConnectedUsers}"/>
-                        </h:column>
-                    </div>
-                </div>
             </h:form>
 
             <c:set var="flight" value="#{flightController.getFlight(request.getParameter('id'))}" scope="request"/>

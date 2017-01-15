@@ -74,4 +74,10 @@ public class DestinationServiceImpl implements DestinationService {
         destinationDAO.update(destination);
         logger.info("Destination updated");
     }
+
+    @Override
+    public List<Destination> findByName(String name) {
+        logger.info("Finding Destination by name " + name);
+        return destinationDAO.findBy("name", name);
+    }
 }

@@ -15,18 +15,7 @@
 <h:body>
     <f:view>
         <h:form id="deleteDestinationForm" styleClass="form-inline">
-            <div class="container" style="padding-left: 50px">
-
-                <h:form class="form-inline" id="userDeleteDestinationForm">
-                    <div class="row" align="right">
-                        <div class="form-group">
-                            <h:column>
-                                <h:outputText value="Number of connected users: "/>
-                                <h:outputText value="${infoController.numberOfConnectedUsers}"/>
-                            </h:column>
-                        </div>
-                    </div>
-                </h:form>
+            <div class="container" style="padding-top: 50px">
 
                 <c:set var="destination" value="#{destinationController.getDestination(request.getParameter('id'))}" scope="request"/>
 
