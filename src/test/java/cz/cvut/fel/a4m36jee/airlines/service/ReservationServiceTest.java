@@ -83,6 +83,7 @@ public class ReservationServiceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setFlight(flight);
+        reservation.setEmail("john@isis.sy");
         reservation.setPassword("allahu-akbar");
         reservation.setSeat(1);
 
@@ -96,7 +97,7 @@ public class ReservationServiceTest {
     @Transactional
     public void testCreateWithMissingData() throws Exception {
         Reservation reservation = new Reservation();
-        // Missing created, flight, password & seat
+        // Missing created, flight, email, password & seat
 
         thrown.expect(EJBException.class);
         reservationService.create(reservation);
@@ -108,6 +109,7 @@ public class ReservationServiceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setFlight(flight);
+        reservation.setEmail("john@isis.sy");
         reservation.setPassword("allahu-akbar");
         reservation.setSeat(0); // Seat number must be greater than 0
 
@@ -121,6 +123,7 @@ public class ReservationServiceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setFlight(flight);
+        reservation.setEmail("john@isis.sy");
         reservation.setPassword("allahu-akbar");
         reservation.setSeat(101); // Seat number must be smaller than flight.seats
 
@@ -134,6 +137,7 @@ public class ReservationServiceTest {
         Reservation reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setFlight(flight);
+        reservation.setEmail("john.doe@example.com");
         reservation.setPassword("secret-password");
         reservation.setSeat(100);
         reservationDAO.save(reservation);
@@ -141,6 +145,7 @@ public class ReservationServiceTest {
         reservation = new Reservation();
         reservation.setCreated(new Date());
         reservation.setFlight(flight);
+        reservation.setEmail("john@isis.sy");
         reservation.setPassword("allahu-akbar");
         reservation.setSeat(100); // The same seat
 
