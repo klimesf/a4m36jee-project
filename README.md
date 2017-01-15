@@ -33,7 +33,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 
 - [X] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
 - [X] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
-- [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
+- [X] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
   - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
   - [X] Business vrstva - EJB
@@ -85,3 +85,13 @@ Testing via Maven (Wildfly musí být spuštěný na standardním portu)
 ```bash
 mvn clean package test -Parq-wildfly-remote
 ```
+
+### Maven profily
+
+- default
+    - Přeskočí všechny testy
+- unit-tests
+    - Spustí pouze testy s anotací `@Category(UnitTest.class)`
+- arq-wildfly-remote
+    - Spustí všechny testy, nasazuje Shrinkwrap archiv na Wildfly (musí být spuštěný)
+    

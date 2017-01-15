@@ -1,10 +1,11 @@
 package cz.cvut.fel.a4m36jee.airlines.model;
 
+import cz.cvut.fel.a4m36jee.airlines.model.validation.Latitude;
+import cz.cvut.fel.a4m36jee.airlines.model.validation.Longitude;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author klimefi1
@@ -16,11 +17,20 @@ public class Destination extends AbstractEntity {
     @NotEmpty(message="Name is absent!")
     private String name;
 
-    @NotNull(message="Latitude is absent!")
+    @Latitude(message="Latitude is absent!")
     private Double lat;
 
-    @NotNull(message="Longitude is absent!")
+    @Longitude(message="Longitude is absent!")
     private Double lon;
+
+    public Destination() {
+    }
+
+    public Destination(String name, Double lat, Double lon) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
 
     public String getName() {
         return name;

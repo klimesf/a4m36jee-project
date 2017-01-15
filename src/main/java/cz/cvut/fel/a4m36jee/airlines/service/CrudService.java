@@ -32,14 +32,20 @@ public interface CrudService<T> {
     void create(final T instance) throws Exception;
 
     /**
-     * Smaže instanci s daným id.
-     * @param id id instance
+     * Soft deletes entity with given id.
+     * @param id entity id
      */
     void delete(final Long id);
 
     /**
-     * Upraví danou instanci.
-     * @param instance upravená instance
+     * Soft deletes given entity.
+     * @param entity entity
+     */
+    void delete(final T entity);
+
+    /**
+     * Updates entity.
+     * @param instance updated entity
      */
     void update(final T instance);
 }

@@ -89,6 +89,23 @@ public class DestinationViewResource {
     }
 
     /**
+     * Update destination.
+     * @param destination destination for update
+     * @throws IOException if redirect is unsuccessful
+     */
+    public void updateDestination(final Destination destination) throws IOException {
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        try {
+            destinationService.update(destination);
+            logger.info("Destination with id " + destination.getId() + " updated.");
+            response.sendRedirect("/airlines/destination/");
+        } catch (Exception e) { //TODO exception
+            logger.severe( "Error during update destination with id " + destination.getId() + "!");
+            response.sendRedirect("/airlines/error/");
+        }
+    }
+
+    /**
      * Delete destination.
      * @param id destination ID
      * @throws IOException if redirect is unsuccessful
