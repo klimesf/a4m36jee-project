@@ -34,8 +34,8 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 - [X] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
 - [X] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
 - [X] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
-- [ ] Implementace třívrstvé aplikace
-  - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
+- [X] Implementace třívrstvé aplikace
+  - [X] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
   - [X] Business vrstva - EJB
   - [X] Datová vrstva - perzistence pomocí JPA 2 nebo Infinispan (zde se očekává konfigurace Infinispan-u pro trvalé uložení dat)
 - [X] Aplikace bude používat CDI, není vhodné používat dependency injection definovanou v Java EE 5 (tzn. očekáváme i použití např. typově bezpečného persitence contextu)
@@ -47,7 +47,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
   - [ ] nasazená aplikace bežící v OpenShift 3 (developer preview)
   - [ ] volitelně jako standalone fatjar pomocí WildFly Swarm
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
-- [ ] Aplikace bude používat alespoň jeden WebSocket endopint
+- [X] Aplikace bude používat alespoň jeden WebSocket endopint
 - [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
 - [X] Vystavené endpointy budou podoporovat zabezpečení
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
@@ -59,10 +59,10 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | Úkol                      | FK    | JM    | ~~MK~~| OK    | OS    |
 | ------------------------- | :---: | :---: | :---: | :---: | :---: |
 | Specifikace + UML         | X     |       |       |       |       |
-| JPA 2 + Bean Validation   | X     |       |       | X     |       |
-| Byznys vrstva             |       |       |       |       |       |
+| JPA 2 + Bean Validation   | X     | X     |       | X     |       |
+| Byznys vrstva             |       | X     |       |       |       |
 | Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       |       |       |       |       |
+| WebSocket                 |       | X     |       |       |   X   |
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
