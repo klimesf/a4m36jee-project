@@ -1,6 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.webSockets;
 
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationDeleted;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
 import javax.ejb.Stateless;
@@ -36,11 +37,24 @@ public class FlightWebSocket {
 
     /**
      * Fires id of flight on which new reservation was created.
+     * Message example: <pre>1-added</pre>
      * @param reservationCreated trigger
      */
     public void handleNewReservation(@Observes ReservationCreated reservationCreated) {
         final Reservation reservation = reservationCreated.getReservation();
-        sendAll(reservation.getFlight().getId().toString());
+        final String message = reservation.getFlight().getId().toString() + "-added";
+        sendAll(message);
+    }
+
+    /**
+     * Fires id of flight on which a reservation was deleted.
+     * Message example: <pre>1-deleted</pre>
+     * @param reservationDeleted trigger
+     */
+    public void handleDeletedReservation(@Observes ReservationDeleted reservationDeleted) {
+        final Reservation reservation = reservationDeleted.getReservation();
+        final String message = reservation.getFlight().getId().toString() + "-deleted";
+        sendAll(message);
     }
 
     /**
