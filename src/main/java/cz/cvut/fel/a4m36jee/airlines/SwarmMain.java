@@ -8,7 +8,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
-import org.wildfly.swarm.spi.api.Fraction;
 
 public class SwarmMain {
     public static void main(String[] args) throws Exception {
@@ -29,16 +28,17 @@ public class SwarmMain {
 
     private static DatasourcesFraction datasourceWithH2() {
         return new DatasourcesFraction()
-                .jdbcDriver("h2", (d) -> {
-                    d.driverClassName("org.h2.Driver");
-                    d.xaDatasourceClass("org.h2.jdbcx.JdbcDataSource");
-                    d.driverModuleName("com.h2database.h2");
-                })
-                .dataSource("ExampleDS", (ds) -> {
-                    ds.driverName("h2");
-                    ds.connectionUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
-                    ds.userName("sa");
-                    ds.password("sa");
-                });
+//                .jdbcDriver("h2", (d) -> {
+//                    d.driverClassName("org.h2.Driver");
+//                    d.xaDatasourceClass("org.h2.jdbcx.JdbcDataSource");
+//                    d.driverModuleName("com.h2database.h2");
+//                })
+//                .dataSource("ExampleDS", (ds) -> {
+//                    ds.driverName("h2");
+//                    ds.connectionUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+//                    ds.userName("sa");
+//                    ds.password("sa");
+//                })
+                ;
     }
 }
