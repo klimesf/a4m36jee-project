@@ -123,7 +123,7 @@ public class ReservationViewResource {
     public void deleteReservation(final long id, final long flightId, final String password) throws IOException {
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         try {
-            reservationService.delete(id); //TODO add password
+            reservationService.delete(id, password);
             logger.info("Reservation with id " + id + " deleted.");
             response.sendRedirect("/airlines/flight/reservation/?id="+flightId);
         } catch (Exception e) { //TODO exception
