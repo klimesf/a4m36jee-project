@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.event.ReservationDeleted;
 import cz.cvut.fel.a4m36jee.airlines.exception.BadReservationPasswordException;
 import cz.cvut.fel.a4m36jee.airlines.exception.InvalidSeatNumberException;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
@@ -32,11 +33,16 @@ public class ReservationServiceImpl implements ReservationService
 
     private final Event<ReservationCreated> reservationCreatedEvent;
 
+    private final Event<ReservationDeleted> reservationDeletedEvent;
+
     @Inject
-    public ReservationServiceImpl(Logger logger, ReservationDAO reservationDAO, Event<ReservationCreated> reservationCreatedEvent) {
+    public ReservationServiceImpl(Logger logger, ReservationDAO reservationDAO,
+                                  Event<ReservationCreated> reservationCreatedEvent,
+                                  Event<ReservationDeleted> reservationDeletedEvent) {
         this.logger = logger;
         this.reservationDAO = reservationDAO;
         this.reservationCreatedEvent = reservationCreatedEvent;
+        this.reservationDeletedEvent = reservationDeletedEvent;
     }
 
     @Override
@@ -88,16 +94,16 @@ public class ReservationServiceImpl implements ReservationService
 
     @Override
     public void delete(final Long id) {
-        logger.info("Deleting Reservation with id " + id);
-        reservationDAO.delete(id);
-        logger.info("Reservation deleted.");
+        delete(get(id));
     }
 
     @Override
     public void delete(final Reservation reservation) {
         logger.info("Deleting Reservation with id " + reservation.getId());
         reservationDAO.delete(reservation);
-        logger.info("Reservation deleted.");
+        logger.info("Reservation deleted. Event will be fired.");
+        reservationDeletedEvent.fire(new ReservationDeleted(reservation));
+        logger.info("Event fired.");
     }
 
     @Override

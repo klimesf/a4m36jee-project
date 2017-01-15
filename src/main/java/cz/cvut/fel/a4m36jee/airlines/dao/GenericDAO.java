@@ -87,8 +87,10 @@ abstract class GenericDAO<T extends AbstractEntity> implements DAO<T> {
         Root<T> from = query.from(type);
         return query
                 .select(from)
-                .where(criteriaBuilder.equal(from.get(property), value))
-                .where(criteriaBuilder.isNull(from.get("deleted")));
+                .where(
+                    criteriaBuilder.equal(from.get(property), value),
+                    criteriaBuilder.isNull(from.get("deleted"))
+                );
     }
 
     private CriteriaQuery<T> createQueryIsNull(String property) {
