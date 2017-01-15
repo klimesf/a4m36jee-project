@@ -79,6 +79,11 @@
     </url-mapping>
 
     <url-mapping>
+        <pattern value="/import/"/>
+        <view-id value="/faces/pages/batchImport.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
         <pattern value="/error/"/>
         <view-id value="/faces/pages/error.xhtml" />
     </url-mapping>
