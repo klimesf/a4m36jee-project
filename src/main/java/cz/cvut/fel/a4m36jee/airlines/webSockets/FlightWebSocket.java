@@ -26,17 +26,13 @@ import java.util.logging.Logger;
  * @author moravja8.
  */
 @Stateless
-@ServerEndpoint("flightsWebsocket")
+@ServerEndpoint("/newReservationWebSocket")
 public class FlightWebSocket {
 
-    private final Logger logger;
+    @Inject
+    private Logger logger;
 
     private static final Set<Session> SESSIONS = Collections.synchronizedSet(new HashSet<Session>());
-
-    @Inject
-    public FlightWebSocket(final Logger logger) {
-        this.logger = logger;
-    }
 
     /**
      * Fires id of flight on which new reservation was created.
