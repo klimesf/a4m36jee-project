@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * View resources for newFlight.
+ * View resources for Flight.
  *
  * @author slavion3
  */
@@ -54,7 +54,7 @@ public class FlightController {
             logger.info("Flight list received.");
             return reservations;
         } catch (Exception e) { //TODO exception
-            logger.severe("Error during receive newFlight list!");
+            logger.severe("Error during receive Flight list!");
             response.sendRedirect("/airlines/error/");
             throw new WebApplicationException();
         }
@@ -64,7 +64,7 @@ public class FlightController {
      * Find Flight.
      *
      * @param id Flight ID
-     * @return newFlight
+     * @return Flight
      * @throws IOException if redirect is unsuccessful
      */
     public Flight getFlight(final long id) throws IOException {
@@ -74,7 +74,7 @@ public class FlightController {
             logger.info("Flight with id " + id + " found.");
             return reservation;
         } catch (Exception e) { //TODO exception
-            logger.severe("Error during find newFlight with id " + id + "!");
+            logger.severe("Error during find Flight with id " + id + "!");
             response.sendRedirect("/airlines/error/");
             throw new WebApplicationException();
         }
@@ -89,10 +89,10 @@ public class FlightController {
         HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
         try {
             flightService.create(newFlight);
-            logger.info("New newFlight created.");
-            response.sendRedirect("/airlines/newFlight/");
+            logger.info("New Flight created.");
+            response.sendRedirect("/airlines/flight/");
         } catch (Exception e) { //TODO exception
-            logger.severe("Error during create newFlight!");
+            logger.severe("Error during create Flight!");
             response.sendRedirect("/airlines/error/");
         }
     }
@@ -108,7 +108,7 @@ public class FlightController {
         try {
             flightService.update(flight);
             logger.info("Flight with id " + flight.getId() + " updated.");
-            response.sendRedirect("/airlines/newFlight/");
+            response.sendRedirect("/airlines/flight/");
         } catch (Exception e) { //TODO exception
             logger.severe("Error during update destination with id " + flight.getId() + "!");
             response.sendRedirect("/airlines/error/");
@@ -119,7 +119,7 @@ public class FlightController {
     /**
      * Delete Flight.
      *
-     * @param id newFlight ID
+     * @param id Flight ID
      * @throws IOException if redirect is unsuccessful
      */
     public void deleteFlight(final long id) throws IOException {
@@ -127,9 +127,9 @@ public class FlightController {
         try {
             flightService.delete(id);
             logger.info("Flight with id " + id + " deleted.");
-            response.sendRedirect("/airlines/newFlight/");
+            response.sendRedirect("/airlines/flight/");
         } catch (Exception e) { //TODO exception
-            logger.severe("Error during delete newFlight with id " + id + "!");
+            logger.severe("Error during delete Flight with id " + id + "!");
             response.sendRedirect("/airlines/error/");
         }
     }
