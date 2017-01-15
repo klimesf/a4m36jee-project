@@ -9,32 +9,32 @@
 <h:outputStylesheet library="css" name="bootstrap.css"/>
 
 <h:head>
-    <title>Delete flight: #{request.getParameter('id')}</title>
+    <title>Delete destination: #{request.getParameter('id')}</title>
 </h:head>
 <h:body>
     <f:view>
-        <h:form id="deleteFlightForm" styleClass="form-inline">
+        <h:form id="deleteDestinationForm" styleClass="form-inline">
             <div class="container" style="padding-left: 50px">
 
-                <c:set var="flight" value="#{flightViewResource.getFlight(request.getParameter('id'))}" scope="request"/>
+                <c:set var="destination" value="#{destinationViewResource.getDestination(request.getParameter('id'))}" scope="request"/>
 
-                <h2>Delete flight</h2>
+                <h2>Delete destination</h2>
 
                 <div class="row" align="left">
                     <div class="form-group">
-                        <h:outputLabel value="Are you sure to delete flight #{flight.name}?"/>
+                        <h:outputLabel value="Are you sure to delete destination #{destination.name}?"/>
                     </div>
                 </div>
 
                 <div class="row" align="left">
                     <div class="form-group">
-                        <h:commandButton id="deleteFlightBtn" styleClass="btn btn-success" value="Delete" action="#{flightViewResource.deleteFlight(request.getParameter('id'))}">
+                        <h:commandButton id="deleteDestinationBtn" styleClass="btn btn-success" value="Delete" action="#{destinationViewResource.deleteDestination(request.getParameter('id'))}">
                             <f:param name="id" value="#{request.getParameter('id')}"/>
                         </h:commandButton>
                     </div>
 
                     <div class="form-group">
-                        <h:button id="cancelFlightBtn" styleClass="btn btn-danger" value="Cancel" outcome="listFlights.xhtml"/>
+                        <h:button id="cancelDestinationBtn" styleClass="btn btn-danger" value="Cancel" outcome="listDestinations.xhtml"/>
                     </div>
                 </div>
             </div>
