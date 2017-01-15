@@ -1,0 +1,111 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <url-mapping>
+        <pattern value="/login"/>
+        <view-id value="/faces/pages/login.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/logout"/>
+        <view-id value="/faces/pages/logout.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/flight/"/>
+        <view-id value="/faces/pages/model/flight/listFlights.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/flight/create/"/>
+        <view-id value="/faces/pages/model/flight/createFlight.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/flight/edit/"/>
+        <view-id value="/faces/pages/model/flight/editFlight.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/flight/delete/"/>
+        <view-id value="/faces/pages/model/flight/deleteFlight.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/flight/reservation/"/>
+        <view-id value="/faces/pages/model/flight/listFlightReservations.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/destination/"/>
+        <view-id value="/faces/pages/model/destination/listDestinations.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/destination/create/"/>
+        <view-id value="/faces/pages/model/destination/createDestination.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/destination/edit/"/>
+        <view-id value="/faces/pages/model/destination/editDestination.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/destination/delete/"/>
+        <view-id value="/faces/pages/model/destination/deleteDestination.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/reservation/"/>
+        <view-id value="/faces/pages/model/reservation/listReservations.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/reservation/create/"/>
+        <view-id value="/faces/pages/model/reservation/createReservation.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/reservation/delete/"/>
+        <view-id value="/faces/pages/model/reservation/deleteReservation.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/"/>
+        <view-id value="/faces/pages/index.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/import/"/>
+        <view-id value="/faces/pages/batchImport.xhtml"/>
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/error/"/>
+        <view-id value="/faces/pages/error.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/logout"/>
+        <view-id value="/faces/pages/logout.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/logoutpage"/>
+        <view-id value="/faces/pages/logoutPage.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/accessdenied"/>
+        <view-id value="/faces/pages/denied.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
+        <pattern value="/failurelogin"/>
+        <view-id value="/faces/pages/failureLogin.xhtml" />
+    </url-mapping>
+
+</pretty-config>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:outputStylesheet library="css" name="bootstrap.css"/>
+
+<h:head>
+    <title>BATCH Import</title>
+</h:head>
+<h:body>
+    <div class="container" style="padding-top: 50px">
+
+        <h2>BATCH Import</h2>
+
+        <div class="row" align="left">
+            <div class="form-group">
+                <h:outputLabel value="Select file to upload."/>
+            </div>
+        </div>
+        <h:form id="form" class="form-inline" enctype="multipart/form-data">
+
+            <div class="row" align="left">
+                <h:inputFile id="file" style="" styleClass="alert-link" value="#{importDataViewResource.importedFile}" validator="#{importDataViewResource.validateFile}"/>
+                <p class="help-block">Select *.csv file.</p>
+                <p:messages for="file" display="ico"/>
+            </div>
+            <div class="row" align="left">
+                <div class="form-group">
+                    <h:commandButton value="Import File" styleClass="btn btn-success" action="#{importDataViewResource.importFile}"/>
+                </div>
+                <div class="form-group">
+                    <h:button id="cancelImportBtn" styleClass="btn btn-danger" value="Cancel" outcome="index.xhtml"/>
+                </div>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

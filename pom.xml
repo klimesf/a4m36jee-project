@@ -69,6 +69,12 @@
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
+
+        <javax.faces-api.version>2.2</javax.faces-api.version>
+        <org.omnifaces.version>2.0</org.omnifaces.version>
+        <org.primefaces.version>6.0</org.primefaces.version>
+        <org.ocpsoft.rewrite.version>2.0.12.Final</org.ocpsoft.rewrite.version>
+
     </properties>
 
 
@@ -165,6 +171,45 @@
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.2_spec</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <!--
+        Joda Time
+        -->
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+
+        <!--
+        JSF FACES
+        -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>${javax.faces-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${org.primefaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>${org.omnifaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-servlet</artifactId>
+            <version>${org.ocpsoft.rewrite.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-config-prettyfaces</artifactId>
+            <version>${org.ocpsoft.rewrite.version}</version>
         </dependency>
 
         <!-- Now we declare any tools needed -->

@@ -109,5 +109,4 @@ public class ReservationResourceTest {
         Assert.assertEquals(reservation.getCreated(), result.getCreated());
     }
 
-
 }

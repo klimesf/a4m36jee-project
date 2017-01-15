@@ -11,18 +11,8 @@
     </context-param>
 
     <welcome-file-list>
-        <welcome-file>/templates/index.xhtml</welcome-file>
+        <welcome-file>/faces/pages/index.xhtml</welcome-file>
     </welcome-file-list>
-
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
 
     <!--Security constraints for available roles-->
     <!--REST endpoints-->
@@ -143,5 +133,31 @@
         <role-name>EMPLOYEE</role-name>
     </security-role>
 
-    <distributable/>
+    <!--
+  Setting JSF FACES
+ -->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Faces Servlet</servlet-name>-->
+        <!--<url-pattern>*.xhtml</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
 </web-app>
