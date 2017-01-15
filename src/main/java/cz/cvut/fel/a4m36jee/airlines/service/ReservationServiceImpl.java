@@ -78,6 +78,7 @@ public class ReservationServiceImpl implements ReservationService
             }
         }
 
+        reservationCreatedEvent.fire(new ReservationCreated(reservation));
         reservationDAO.save(reservation);
         logger.info("Created a new Reservation with id: " + reservation.getId());
         reservationCreatedEvent.fire(new ReservationCreated(reservation));

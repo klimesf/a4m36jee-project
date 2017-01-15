@@ -1,7 +1,7 @@
 # a4m36jee-project
 [![Build Status](https://travis-ci.org/klimesf/a4m36jee-project.svg?branch=master)](https://travis-ci.org/klimesf/a4m36jee-project)
 
-Semestrlání projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
+Semestrální projekt v předmětu [A4M36JEE](https://developer.jboss.org/wiki/AdvancedJavaEELabFELCVUTPodzim2016) na FEL ČVUT.
 
 Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com](http://a4m36jee-project-a4m36jee-airlines.44fs.preview.openshiftapps.com).
 
@@ -16,13 +16,14 @@ Nasazeno na Openshift Developer Preview: [http://a4m36jee-project-a4m36jee-airli
 ## Specifikace
 
 Realizujte projekt letecké společnosti pro plánování a rezervaci letů.
-Výsledný produkt musí být součástí již existující architektury a napojený na již existující služby,
-ale bylo dosaženo celkové kompaktnosti a efektivity systému. Hlavním požadavkem na
-realizaci produktu je implementace RESTful API, které spravuje dostupné datové zdroje:
+Hlavním požadavkem na realizaci produktu je implementace RESTful API, které spravuje dostupné datové zdroje:
 Destination (seznam destinací, kam společnost létá), Flight (seznam plánovaných, zrušených i uskutečněných letů)
-a Reservation (rezervace určitého počtu míst ve zvoleném letu). 
-Součástí implementace musí být i tlustý klient implementovaný jako
-webová stránka prohlížeče zprostředkovávající přístup ke vzdálené Airline službě.
+a Reservation (rezervace určitého počtu míst ve zvoleném letu).
+Součástí implementace musí být i tenký klient implementovaný jako webová stránka prohlížeče.
+Aplikace dále musí umět odeslat e-mail o potvrzení rezervace po jejím vytvoření.
+Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových operací.
+
+![Class diagram](docs/images/class-diagram.png)
 
 ## Git WorkFlow
 
@@ -32,7 +33,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 
 - [X] Každý student si zřídí účet na github.com, zdrojové kódy projektu budou tamtéž
 - [X] Volba git workflow je na každém týmu, taktéž rozdělení prací na projektu
-- [ ] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
+- [X] Vytvořit krátkou specifikaci - textovou či s doprovodem UML diagramů
 - [ ] Implementace třívrstvé aplikace
   - [ ] Prezentační vrstva - JSF (volitelně použití knihovny RichFaces) nebo moderní JavaScriptový framework s REST backendem, hodnotit se bude funkcionalita, nikoliv grafické provedení
   - [X] Business vrstva - EJB
@@ -48,7 +49,7 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
 - [ ] Aplikace bude používat alespoň jeden WebSocket endopint
 - [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
-- [ ] Vystavené endpointy budou podoporovat zabezpečení
+- [X] Vystavené endpointy budou podoporovat zabezpečení
 - [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
 - [X] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
@@ -65,8 +66,8 @@ webová stránka prohlížeče zprostředkovávající přístup ke vzdálené A
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
-| REST + Security           | X     | X     |       |       |       |
-| Concurrency/Batching      |       |       |       |       |       |
+| REST + Security           | X     | X     |       | X     |       |
+| Concurrency/Batching      |       |       |       | X     |       |
 | Openshift / Swarm Fatjar  | X     |       |       |       |       |
 | Clustering                | X     |       |       |       |       |
 | Prezentace                | X     |       |       |       |       |
@@ -84,3 +85,13 @@ Testing via Maven (Wildfly musí být spuštěný na standardním portu)
 ```bash
 mvn clean package test -Parq-wildfly-remote
 ```
+
+### Maven profily
+
+- default
+    - Přeskočí všechny testy
+- unit-tests
+    - Spustí pouze testy s anotací `@Category(UnitTest.class)`
+- arq-wildfly-remote
+    - Spustí všechny testy, nasazuje Shrinkwrap archiv na Wildfly (musí být spuštěný)
+    
