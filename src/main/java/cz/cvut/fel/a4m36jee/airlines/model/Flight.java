@@ -2,9 +2,10 @@ package cz.cvut.fel.a4m36jee.airlines.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.CascadeType;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -12,33 +13,44 @@ import java.util.Date;
  * @author klimefi1
  */
 @Entity
+@ManagedBean(name = "flight")
 public class Flight extends AbstractEntity {
 
+    @NotNull(message="Date is absent!")
     private Date date;
 
-    @NotNull
+    @NotNull(message="Price is absent!")
     private Double price;
 
-    @NotNull
+    @NotNull(message="Seats count is absent!")
     private Integer seats;
 
-    @NotEmpty
+    @NotEmpty(message="Name is absent!")
     private String name;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Destination from;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Destination to;
 
+    /**
+     * Actual number of free seats on flight.
+     *
+     * Field is not persistent. It is loaded on get in service and updated each time
+     * reservation is created.
+     */
+    @Transient
+    private Integer freeSeats;
+
     public Date getDate() {
-        return new Date(date.getTime());
+        return date;
     }
 
     public void setDate(Date date) {
-        this.date = new Date(date.getTime());
+        this.date = date;
     }
 
     public Double getPrice() {
@@ -81,4 +93,11 @@ public class Flight extends AbstractEntity {
         this.to = to;
     }
 
+    public Integer getFreeSeats() {
+        return freeSeats;
+    }
+
+    public void setFreeSeats(final Integer freeSeats) {
+        this.freeSeats = freeSeats;
+    }
 }

@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.service;
 
 import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
+import cz.cvut.fel.a4m36jee.airlines.exception.BadReservationPasswordException;
 import cz.cvut.fel.a4m36jee.airlines.exception.InvalidSeatNumberException;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
@@ -11,6 +12,7 @@ import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
  * @author moravja8
  */
 @Stateless
+@Transactional
 public class ReservationServiceImpl implements ReservationService
 {
 
@@ -47,7 +50,7 @@ public class ReservationServiceImpl implements ReservationService
     @Override
     public List<Reservation> listByFlightId(final Long flightId) {
         logger.info("All reservations requested for flight with id " + flightId);
-        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flightId", flightId);
+        List<Reservation> allReservationsForFlight = reservationDAO.findBy("flight", flightId);
         logger.info("Returning all reservations for flight with id " + flightId + ". " +
                 "Returning " + allReservationsForFlight.size() + " reservations.");
         return allReservationsForFlight;
@@ -78,7 +81,6 @@ public class ReservationServiceImpl implements ReservationService
             }
         }
 
-        reservationCreatedEvent.fire(new ReservationCreated(reservation));
         reservationDAO.save(reservation);
         logger.info("Created a new Reservation with id: " + reservation.getId());
         reservationCreatedEvent.fire(new ReservationCreated(reservation));
@@ -89,6 +91,26 @@ public class ReservationServiceImpl implements ReservationService
         logger.info("Deleting Reservation with id " + id);
         reservationDAO.delete(id);
         logger.info("Reservation deleted.");
+    }
+
+    @Override
+    public void delete(final Reservation reservation) {
+        logger.info("Deleting Reservation with id " + reservation.getId());
+        reservationDAO.delete(reservation);
+        logger.info("Reservation deleted.");
+    }
+
+    @Override
+    public void delete(final Long id, final String password) throws BadReservationPasswordException {
+        logger.info("Checking password before deleting reservation with id " + id);
+        final Reservation reservation = get(id);
+        if(reservation.getPassword().equals(password)) {
+            logger.info("Autenticated");
+            delete(id);
+        } else {
+            logger.info("Not autenticated.");
+            throw new BadReservationPasswordException(reservation);
+        }
     }
 
     @Override
