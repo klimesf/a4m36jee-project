@@ -1,6 +1,5 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
-import cz.cvut.fel.a4m36jee.airlines.ArquillianTest;
 import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
@@ -20,9 +19,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import sun.security.krb5.internal.crypto.Des;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -32,7 +31,6 @@ import java.util.Date;
  * @author klimefi1
  */
 @RunWith(Arquillian.class)
-@Category(ArquillianTest.class)
 public class FlightServiceTest {
 
     @Deployment
