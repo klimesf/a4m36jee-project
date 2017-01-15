@@ -132,9 +132,9 @@
         var newValue = 0;
 
         if(action == "deleted") {
-            newValue = actual + 1;
+            newValue = parseInt(actual) + 1;
         } else {
-            newValue = actual - 1;
+            newValue = parseInt(actual) - 1;
         }
 
         console.log("Changing value of element " + elementId + " from " + actual + " to " + newValue);
