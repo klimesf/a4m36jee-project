@@ -66,7 +66,7 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | Arquillian                | X     |       |       |       |       |
 | Security                  |       |       |       | X     |       |
 | JMS                       |       |       |       | X     |       |
-| REST + Security           | X     | X     |       | X     |       |
+| REST + Security           | X     |       |       | X     |       |
 | Concurrency/Batching      |       |       |       | X     |       |
 | Openshift / Swarm Fatjar  | X     |       |       |       |       |
 | Clustering                | X     |       |       |       |       |
