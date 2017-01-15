@@ -1,11 +1,13 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
+import cz.cvut.fel.a4m36jee.airlines.ArquillianTest;
 import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
 import cz.cvut.fel.a4m36jee.airlines.event.ReservationCreated;
 import cz.cvut.fel.a4m36jee.airlines.exception.SeatAlreadyReservedException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.model.validation.Longitude;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,6 +19,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
@@ -40,7 +43,8 @@ public class DestinationServiceTest {
                 .addPackage(ReservationCreated.class.getPackage())
                 .addPackage(SeatAlreadyReservedException.class.getPackage())
                 .addPackage(UserRole.class.getPackage())
-                .addClass(Fixtures.class)
+                .addPackage(Fixtures.class.getPackage())
+                .addPackage(Longitude.class.getPackage())
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource("datasource.xml");
