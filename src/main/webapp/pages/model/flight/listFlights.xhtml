@@ -118,9 +118,14 @@
     // called when a message is received
     wSocket.onmessage = function(event)
     {
-        var received_msg = event.data;
-        var actual = document.getElementById('listFlightsForm:'.concat('free-seats-'.concat(received_msg))).value;
-        document.getElementById('listFlightsForm:'.concat('free-seats-'.concat(received_msg))).value = actual - 1;
+        console.log("ONMESSAGE - WEBSOCKET - incoming flightId: " + event.data);
+        var flightId = event.data;
+        var elementId = 'listFlightsForm:free-seats-'.concat(flightId);
+        var actual = document.getElementById(elementId).innerText;
+        console.log("ACTUAL VALUE " + actual);
+        var newValue = actual - 1;
+        console.log("Changing value of element " + elementId + " from " + actual + " to " + newValue);
+        document.getElementById(elementId).innerText = newValue;
     };
 
     // called when socket closes
