@@ -45,6 +45,16 @@
             <name>Jakub Moravec</name>
             <email>moravja8@fel.cvut.cz</email>
         </developer>
+        <developer>
+            <id>slavion3</id>
+            <name>Ondřej Slavíček</name>
+            <email>slavion3@fel.cvut.cz</email>
+        </developer>
+        <developer>
+            <id>kratoon</id>
+            <name>Ondřej Kratochvíl</name>
+            <email>kratoon@fel.cvut.cz</email>
+        </developer>
     </developers>
 
     <properties>

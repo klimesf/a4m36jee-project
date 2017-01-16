@@ -10,7 +10,7 @@ import javax.persistence.Enumerated;
 /**
  * Entity representing a user of the application.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @Entity
 public class User extends AbstractEntity {

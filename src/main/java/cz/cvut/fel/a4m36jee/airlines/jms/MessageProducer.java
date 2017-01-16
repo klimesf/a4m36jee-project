@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  * JMS producer for sending messages to the queue.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @Singleton
 public class MessageProducer {
