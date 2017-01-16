@@ -1,5 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.rest.resource;
 
+import cz.cvut.fel.a4m36jee.airlines.filter.Secured;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
@@ -39,6 +40,7 @@ public class DestinationResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Secured(roles = {"USER", "ADMIN", "EMPLOYEE"})
     public List<Destination> list() {
         return destinationService.list();
     }
@@ -52,6 +54,7 @@ public class DestinationResource {
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Secured(roles = {"USER", "ADMIN", "EMPLOYEE"})
     public Destination get(@PathParam("id") long id) {
         Destination destination = destinationService.get(id);
         if (destination == null) {
@@ -70,6 +73,7 @@ public class DestinationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Secured(roles = {"ADMIN", "EMPLOYEE"})
     public Response create(Destination entity) {
         Response.ResponseBuilder builder = null;
 
