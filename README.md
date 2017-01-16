@@ -45,12 +45,12 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 - [ ] Aplikace bude nasazena v clusteru dvou uzlů v doménové konfiguraci, přiložen konfigurační skript (JBoss CLI) a demonstrována její odolnost vůči výpadku jednoho z nich (lze simulovat na jednom počítači)
 - [ ] Aplikace bude dodána též
   - [ ] nasazená aplikace bežící v OpenShift 3 (developer preview)
-  - [ ] volitelně jako standalone fatjar pomocí WildFly Swarm
+  - [ ] ~~volitelně jako standalone fatjar pomocí WildFly Swarm~~
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
 - [X] Aplikace bude používat alespoň jeden WebSocket endopint
-- [ ] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
+- [X] Aplikace bude volat alespoń jeden REST endpoint (JAX-RS)
 - [X] Vystavené endpointy budou podoporovat zabezpečení
-- [ ] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
+- [X] Aplikace bude obsahovat alespoň jeden use case pro použití Concurrency nebo Batching API
 - [X] Aplikace bude obsahovat alespoň jeden use case pro použití JMS 2.0 API
 - [ ] Každý projekt bude prezentován, studenti budou tázáni na části, které implementovali a technologie, které použili
 
