@@ -309,6 +309,13 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
+                <configuration>
+                    <domain>
+                        <server-groups>
+                            <server-group>main-server-group</server-group>
+                        </server-groups>
+                    </domain>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
