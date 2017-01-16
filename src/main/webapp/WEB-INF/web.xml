@@ -135,8 +135,11 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>employee-fe-delete-reservation</web-resource-name>
+            <web-resource-name>employee-fe-delete</web-resource-name>
             <url-pattern>/reservation/delete/*</url-pattern>
+            <url-pattern>/destination/delete/*</url-pattern>
+            <url-pattern>/flight/delete/*</url-pattern>
+            <http-method>GET</http-method>
             <http-method>POST</http-method>
             <http-method>DELETE</http-method>
         </web-resource-collection>

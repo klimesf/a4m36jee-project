@@ -95,7 +95,7 @@ public class DestinationController {
         try {
             destinationService.create(newDestination);
             logger.info("New newDestination with id " + newDestination.getId() + " created.");
-            response.sendRedirect("/airlines/destination");
+            response.sendRedirect("/airlines/destination/");
         } catch (Exception e) { //TODO exception
             logger.severe("Error during createDestination(): " + e.getMessage());
             response.sendRedirect("/airlines/error/");
