@@ -17,20 +17,20 @@
             <h:graphicImage library="images" name="img.jpg" styleClass="img-circle" height="200"/>
         </div>
         <div class="container" align="center">
-            <p style="font-size: 150%">Zadejte přihlašovací údaje...</p>
+            <p style="font-size: 150%">Enter your credentials...</p>
         </div>
         <div class="container" style="padding-top: 50px" align="right">
             <h:form id="loginForm" class="form" prependId="false">
                 <div class="form-group">
-                    <h:outputLabel value="Username" for="username"/>
-                    <h:inputText styleClass="form-control" id="username"/>
+                    <h:outputLabel value="Username" for="j_username"/>
+                    <h:inputText styleClass="form-control" id="j_username"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel value="Password" for="password"/>
-                    <h:inputSecret styleClass="form-control" id="password"/>
+                    <h:outputLabel value="Password" for="j_password"/>
+                    <h:inputSecret styleClass="form-control" id="j_password"/>
                 </div>
                 <div class="form-group">
-                    <h:commandButton class="btn btn btn-success" value="Login"/>
+                    <h:commandButton class="btn btn btn-success" value="Login" action="j_security_check"/>
                 </div>
             </h:form>
         </div>

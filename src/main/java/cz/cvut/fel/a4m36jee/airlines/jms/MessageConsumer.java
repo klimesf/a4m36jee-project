@@ -54,7 +54,7 @@ public class MessageConsumer implements MessageListener {
         String to = mapMessage.getString("to");
         String date = mapMessage.getString("date");
         StringBuilder sb = new StringBuilder();
-        sb.append("Dear user,\nyour reservation was successfully completed. Flight summary:\n\n")
+        sb.append("\nDear user,\nyour reservation was successfully completed. Flight summary:\n\n")
                 .append("From: ").append(from).append("\n")
                 .append("To: ").append(to).append("\n")
                 .append("Seat no.: ").append(seat).append("\n")
