@@ -39,7 +39,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authorizationHeader == null || !authorizationHeader.startsWith("Basic ")) {
-            throw new NotAuthorizedException("Authorization header must be provided");
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            logger.log(Level.INFO, "Authorization header must be provided");
+            return;
         }
         try {
             String base64hash = authorizationHeader.substring("Basic".length()).trim();
@@ -48,9 +50,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             List<User> users = userDAO.findBy("username", split[0]);
             if (users == null || users.isEmpty()) {
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
-                logger.log(Level.INFO, "Invalid user");
+                logger.log(Level.INFO, String.format("Invalid user for credentials %s", credentials));
                 return;
-//            throw new NotAuthorizedException("Invalid user");
             }
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             md5.update(split[1].getBytes());
@@ -61,13 +62,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             }
             if (!users.get(0).getPassword().equals(sb.toString())) {
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
-                logger.log(Level.INFO, "Invalid password");
-//                throw new NotAuthorizedException("Invalid password");
+                logger.log(Level.INFO, String.format("Invalid password for credentials %s", credentials));
             }
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "No such algorithm: MD5", e);
         } catch (IllegalArgumentException e) {
             logger.log(Level.SEVERE, "Cannot create MD5 hash from received password or decode base64", e);
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
         }
     }
 }
