@@ -9,7 +9,6 @@ Nasazeno na Openshift Developer Preview: [http://airlines-airlines.44fs.preview.
 
 - Filip Klimeš (vedoucí)
 - Jakub Moravec
-- ~~Michal Kašpar~~
 - Ondřej Kratochvíl
 - Ondřej Slavíček
 
@@ -56,21 +55,21 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 
 ## Rozdělení prací
 
-| Úkol                      | FK    | JM    | ~~MK~~| OK    | OS    |
-| ------------------------- | :---: | :---: | :---: | :---: | :---: |
-| Specifikace + UML         | X     |       |       |       |       |
-| JPA 2 + Bean Validation   | X     | X     |       | X     |       |
-| Byznys vrstva             |       | X     |       |       |       |
-| Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       | X     |       |       |   X   |
-| Arquillian                | X     |       |       |       |       |
-| Security                  |       |       |       | X     |       |
-| JMS                       |       |       |       | X     |       |
-| REST + Security           | X     |       |       | X     |       |
-| Concurrency/Batching      |       |       |       | X     |       |
-| Openshift / Swarm Fatjar  | X     |       |       |       |       |
-| Clustering                | X     |       |       |       |       |
-| Prezentace                | X     |       |       |       |       |
+| Úkol                      | FK    | JM    | OK    | OS    |
+| ------------------------- | :---: | :---: | :---: | :---: |
+| Specifikace + UML         | X     |       |       |       |
+| JPA 2 + Bean Validation   | X     | X     | X     |       |
+| Byznys vrstva             |       | X     |       |       |
+| Prezentační vrstva        |       |       |       |   X   |
+| WebSocket                 |       | X     |       |   X   |
+| Arquillian                | X     |       |       |       |
+| Security                  |       |       | X     |       |
+| JMS                       |       |       | X     |       |
+| REST + Security           | X     |       | X     |       |
+| Concurrency/Batching      |       |       | X     |       |
+| Openshift / Swarm Fatjar  | X     |       |       |       |
+| Clustering                | X     |       |       |       |
+| Prezentace                | X     |       |       |       |
 
 ## Deployment & testing
 
