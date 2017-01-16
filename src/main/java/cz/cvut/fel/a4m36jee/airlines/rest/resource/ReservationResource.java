@@ -41,7 +41,7 @@ public class ReservationResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Secured
+    @Secured(roles = {"ADMIN", "EMPLOYEE"})
     public List<Reservation> list() {
         return reservationService.list();
     }
