@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <h:outputLabel value="Password for reservation: *" for="deleteReservationPassword" />
-                    <h:inputSecret styleClass="form-control" id="deleteReservationPassword" value="#{reservation.password}" title="password">
+                    <h:inputSecret styleClass="form-control" id="deleteReservationPassword" value="#{newReservation.password}" title="password">
                         <f:attribute name="reservationId" value="#{request.getParameter('id')}"/>
                         <f:validator binding="#{passwordJSFValidator}" />
                     </h:inputSecret>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton id="deleteReservationBtn" styleClass="btn btn-success" value="Delete" action="#{reservationController.deleteReservation(request.getParameter('id'), request.getParameter('flightId'), reservation.password)}">
+                    <h:commandButton id="deleteReservationBtn" styleClass="btn btn-success" value="Delete" action="#{reservationController.deleteReservation(request.getParameter('id'), request.getParameter('flightId'), newReservation.password)}">
                         <f:param name="id" value="#{request.getParameter('id')}"/>
                         <f:param name="flightId" value="#{request.getParameter('flightId')}"/>
                     </h:commandButton>
