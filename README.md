@@ -63,11 +63,11 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 | Prezentační vrstva        |       |       |       |   X   |
 | WebSocket                 |       | X     |       |   X   |
 | Arquillian                | X     |       |       |       |
-| Security                  |       |       | X     |       |
+| Security                  |       |       | X     |   X   |
 | JMS                       |       |       | X     |       |
-| REST + Security           | X     |       | X     |       |
+| REST + Security           | X     | X     | X     |       |
 | Concurrency/Batching      |       |       | X     |       |
-| Openshift / Swarm Fatjar  | X     |       |       |       |
+| Openshift / Swarm Fatjar  | X     |       |       |   X   |
 | Clustering                | X     |       |       |       |
 | Prezentace                | X     |       |       |       |
 
