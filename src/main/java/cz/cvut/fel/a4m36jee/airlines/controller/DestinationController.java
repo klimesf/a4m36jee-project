@@ -1,6 +1,8 @@
 package cz.cvut.fel.a4m36jee.airlines.controller;
 
+import cz.cvut.fel.a4m36jee.airlines.exception.ErrorWhileContactingWeatherAPIException;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.rest.client.OpenWeatherMapClient;
 import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +34,9 @@ public class DestinationController {
     @Inject
     private FacesContext facesContext;
 
+    @Inject
+    OpenWeatherMapClient weatherClient;
+
     @Produces
     @Named(value = "newDestination")
     private Destination newDestination;
@@ -61,10 +66,10 @@ public class DestinationController {
     }
 
     /**
-     * Find newDestination.
+     * Find Destination.
      *
-     * @param id newDestination ID
-     * @return newDestination
+     * @param id Destination ID
+     * @return Destination
      * @throws IOException if redirect is unsuccessful
      */
     public Destination getDestination(final long id) throws IOException {
@@ -81,7 +86,7 @@ public class DestinationController {
     }
 
     /**
-     * Create new newDestination.
+     * Create new Destination.
      *
      * @throws IOException if redirect is unsuccessful
      */
@@ -98,7 +103,7 @@ public class DestinationController {
     }
 
     /**
-     * Update newDestination.
+     * Update Destination.
      *
      * @throws IOException if redirect is unsuccessful
      */
@@ -115,7 +120,7 @@ public class DestinationController {
     }
 
     /**
-     * Delete newDestination.
+     * Delete Destination.
      *
      * @param id newDestination ID
      * @throws IOException if redirect is unsuccessful
@@ -128,8 +133,22 @@ public class DestinationController {
             response.sendRedirect("/airlines/destination/?faces-redirect=true");
         } catch (Exception e) {
             logger.severe("Error during deleting newDestination with id " + id + ": " + e.getMessage());
-            response.sendRedirect("/airlines/destination/");
+            response.sendRedirect("/airlines/error/");
         }
+    }
+
+    /**
+     * Retrieves weather for Destination.
+     *
+     * @param destination
+     */
+    public OpenWeatherMapClient.WeatherResponse getWeather(Destination destination) {
+        try {
+            return weatherClient.getWeather(destination);
+        } catch (ErrorWhileContactingWeatherAPIException e) {
+            logger.severe("Error while contacting weather API.");
+        }
+        return null;
     }
 
 }

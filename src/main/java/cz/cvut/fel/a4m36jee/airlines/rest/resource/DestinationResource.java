@@ -1,10 +1,9 @@
-package cz.cvut.fel.a4m36jee.airlines.rest;
+package cz.cvut.fel.a4m36jee.airlines.rest.resource;
 
-import cz.cvut.fel.a4m36jee.airlines.dao.ReservationDAO;
-import cz.cvut.fel.a4m36jee.airlines.jms.MessageProducer;
-import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
-import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
+import cz.cvut.fel.a4m36jee.airlines.model.Destination;
+import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -20,9 +19,9 @@ import java.util.logging.Logger;
 /**
  * @author klimefi1, moravja8
  */
-@Path("/reservations")
+@Path("/destinations")
 @RequestScoped
-public class ReservationResource {
+public class DestinationResource {
 
     @Inject
     private Logger logger;
@@ -31,30 +30,30 @@ public class ReservationResource {
     private Validator validator;
 
     @Inject
-    private ReservationService reservationService;
+    private DestinationService destinationService;
 
     /**
-     * Lists all Reservation entities.
+     * Lists all Destination entities.
      *
      * @return List of Ts
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Reservation> list() {
-        return reservationService.list();
+    public List<Destination> list() {
+        return destinationService.list();
     }
 
     /**
-     * Retrieves Reservation entity by the given id
+     * Retrieves Destination entity by the given id
      *
      * @param id The identifier
-     * @return The Reservation entity
+     * @return The Destination entity
      */
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Reservation get(@PathParam("id") long id) {
-        Reservation destination = reservationService.get(id);
+    public Destination get(@PathParam("id") long id) {
+        Destination destination = destinationService.get(id);
         if (destination == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -62,7 +61,7 @@ public class ReservationResource {
     }
 
     /**
-     * Validates and creates new Reservation entity.
+     * Validates and creates new Destination entity.
      *
      * @param entity The entity
      * @return JAX-RS Response
@@ -71,12 +70,12 @@ public class ReservationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response create(Reservation entity) {
+    public Response create(Destination entity) {
         Response.ResponseBuilder builder = null;
 
         try {
             validate(entity);
-            reservationService.create(entity);
+            destinationService.create(entity);
             logger.fine("Created a new entity.");
             builder = Response.ok();
 
@@ -111,13 +110,13 @@ public class ReservationResource {
     }
 
     /**
-     * Validates Reservation entity.
+     * Validates Destination entity.
      *
      * @param destination The entity to validate
      * @throws ConstraintViolationException Thrown if the entity violates any constraints
      */
-    private void validate(Reservation destination) throws ConstraintViolationException {
-        Set<ConstraintViolation<Reservation>> violations = validator.validate(destination);
+    private void validate(Destination destination) throws ConstraintViolationException {
+        Set<ConstraintViolation<Destination>> violations = validator.validate(destination);
 
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));

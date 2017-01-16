@@ -63,6 +63,11 @@
                             </h:outputText>
                         </h:column>
                         <h:column>
+                            <h:button id="destinationDetailBtn" styleClass="btn" outcome="destinationDetail.xhtml" value="Detail">
+                                <f:param name="id" value="#{destination.id}"/>
+                            </h:button>
+                        </h:column>
+                        <h:column>
                             <h:button id="deleteListDestinationsBtn" styleClass="btn btn-danger" outcome="deleteDestination.xhtml" value="Delete">
                                 <f:param name="id" value="#{destination.id}"/>
                             </h:button>

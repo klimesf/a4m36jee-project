@@ -44,6 +44,11 @@
     </url-mapping>
 
     <url-mapping>
+        <pattern value="/destination/detail/"/>
+        <view-id value="/faces/pages/model/destination/destinationDetail.xhtml" />
+    </url-mapping>
+
+    <url-mapping>
         <pattern value="/destination/create/"/>
         <view-id value="/faces/pages/model/destination/createDestination.xhtml" />
     </url-mapping>
