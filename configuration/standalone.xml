@@ -492,8 +492,5 @@
     </socket-binding-group>
 
     <deployments>
-        <deployment name="airlines.war" runtime-name="airlines.war">
-            <content sha1="33c8dd2dc63152d9cda9d74bae013b5df7e706d5"/>
-        </deployment>
     </deployments>
 </server>
