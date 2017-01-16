@@ -48,7 +48,9 @@ public class MessageProducer {
             logger.log(Level.SEVERE, "Cannot open JMS connection", e);
         } finally {
             try {
-                connection.close();
+                if (connection != null) {
+                    connection.close();
+                }
             } catch (JMSException e) {
                 logger.log(Level.SEVERE, "Cannot close JMS connection", e);
             }
