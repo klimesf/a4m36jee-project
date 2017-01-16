@@ -1,4 +1,4 @@
-package cz.cvut.fel.a4m36jee.airlines.rest;
+package cz.cvut.fel.a4m36jee.airlines.rest.resource;
 
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.service.FlightService;

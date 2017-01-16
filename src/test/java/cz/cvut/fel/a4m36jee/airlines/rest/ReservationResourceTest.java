@@ -1,6 +1,5 @@
 package cz.cvut.fel.a4m36jee.airlines.rest;
 
-import cz.cvut.fel.a4m36jee.airlines.ArquillianTest;
 import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.dao.FlightDAO;
@@ -12,6 +11,7 @@ import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 import cz.cvut.fel.a4m36jee.airlines.model.validation.Longitude;
+import cz.cvut.fel.a4m36jee.airlines.rest.resource.ReservationResource;
 import cz.cvut.fel.a4m36jee.airlines.service.ReservationService;
 import cz.cvut.fel.a4m36jee.airlines.util.Resource;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -27,7 +27,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;

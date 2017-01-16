@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+<h:head>
+    <title>List of destinations</title>
+</h:head>
+<h:body>
+    <f:view>
+        <div class="container" style="padding-top: 50px">
+
+            <h:form class="form-inline" id="logoutListDestinationForm">
+                <div class="row" align="right">
+                    <div class="form-group">
+                        <h:button id="homeListDestinationsBtn" styleClass="btn btn-primary"
+                                  outcome="/faces/pages/index.xhtml" value="Home"/>
+                    </div>
+                    <div class="form-group">
+                        <h:button id="logoutListDestinations" styleClass="btn btn-default"
+                                  outcome="/faces/pages/logoutPage.xhtml" value="Logout"/>
+                    </div>
+                </div>
+            </h:form>
+
+            <c:set var="destination" value="#{destinationController.getDestination(request.getParameter('id'))}"
+                   scope="request"/>
+
+            <h2>#{destination.name}</h2>
+
+            <h:form>
+                Latitude: #{destination.lat}<br/>
+                Longitude: #{destination.lon}<br/>
+                <c:set var="weather" value="#{destinationController.getWeather(destination)}" scope="request"/>
+                <h:form rendered="#{weather ne null}">
+                    Temperature: #{weather.main.temp} K<br/>
+                    Pressure: #{weather.main.pressure} Pa<br/>
+                    Humidity: #{weather.main.humidity} %<br/>
+                </h:form>
+            </h:form>
+        </div>
+    </f:view>
+</h:body>
+</html>
