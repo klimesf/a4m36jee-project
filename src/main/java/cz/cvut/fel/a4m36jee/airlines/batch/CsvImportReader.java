@@ -3,6 +3,7 @@ package cz.cvut.fel.a4m36jee.airlines.batch;
 import javax.batch.api.chunk.AbstractItemReader;
 import javax.batch.runtime.BatchRuntime;
 import javax.batch.runtime.context.JobContext;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
@@ -21,7 +22,8 @@ public class CsvImportReader extends AbstractItemReader {
 
     @Inject
     private Logger logger;
-    @Inject
+//    @Inject
+    @Default
     private JobContext jobContext;
     private BufferedReader reader;
 

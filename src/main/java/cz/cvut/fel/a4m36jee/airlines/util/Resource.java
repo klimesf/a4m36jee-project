@@ -5,6 +5,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.logging.Logger;
@@ -15,7 +16,8 @@ import java.util.logging.Logger;
 @ApplicationScoped
 public class Resource {
 
-    @PersistenceContext
+//    @PersistenceContext
+    @Inject
     private EntityManager em;
 
     @Produces

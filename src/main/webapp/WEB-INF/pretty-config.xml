@@ -94,11 +94,6 @@
     </url-mapping>
 
     <url-mapping>
-        <pattern value="/logout"/>
-        <view-id value="/faces/pages/logout.xhtml" />
-    </url-mapping>
-
-    <url-mapping>
         <pattern value="/accessdenied"/>
         <view-id value="/faces/pages/denied.xhtml" />
     </url-mapping>
