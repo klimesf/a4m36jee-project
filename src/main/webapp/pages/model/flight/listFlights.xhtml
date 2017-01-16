@@ -48,7 +48,7 @@
                         <th>Delete</th>
                         <th>Reservations</th>
                     </tr>
-        <c:forEach items="#{flightViewResource.allFlights}" var="flight">
+        <c:forEach items="#{flightController.allFlights}" var="flight">
             <tr>
                 <td><h:outputText value="#{flight.id}"/></td>
                 <td><h:outputText value="#{flight.name}"/></td>
