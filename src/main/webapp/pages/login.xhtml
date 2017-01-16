@@ -20,19 +20,19 @@
             <p style="font-size: 150%">Enter your credentials...</p>
         </div>
         <div class="container" style="padding-top: 50px" align="right">
-            <h:form id="loginForm" class="form" prependId="false">
+            <form id="loginForm" class="form" method="post" action="j_security_check">
                 <div class="form-group">
-                    <h:outputLabel value="Username" for="j_username"/>
-                    <h:inputText styleClass="form-control" id="j_username"/>
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="j_username"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel value="Password" for="j_password"/>
-                    <h:inputSecret styleClass="form-control" id="j_password"/>
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="j_password"/>
                 </div>
                 <div class="form-group">
-                    <h:commandButton class="btn btn btn-success" value="Login" action="j_security_check"/>
+                    <button type="submit" class="btn btn btn-success">Login</button>
                 </div>
-            </h:form>
+            </form>
         </div>
     </f:view>
 </h:body>

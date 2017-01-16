@@ -15,11 +15,7 @@ INSERT INTO reservation (`id`, `seat`, `flight_id`, `password`, `created`, `dele
   (3, 3, 3, 'please-no-bombs-on-plane', NOW(), NULL ),
   (4, 1, 4, 'allahu-akbar', NOW(), NULL );
 
-INSERT INTO `user` (username, `password`, `role`, `deleted`) VALUES
-  ('admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', NULL );
-
-INSERT INTO `user` (username, `password`, `role`, `deleted`) VALUES
-  ('employee', 'fa5473530e4d1a5a1e1eb53d2fedb10c', 'EMPLOYEE', NULL );
-
-INSERT INTO `user` (username, `password`, `role`, `deleted`) VALUES
+INSERT INTO `user` (`username`, `password`, `role`, `deleted`) VALUES
+  ('admin', '21232f297a57a5a743894a0e4a801fc3', 'ADMIN', NULL ),
+  ('employee', 'fa5473530e4d1a5a1e1eb53d2fedb10c', 'EMPLOYEE', NULL ),
   ('user', 'ee11cbb19052e40b07aac0ca060c23ee', 'USER', NULL );
