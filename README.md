@@ -9,7 +9,6 @@ Nasazeno na Openshift Developer Preview: [http://airlines-airlines.44fs.preview.
 
 - Filip Klimeš (vedoucí)
 - Jakub Moravec
-- ~~Michal Kašpar~~
 - Ondřej Kratochvíl
 - Ondřej Slavíček
 
@@ -43,8 +42,8 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 - [X] Datový model bude anotovaný pomocí Bean Validation - stačí použít předdefinované anotace, použití i vlastních omezení je plus
 - [X] Aplikace bude testovatelná (Arquillian)
 - [ ] Aplikace bude nasazena v clusteru dvou uzlů v doménové konfiguraci, přiložen konfigurační skript (JBoss CLI) a demonstrována její odolnost vůči výpadku jednoho z nich (lze simulovat na jednom počítači)
-- [ ] Aplikace bude dodána též
-  - [ ] nasazená aplikace bežící v OpenShift 3 (developer preview)
+- [X] Aplikace bude dodána též
+  - [X] nasazená aplikace bežící v OpenShift 3 (developer preview)
   - [ ] ~~volitelně jako standalone fatjar pomocí WildFly Swarm~~
 - [X] Aplikace bude vystavovat rozhraní pro komunikaci mezi systémy (JAX-RS) - formát zpráv JSON
 - [X] Aplikace bude používat alespoň jeden WebSocket endopint
@@ -56,21 +55,21 @@ Zároveň je potřeba nahrávat seznam letů ve formátu CSV pomocí dávkových
 
 ## Rozdělení prací
 
-| Úkol                      | FK    | JM    | ~~MK~~| OK    | OS    |
-| ------------------------- | :---: | :---: | :---: | :---: | :---: |
-| Specifikace + UML         | X     |       |       |       |       |
-| JPA 2 + Bean Validation   | X     | X     |       | X     |       |
-| Byznys vrstva             |       | X     |       |       |       |
-| Prezentační vrstva        |       |       |       |       |   X   |
-| WebSocket                 |       | X     |       |       |   X   |
-| Arquillian                | X     |       |       |       |       |
-| Security                  |       |       |       | X     |       |
-| JMS                       |       |       |       | X     |       |
-| REST + Security           | X     |       |       | X     |       |
-| Concurrency/Batching      |       |       |       | X     |       |
-| Openshift / Swarm Fatjar  | X     |       |       |       |       |
-| Clustering                | X     |       |       |       |       |
-| Prezentace                | X     |       |       |       |       |
+| Úkol                      | FK    | JM    | OK    | OS    |
+| ------------------------- | :---: | :---: | :---: | :---: |
+| Specifikace + UML         | X     |       |       |       |
+| JPA 2 + Bean Validation   | X     | X     | X     |       |
+| Byznys vrstva             |       | X     |       |       |
+| Prezentační vrstva        |       |       |       |   X   |
+| WebSocket                 |       | X     |       |   X   |
+| Arquillian                | X     |       |       |       |
+| Security                  |       |       | X     |   X   |
+| JMS                       |       |       | X     |       |
+| REST + Security           | X     | X     | X     |       |
+| Concurrency/Batching      |       |       | X     |       |
+| Openshift / Swarm Fatjar  | X     |       |       |   X   |
+| Clustering                | X     |       |       |       |
+| Prezentace                | X     |       |       |       |
 
 ## Deployment & testing
 
