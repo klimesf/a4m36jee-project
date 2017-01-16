@@ -80,8 +80,8 @@
     <!--FE pages-->
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>admin</web-resource-name>
-            <url-pattern>/templates/admin/*</url-pattern>
+            <web-resource-name>admin-fe</web-resource-name>
+            <url-pattern>/import/*</url-pattern>
             <http-method>POST</http-method>
             <http-method>GET</http-method>
             <http-method>PUT</http-method>
@@ -94,16 +94,72 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>user</web-resource-name>
-            <url-pattern>/templates/user/*</url-pattern>
-            <http-method>POST</http-method>
+            <web-resource-name>user-fe-list</web-resource-name>
+            <url-pattern>/flight/*</url-pattern>
+            <url-pattern>/destination/*</url-pattern>
+            <url-pattern>/destination/detail/*</url-pattern>
             <http-method>GET</http-method>
-            <http-method>PUT</http-method>
-            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
             <role-name>USER</role-name>
+            <role-name>EMPLOYEE</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>user-fe-reservation</web-resource-name>
+            <url-pattern>/reservation/create/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>USER</role-name>
+            <role-name>EMPLOYEE</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>employee-list-reservations</web-resource-name>
+            <url-pattern>/reservation/*</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>EMPLOYEE</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>employee-fe-delete</web-resource-name>
+            <url-pattern>/reservation/delete/*</url-pattern>
+            <url-pattern>/destination/delete/*</url-pattern>
+            <url-pattern>/flight/delete/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>EMPLOYEE</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>employee-create</web-resource-name>
+            <url-pattern>/flight/create/*</url-pattern>
+            <url-pattern>/destination/create/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>EMPLOYEE</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -112,8 +168,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>airlines</realm-name>
         <form-login-config>
-            <form-login-page>/templates/login.xhtml</form-login-page>
-            <form-error-page>/templates/loginError.xhtml</form-error-page>
+            <form-login-page>/faces/pages/login.xhtml</form-login-page>
+            <form-error-page>/faces/pages/failureLogin.xhtml</form-error-page>
         </form-login-config>
     </login-config>
 
