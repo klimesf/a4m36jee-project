@@ -39,7 +39,6 @@ public class DestinationResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("ADMIN")
     public List<Destination> list() {
         return destinationService.list();
     }
