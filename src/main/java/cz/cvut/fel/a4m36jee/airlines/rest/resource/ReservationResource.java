@@ -55,7 +55,7 @@ public class ReservationResource {
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Secured
+    @Secured(roles = {"ADMIN", "EMPLOYEE"})
     public Reservation get(@PathParam("id") long id) {
         Reservation destination = reservationService.get(id);
         if (destination == null) {
@@ -74,7 +74,7 @@ public class ReservationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @Secured
+    @Secured(roles = {"USER", "ADMIN", "EMPLOYEE"})
     public Response create(Reservation entity) {
         Response.ResponseBuilder builder = null;
 

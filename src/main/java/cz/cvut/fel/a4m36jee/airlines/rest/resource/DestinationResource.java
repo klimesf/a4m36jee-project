@@ -40,7 +40,7 @@ public class DestinationResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Secured
+    @Secured(roles = {"USER", "ADMIN", "EMPLOYEE"})
     public List<Destination> list() {
         return destinationService.list();
     }
@@ -54,7 +54,7 @@ public class DestinationResource {
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Secured
+    @Secured(roles = {"USER", "ADMIN", "EMPLOYEE"})
     public Destination get(@PathParam("id") long id) {
         Destination destination = destinationService.get(id);
         if (destination == null) {
@@ -73,7 +73,7 @@ public class DestinationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @Secured
+    @Secured(roles = {"ADMIN", "EMPLOYEE"})
     public Response create(Destination entity) {
         Response.ResponseBuilder builder = null;
 
