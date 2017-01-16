@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 /**
  * Processor part of the CSV import batch job.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @Named
 public class CsvImportProcessor implements ItemProcessor {

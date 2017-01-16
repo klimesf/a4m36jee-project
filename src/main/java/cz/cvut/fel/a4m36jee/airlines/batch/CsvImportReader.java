@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * Reader part of the CSV import batch job.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @Named
 public class CsvImportReader extends AbstractItemReader {

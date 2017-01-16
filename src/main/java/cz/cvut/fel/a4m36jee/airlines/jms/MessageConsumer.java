@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * JMS consumer for receiving messages from the queue.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),

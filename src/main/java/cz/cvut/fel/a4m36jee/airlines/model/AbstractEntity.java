@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @MappedSuperclass
 public class AbstractEntity implements Serializable {

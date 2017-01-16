@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * Writer part of the CSV import batch job.
  *
- * @author Ondřej Kratochvíl
+ * @author kratoon
  */
 @Named
 public class CsvImportWriter extends AbstractItemWriter {
