@@ -23,8 +23,7 @@
                                   outcome="/faces/pages/index.xhtml" value="Home"/>
                     </div>
                     <div class="form-group">
-                        <h:button id="logoutListDestinations" styleClass="btn btn-default"
-                                  outcome="/faces/pages/logoutPage.xhtml" value="Logout"/>
+                        <h:commandButton styleClass="btn btn-default" value="Logout" id="logout" action="#{userSession.logout}" />
                     </div>
                 </div>
             </h:form>

@@ -19,7 +19,7 @@
                 <div class="row" align="right">
 
                     <div class="form-group">
-                        <h:button id="logoutListReservations" styleClass="btn btn-default" outcome="/faces/pages/logoutPage.xhtml" value="Logout"/>
+                        <h:commandButton styleClass="btn btn-default" value="Logout" id="logout" action="#{userSession.logout}" />
                     </div>
 
                 </div>
