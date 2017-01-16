@@ -1,5 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.rest.resource;
 
+import cz.cvut.fel.a4m36jee.airlines.filter.Secured;
 import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.service.DestinationService;
 
@@ -39,6 +40,7 @@ public class DestinationResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Secured
     public List<Destination> list() {
         return destinationService.list();
     }
