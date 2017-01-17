@@ -5,7 +5,7 @@
 ### List all Destinations
 
 ```bash
-curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/destinations
+curl -v -H 'Content-type: application/json' -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://localhost:8080/airlines/rest/destinations
 ```
 
 ```json
@@ -34,7 +34,7 @@ curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/
 ### Create a Destination
 
 ```bash
-curl -v -H 'Content-type: application/json' -d '{
+curl -v -H 'Content-type: application/json' -H 'Authorization: Basic YWRtaW46YWRtaW4=' -d '{
   "name": "Prague",
   "lat": 50.0755381,
   "lon": 14.4378005
@@ -50,7 +50,7 @@ curl -v -H 'Content-type: application/json' -d '{
 ### List all Flights
 
 ```bash
-curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/flights
+curl -v -H 'Content-type: application/json' -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://localhost:8080/airlines/rest/flights
 ```
 
 ```json
@@ -95,7 +95,7 @@ curl -v -H 'Content-type: application/json' -d '{
 ```
 
 ```
-curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/flights
+curl -v -H 'Content-type: application/json' -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://localhost:8080/airlines/rest/flights
 ```
 
 
@@ -104,7 +104,7 @@ curl -v -H 'Content-type: application/json' http://localhost:8080/airlines/rest/
 ### List all Reservations
 
 ```bash
-
+curl -v -H 'Content-type: application/json' -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://localhost:8080/airlines/rest/reservations
 ```
 
 ```json
