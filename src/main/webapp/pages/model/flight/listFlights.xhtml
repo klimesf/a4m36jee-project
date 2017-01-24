@@ -63,7 +63,7 @@
                 <td><h:outputText value="#{flight.from.name}"/></td>
                 <td><h:outputText value="#{flight.to.name}"/></td>
                 <td>
-                    <h:button id="deleteListFlightsBtn" styleClass="btn btn-danger" outcome="deleteFlight.xhtml" value="Delete">
+                    <h:button id="#{'deleteListFlightsBtn-'.concat(flight.id)}" styleClass="btn btn-danger" outcome="deleteFlight.xhtml" value="Delete">
                         <f:param name="id" value="#{flight.id}"/>
                     </h:button>
                 </td>
@@ -77,7 +77,7 @@
     </table>
 
                 <div class="form-group">
-                <h:button styleClass="btn btn-success" outcome="createFlight.xhtml" value="Create new flight"/>
+                <h:button id="createFlight" styleClass="btn btn-success" outcome="createFlight.xhtml" value="Create new flight"/>
                 </div>
 
             </h:form>
