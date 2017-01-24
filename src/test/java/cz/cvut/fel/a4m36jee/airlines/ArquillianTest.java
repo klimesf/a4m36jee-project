@@ -1,7 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines;
 
 /**
- * @author klimefi1
+ * @author moravja8
  */
 public interface ArquillianTest {
 }

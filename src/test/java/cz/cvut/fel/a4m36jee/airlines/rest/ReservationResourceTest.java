@@ -36,7 +36,7 @@ import java.util.List;
 
 
 /**
- * @author klimefi1
+ * @author moravja8
  */
 @RunWith(Arquillian.class)
 public class ReservationResourceTest {

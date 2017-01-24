@@ -1,6 +1,5 @@
 package cz.cvut.fel.a4m36jee.airlines.service;
 
-import cz.cvut.fel.a4m36jee.airlines.ArquillianTest;
 import cz.cvut.fel.a4m36jee.airlines.Fixtures;
 import cz.cvut.fel.a4m36jee.airlines.dao.DestinationDAO;
 import cz.cvut.fel.a4m36jee.airlines.enums.UserRole;
@@ -19,7 +18,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
@@ -27,7 +25,7 @@ import javax.ejb.EJBException;
 import javax.inject.Inject;
 
 /**
- * @author klimefi1
+ * @author slavion3
  */
 @RunWith(Arquillian.class)
 public class DestinationServiceTest {

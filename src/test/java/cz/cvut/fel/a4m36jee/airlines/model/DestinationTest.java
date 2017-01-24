@@ -14,9 +14,10 @@ import java.util.Set;
 
 
 /**
- * @author klimefi1
+ * @author moravja8
  */
 @Category(UnitTest.class)
+//@RunWith(Parameterized.class) // TODO: 24.1.2017
 public class DestinationTest {
 
     private final List<Destination> valid = Arrays.asList(

@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Fixtures for Arquillian tests.
  *
- * @author klimefi1
+ * @author moravja8
  */
 public class Fixtures {
 
