@@ -1,12 +1,14 @@
 package cz.cvut.fel.a4m36jee.airlines.frontend;
 
 import cz.cvut.fel.a4m36jee.airlines.frontend.utils.DriverHolder;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,9 +28,15 @@ public class BatchImportTest {
 
     @Test
     public void batchImport() {
+        System.out.println("Batch import test");
 
-        System.out.println("Batch import");
         driver.findElement(By.id("logoutListDestinationForm:homeListDestinationsBtn")).click();
+        driver.findElement(By.id("selectEntityForm:indexFlight")).click();
+
+        List<WebElement> webElementList = driver.findElements(By.cssSelector("#flightsTableListFlights tr"));
+        int flightsCount = webElementList.size();
+
+        driver.findElement(By.id("logoutListFlightsForm:homeListFlightsBtn")).click();
         driver.findElement(By.id("selectEntityForm:indexImport")).click();
         WebElement elem = driver.findElement(By.id("form:file"));
         elem.sendKeys("C:\\flightsImport.csv");
@@ -36,6 +44,14 @@ public class BatchImportTest {
 
         driver.findElement(By.id("selectEntityForm:indexFlight")).click();
 
+        List<WebElement> webElementList2 = driver.findElements(By.cssSelector("#flightsTableListFlights tr"));
+        int flightsNewCount = webElementList2.size();
+
+        if(flightsNewCount > flightsCount){
+            Assert.assertTrue(true);
+        }else{
+            Assert.assertTrue(false);
+        }
     }
 
 }

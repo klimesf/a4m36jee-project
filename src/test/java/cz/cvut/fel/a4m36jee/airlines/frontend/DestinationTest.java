@@ -35,9 +35,8 @@ public class DestinationTest {
     }
 
     @Test
-    public void detailDestination() {
-
-        System.out.println("Detail destination ".concat(destinationDetailName));
+    public void detailDestinationTest() {
+        System.out.println("Detail destination test - ".concat(destinationDetailName));
 
         List<WebElement> webElementList = driver.findElements(By.cssSelector("table tr"));
         int id = -1;
@@ -58,13 +57,11 @@ public class DestinationTest {
         }
 
         Assert.assertTrue(correctData);
-
     }
 
     @Test
-    public void createDestination() {
-
-        System.out.println("Create destination ".concat(name));
+    public void createDestinationTest() {
+        System.out.println("Create destination test - ".concat(name));
 
         driver.findElement(By.id("logoutListDestinationForm:homeReservationListFlightsBtn")).click();
         driver.findElement(By.id("selectEntityForm:indexDestination")).click();
@@ -81,14 +78,14 @@ public class DestinationTest {
                 successfullyAdded = true;
             }
         }
-        Assert.assertTrue(successfullyAdded);
 
+        Assert.assertTrue(successfullyAdded);
     }
 
     @Test
-    public void deleteDestination() {
+    public void deleteDestinationTest() {
+        System.out.println("Delete destination test - ".concat(name));
 
-        System.out.println("Delete destination ".concat(name));
         List<WebElement> webElementList = driver.findElements(By.cssSelector("table tr"));
         int id = -1;
         for(WebElement element : webElementList){
@@ -110,7 +107,5 @@ public class DestinationTest {
         }
 
         Assert.assertTrue(successfullyRemoved);
-
-
     }
 }

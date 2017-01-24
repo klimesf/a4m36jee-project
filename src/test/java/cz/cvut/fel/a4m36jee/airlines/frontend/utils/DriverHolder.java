@@ -3,7 +3,9 @@ package cz.cvut.fel.a4m36jee.airlines.frontend.utils;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
- * Created by Pavel on 06.01.2017.
+ * Driver holder for selenium tests.
+ *
+ * @author slavion3
  */
 public class DriverHolder {
     public static RemoteWebDriver driver;

@@ -57,9 +57,9 @@ public class FlightTest {
     }
 
     @Test
-    public void createFlight(){
-
+    public void createFlightTest(){
         System.out.println("Create flight test - " + name);
+
         driver.findElement(By.id("listFlightsForm:createFlight")).click();
         driver.findElement(By.id("createFlightForm:createFlightName")).sendKeys(name);
         driver.findElement(By.id("createFlightForm:createFlightSeats")).sendKeys(seats);
@@ -79,12 +79,10 @@ public class FlightTest {
             }
         }
         Assert.assertTrue(successfullyAdded);
-
     }
 
     @Test
-    public void deleteFlight() throws InterruptedException {
-
+    public void deleteFlightTest() {
         System.out.println("Delete flight test - " + name);
 
         List<WebElement> webElementList = driver.findElements(By.cssSelector("#flightsTableListFlights tr"));
@@ -107,7 +105,6 @@ public class FlightTest {
         }
 
         Assert.assertTrue(successfullyRemoved);
-
     }
 
 }

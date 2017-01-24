@@ -17,13 +17,13 @@ import javax.transaction.Transactional;
         FlightTest.class,
         ReservationTest.class,
         DestinationTest.class,
-        BatchImportTest.class
+        BatchImportTest.class,
+        LogoutTest.class
 })
 public class TestRun {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("Setup chrome driver");
         System.setProperty("webdriver.chrome.driver", DriverHolder.CHROME_DRIVER_PATH);
         DriverHolder.driver = new ChromeDriver();
     }
@@ -31,8 +31,6 @@ public class TestRun {
 
     @AfterClass
     public static void tearDown() {
-        System.out.println("Tearing down");
         DriverHolder.driver.quit();
-
     }
 }

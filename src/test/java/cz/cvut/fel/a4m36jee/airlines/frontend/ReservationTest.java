@@ -33,9 +33,9 @@ public class ReservationTest {
     }
 
     @Test
-    public void createReservation() {
+    public void createReservationTest() {
+        System.out.println("Create reservation test - ".concat(seat));
 
-        System.out.println("Create reservation ".concat(seat));
         driver.findElement(By.id("listFlightsForm:reservationsListFlightsBtn")).click();
         driver.findElement(By.id("listReservationFlightsForm:createReservationListFlightsBtn")).click();
         driver.findElement(By.id("createReservationForm:createReservationSeat")).sendKeys(seat);
@@ -50,13 +50,12 @@ public class ReservationTest {
             }
         }
         Assert.assertTrue(successfullyAdded);
-
     }
 
     @Test
-    public void deleteReservation() {
+    public void deleteReservationTest() {
+        System.out.println("Delete reservation test - ".concat(seat));
 
-        System.out.println("Delete reservation ".concat(seat));
         List<WebElement> webElementList = driver.findElements(By.cssSelector("table tr"));
         int id = -1;
         for(WebElement element : webElementList){
@@ -79,7 +78,6 @@ public class ReservationTest {
         }
 
         Assert.assertTrue(successfullyRemoved);
-
     }
 
 }
