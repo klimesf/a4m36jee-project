@@ -7,7 +7,15 @@ import cz.cvut.fel.a4m36jee.airlines.model.Destination;
 import cz.cvut.fel.a4m36jee.airlines.model.Flight;
 import cz.cvut.fel.a4m36jee.airlines.model.Reservation;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author moravja8
@@ -78,6 +86,50 @@ public class TestUtils {
         reservationDAO.save(reservation1);
         reservationDAO.save(reservation2);
         reservationDAO.save(reservation3);
+    }
+
+    // for TestNG data provider
+    public static Iterator<String[]> readCSVfileToIterator(String fileName) {
+        List<String[]> records = new ArrayList<String[]>();
+        String record;
+
+        try {
+            BufferedReader file = new BufferedReader(new FileReader(fileName));
+            while ((record = file.readLine()) != null) {
+                String fields[] = record.split(";");
+                records.add(fields);
+            }
+            file.close();
+            return records.iterator();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // for JUnit data provider
+    public static Collection<String[]> readCSVfileToCollection(String fileName) {
+        List<String[]> records = new ArrayList<String[]>();
+        String record;
+
+        try {
+            BufferedReader file = new BufferedReader(new FileReader(fileName));
+            while ((record = file.readLine()) != null) {
+                String fields[] = record.split(";");
+                records.add(fields);
+            }
+            file.close();
+            return records;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
