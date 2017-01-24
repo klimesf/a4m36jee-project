@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +30,11 @@ public class BatchImportTest {
         System.out.println("Batch import");
         driver.findElement(By.id("logoutListDestinationForm:homeListDestinationsBtn")).click();
         driver.findElement(By.id("selectEntityForm:indexImport")).click();
+        WebElement elem = driver.findElement(By.id("form:file"));
+        elem.sendKeys("C:\\flightsImport.csv");
+        driver.findElement(By.id("form:ImportBtn")).click();
+
+        driver.findElement(By.id("selectEntityForm:indexFlight")).click();
 
     }
 

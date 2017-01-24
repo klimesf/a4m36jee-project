@@ -16,7 +16,8 @@ import javax.transaction.Transactional;
         LoginTest.class,
         FlightTest.class,
         ReservationTest.class,
-        DestinationTest.class
+        DestinationTest.class,
+        BatchImportTest.class
 })
 public class TestRun {
 

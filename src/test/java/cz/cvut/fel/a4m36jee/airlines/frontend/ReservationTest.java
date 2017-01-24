@@ -1,6 +1,7 @@
 package cz.cvut.fel.a4m36jee.airlines.frontend;
 
 import cz.cvut.fel.a4m36jee.airlines.frontend.utils.DriverHolder;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -41,6 +42,15 @@ public class ReservationTest {
         driver.findElement(By.id("createReservationForm:createReservationPassword")).sendKeys(password);
         driver.findElement(By.id("createReservationForm:createReservationBtn")).click();
 
+        List<WebElement> webElementList = driver.findElements(By.cssSelector("table tr"));
+        boolean successfullyAdded = false;
+        for(WebElement element : webElementList){
+            if(element.getText().contains(seat)){
+                successfullyAdded = true;
+            }
+        }
+        Assert.assertTrue(successfullyAdded);
+
     }
 
     @Test
@@ -59,6 +69,16 @@ public class ReservationTest {
 
         driver.findElement(By.id("deleteReservationForm:deleteReservationPassword")).sendKeys(password);
         driver.findElement(By.id("deleteReservationForm:deleteReservationBtn")).click();
+
+        List<WebElement> webElementList2 = driver.findElements(By.cssSelector("table tr"));
+        boolean successfullyRemoved = true;
+        for(WebElement element : webElementList2){
+            if(element.getText().contains(seat)){
+                successfullyRemoved = false;
+            }
+        }
+
+        Assert.assertTrue(successfullyRemoved);
 
     }
 

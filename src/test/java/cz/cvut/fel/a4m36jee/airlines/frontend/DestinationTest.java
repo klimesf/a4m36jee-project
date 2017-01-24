@@ -89,6 +89,27 @@ public class DestinationTest {
     public void deleteDestination() {
 
         System.out.println("Delete destination ".concat(name));
+        List<WebElement> webElementList = driver.findElements(By.cssSelector("table tr"));
+        int id = -1;
+        for(WebElement element : webElementList){
+            if(element.getText().contains(name)){
+                driver.findElement(By.id("listDestinationsForm:destinationsTableListDestinations:"+id+":deleteListDestinationsBtn")).click();
+                break;
+            }
+            id++;
+        }
+
+        driver.findElement(By.id("deleteDestinationForm:deleteDestinationBtn")).click();
+
+        List<WebElement> webElementList2 = driver.findElements(By.cssSelector("table tr"));
+        boolean successfullyRemoved = true;
+        for(WebElement element : webElementList2){
+            if(element.getText().contains(name)){
+                successfullyRemoved = false;
+            }
+        }
+
+        Assert.assertTrue(successfullyRemoved);
 
 
     }
