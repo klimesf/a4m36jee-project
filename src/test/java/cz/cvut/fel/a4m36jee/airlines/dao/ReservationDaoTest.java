@@ -135,7 +135,7 @@ public class ReservationDaoTest {
     @Test
     @Transactional(TransactionMode.ROLLBACK)
     public void findBy() throws Exception {
-        reservationDAO.save(reservationA);
+        reservationA = reservationDAO.save(reservationA);
         Reservation loadedReservation = reservationDAO.findBy("created", reservationA.getCreated()).get(0);
         Assert.assertEquals(reservationA.getFlight(), loadedReservation.getFlight());
         Assert.assertEquals(reservationA.getSeat(), loadedReservation.getSeat());

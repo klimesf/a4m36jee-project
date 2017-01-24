@@ -29,11 +29,11 @@ public class DestinationTest {
 
     @Parameterized.Parameters
     public static Collection<String[]> data() {
-        return TestUtils.readCSVfileToCollection("src\\test\\resources\\testResources\\validatorImport.csv");
+        return TestUtils.readCSVfileToCollection("src\\test\\resources\\validatorImport.csv");
     }
 
     public DestinationTest(final String valid, final String name, final String lat, final String lon) {
-        this.valid = valid.equals("valid");
+        this.valid = valid.equals("true");
         this.name = name;
         this.lat = Double.parseDouble(lat);
         this.lon = Double.parseDouble(lon);

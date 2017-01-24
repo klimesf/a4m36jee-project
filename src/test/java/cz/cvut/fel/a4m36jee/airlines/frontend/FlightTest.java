@@ -53,7 +53,7 @@ public class FlightTest {
 
     @Parameterized.Parameters
     public static Collection<String[]> data() {
-        return TestUtils.readCSVfileToCollection("src\\test\\resources\\testResources\\flightsImport.csv");
+        return TestUtils.readCSVfileToCollection("src\\test\\resources\\flightsImport.csv");
     }
 
     @Test
