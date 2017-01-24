@@ -1,6 +1,6 @@
 package cz.cvut.fel.a4m36jee.airlines.frontend;
 
-import cz.cvut.fel.a4m36jee.airlines.frontend.utils.CSVfileReader;
+import cz.cvut.fel.a4m36jee.airlines.TestUtils;
 import cz.cvut.fel.a4m36jee.airlines.frontend.utils.DriverHolder;
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class FlightTest {
 
     @Parameterized.Parameters
     public static Collection<String[]> data() {
-        return CSVfileReader.readCSVfileToCollection("src\\test\\resources\\testResources\\flightsImport.csv");
+        return TestUtils.readCSVfileToCollection("src\\test\\resources\\flightsImport.csv");
     }
 
     @Test

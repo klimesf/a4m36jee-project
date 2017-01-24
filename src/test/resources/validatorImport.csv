@@ -1,0 +1,7 @@
+true;ValidName;-90;-180
+true;ValidName;90;180
+false;ValidName;-91;0
+false;ValidName;91;0
+false;ValidName;0;-181
+false;ValidName;0;181
+false;;0;0
